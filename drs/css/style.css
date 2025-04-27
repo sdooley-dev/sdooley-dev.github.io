@@ -1,1 +1,466 @@
-
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* added 031824 */
+        html {
+          scroll-behavior: smooth; /* Optional for smooth scrolling */
+          scroll-padding-top: 20px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #1a73e8;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        /* Top Banner */
+        .top-banner {
+            background-color: #1e2127;
+            color: #fff;
+            text-align: center;
+            padding: 8px 0;
+        }
+        
+        .banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid #eaeaea;
+            padding: 15px 0 5px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            color: #333;
+            font-size: 28px;
+            font-weight: 700;
+            margin-left: 15px;
+        }
+        
+        .search-box {
+            flex: 0 0 auto;
+            margin: 0;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .top-nav ul {
+            display: flex;
+            justify-content: flex-start;
+            margin-right: auto;
+        }
+        
+        .top-nav li {
+            margin: 0 15px 0 0;
+        }
+        
+        .top-nav a {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .social-icons a {
+            margin-left: 15px;
+            color: #666;
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: none;
+        }
+        
+        .mobile-menu-overlay.active {
+            transform: translateX(0);
+            display: block;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .mobile-menu-content {
+            padding: 20px;
+        }
+        
+        .mobile-menu-section {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-menu-back {
+            margin-bottom: 15px;
+        }
+        
+        .back-link {
+            color: #555;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .back-link i {
+            margin-right: 5px;
+        }
+        
+        .mobile-menu-section h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            text-transform: uppercase;
+        }
+        
+        .mobile-menu-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .mobile-nav ul {
+            margin-bottom: 20px;
+        }
+        
+        .mobile-nav li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-nav a {
+            color: #555;
+            font-size: 16px;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        .mobile-social {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .mobile-social li {
+            margin-right: 20px;
+        }
+        
+        /* Main Container */
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            flex: 0 0 250px;
+            padding-right: 30px;
+            border-right: 1px solid #eaeaea;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .sidebar-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-section a {
+            color: #555;
+            font-size: 14px;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.2s;
+        }
+        
+        .sidebar-section a:hover {
+            color: #1a73e8;
+        }
+        
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding-left: 30px;
+        }
+        
+        .content h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .content h2 {
+            font-size: 24px;
+            margin: 40px 0 15px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+            font-weight: 500;
+        }
+        
+        .content p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+        
+        /* Section styling */
+        section {
+            
+            scroll-margin-top: 80px; /* added 031824 */
+            
+            border: none;
+            border-left: 0px solid #333;
+            padding: 5px 5px 5px 15px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+        }
+        
+        /* Adjust the existing h1 and h2 margins to work better with the new border */
+        .content section h1,
+        .content section h2 {
+            margin-top: 0;  /* Remove top margin since we have padding */
+        }
+        
+        /* Remove the border-top from h2 since we now have section borders */
+        .content h2 {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        /* Code blocks */
+        pre {
+            background-color: #f6f8fa;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin-bottom: 20px;
+        }
+        
+        code {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #f6f8fa;
+            padding: 20px 0;
+            margin-top: 50px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Show mobile menu toggle and hide desktop nav */
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .logo, .search-box {
+                margin-bottom: 0;
+            }
+            
+            .search-box {
+                flex: 1;
+                margin-right: 15px;
+            }
+            
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .content {
+                padding-left: 0;
+            }
+        }
+        
+        /* Logo Image */
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #eaeaea;
+        }
+        
+        /* Mobile logo size */
+        .mobile-menu-header .logo-img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        /* Indented menu items */
+        .indented-item {
+            margin-left: 20px;
+            position: relative;
+        }
+        
+        /* Style lists within sections */
+        section ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        section li {
+            margin-bottom: 10px;
+        }
+        
+        /* Add this to your <style> tag */
+        .indented-section {
+            margin-left: 40px;
+            border-left: 1px solid #eaeaea;
+            padding-left: 15px;
+        }
+        
+        /* Add this to make margins smaller for paragraphs inside sections */
+        section p {
+            margin-bottom: 10px;  /* Reduced from 20px to 10px */
+        }
+        
+        /* Add this to your style section */
+        section .certification-date {
+            color: #666;  /* lighter color */
+            font-style: italic;
+        }
+        
+        /* Update the CSS class */
+        section .lighterItalics {
+            color: #666;  /* lighter color */
+            font-style: italic;
+            font-size: smaller;  /* Changed from 14px to smaller */
+        }
+        
+        /* Add this to your style section */
+        section h3 {
+            padding: 5px 0;  /* Add 10px padding to top and bottom */
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Add this to your style section */
+        section blockquote {
+            margin-left: 25px;
+            border-left: 4px solid #1a73e8;  /* Same blue as the links */
+            padding-left: 10px;
+            color: #444;
+            font-weight: 600;
+        }
+        
+        
+        .pdf-icon::before {
+          font-family: "Font Awesome 6 Free";
+          content: "\f1c1";
+        }
+        
+        
