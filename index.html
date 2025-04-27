@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steve Dooley, MBA</title>
+    <link rel="stylesheet" href="drs/css/style.css">
+    <link rel="stylesheet" href="drs/css/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Add SheetJS CDN -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <!-- TODO: These styles might be removed later if they're covered by style.css -->
+    <style>
+        #results li {
+            list-style: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #results li:hover {
+            background-color: #f9f9f9;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            margin: 2px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            text-decoration: none;
+            color: #333;
+        }
+        .tag:hover {
+            background-color: #dee2e6;
+            text-decoration: none;
+        }
+        h2 {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .top-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-right: 1px solid #eee;
+        }
+        .menu-item:last-child {
+            border-right: none;
+        }
+        .menu-item:hover {
+            background-color: #f5f5f5;
+        }
+        .menu-link {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="banner-content">
+            Speed to Outcome.
+        </div>
+    </div>
+
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="#top" id="home"><img src="img/profile-steve-dooley.jfif" alt="Steve Dooley Logo" class="logo-img"></a>
+                <a href="#top" class="logo-text">Steve Dooley</a>
+            </div>
+            <div class="search-box">
+                <!-- <input type="text" placeholder="Search"> -->
+            </div>
+            <nav class="top-nav desktop-nav">
+                <ul>
+                    <!-- <li><a href="https://sdooley.org/pdf">PDF Resume</a></li> -->
+                    <!-- <li><a href="#feedback">Feedback</a></li> -->
+                </ul> 
+            </nav>
+            <div class="social-icons desktop-nav">
+                <a target="_blank" href="https://sdooley.org/resume/pdf/" aria-label="PDF Resume"><i class="pdf-icon"></i> PDF Resume</a>
+                <a target="_blank" href="https://sdooley-dev.github.io" aria-label="GitHub">GitHub</a>
+                <a target="_blank" href="https://www.linkedin.com/in/stevedooley/" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay"> <!-- ### Mobile Menu Overlay ############ -->
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <img src="img/profile-steve-dooley.jfif" alt="Steve Dooley Logo" class="logo-img">
+            </div>
+            <button class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-section">
+                <div class="mobile-menu-back">
+                    <a href="#" class="back-link"><i class="fas fa-chevron-left"></i> Back</a>
+                </div>
+                <!--<h2>DOCUMENTATION</h2> -->
+            </div>
+            
+            <nav class="mobile-nav">
+                <div class="mobile-menu-section">
+                    <ul>
+                        <li><a href="#top">Home</a></li>
+                        <li><a href="https://sdooley.org/resume/pdf/" target="_blank">PDF Resume</a></li>
+                        <li><a href="https://sdooley-dev.github.io">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/stevedooley/" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- ### Mobile Menu Overlay ############ -->
+
+    <h1>Skills / Experience</h1>
+    
+    <ul id="results"></ul>
+
+    <!-- moved debug controls and timestamp info to bottom -->
+
+    <!-- Add debug controls that only show in development -->
+    <div id="testControls" style="display: none; margin-bottom: 20px;">
+        <button onclick="runTests()">Run All Tests</button>
+        <button onclick="testURLScenarios()">Test URLs</button>
+        <button onclick="testDataDisplay()">Test Display</button>
+    </div>
+
+    <div id="timestamps" style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
+        <div>Page last updated: <span id="pageUpdate"></span></div>
+        <div>Data last updated: <span id="dataUpdate"></span></div>
+    </div>
+
+    <script>
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+            const body = document.body;
+
+            // Toggle mobile menu
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenuOverlay.classList.add('active');
+                body.classList.add('menu-open');
+            });
+
+            // Close mobile menu
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenuOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+
+            // Close menu when clicking on a link
+            const mobileMenuLinks = document.querySelectorAll('.mobile-nav a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
+        });
+
+        // Add at the start of your script
+        const isDebugMode = window.location.search.includes('debug=true');
+        
+        if (isDebugMode) {
+            document.getElementById('testControls').style.display = 'block';
+            // Load test script dynamically
+            const testScript = document.createElement('script');
+            testScript.src = 'tests.js';
+            document.body.appendChild(testScript);
+        }
+        
+        // Build timestamp
+        const BUILD_TIMESTAMP = new Date().toLocaleString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        // Add this function at the start of your script section
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Function to load XLSX data
+        function loadXLSX(url, callback) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.arrayBuffer();
+                })
+                .then(data => {
+                    const workbook = XLSX.read(data, { 
+                        type: 'array',
+                        cellDates: true, // Handle dates properly
+                        dateNF: 'yyyy-mm-dd' // Date format
+                    });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet, {
+                        raw: false, // Convert all data to strings
+                        defval: 'N/A' // Default value for empty cells
+                    });
+                    console.log('Loaded XLSX data:', jsonData); // Debug loaded data
+                    callback(jsonData);
+                })
+                .catch(error => {
+                    console.error('Error loading XLSX:', error);
+                    document.getElementById('results').textContent = 'Error loading data.';
+                });
+        }
+
+        // Function to format search term for URL (spaces to hyphens)
+        function formatForUrl(term) {
+            return term.replace(/\s+/g, '-');
+        }
+
+        // Function to format search term for display (hyphens to spaces)
+        function formatForDisplay(term) {
+            return term.replace(/-+/g, ' ');
+        }
+
+        // Function to get search term from URL hash
+        function getSearchTerm() {
+            const hashValue = window.location.hash.slice(1);
+            return formatForDisplay(hashValue);
+        }
+
+        // Function to update the page title
+        function updatePageTitle(searchTerm) {
+            if (searchTerm) {
+                const displayTerm = formatForDisplay(searchTerm)
+                    .split(' ')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                    .join(' ');
+                document.title = `${displayTerm} - Search Results`;
+            } else {
+                document.title = 'Search Results';
+            }
+        }
+
+        // Function to create a clickable tag link
+        function createTagLink(tag) {
+            if (!tag || tag === 'N/A') return '';
+            const formattedTag = formatForUrl(tag.trim());
+            return `<a href="#${formattedTag}" class="tag" onclick="event.preventDefault(); window.location.hash = '${formattedTag}'; window.scrollTo(0, 0);">${tag}</a>`;
+        }
+
+        // Function to perform the search and update results
+        function updateResults(searchTerm) {
+            updatePageTitle(searchTerm);
+
+            loadXLSX('040625-skills.xlsx', data => {
+                let filteredData;
+                
+                if (!searchTerm) {
+                    filteredData = data;
+                } else {
+                    filteredData = data.filter(item => {
+                        return [item.tag1, item.tag2, item.tag3, item.tag4, item.tag5].some(tag => 
+                            tag && tag !== 'N/A' && tag.toLowerCase().includes(searchTerm.toLowerCase())
+                        );
+                    });
+                }
+
+                // Always sort by ID
+                filteredData.sort((a, b) => Number(a.e_id) - Number(b.e_id));
+
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = '';
+
+                if (filteredData.length > 0) {
+                    // Always group by Type
+                    const groupedByType = {};
+                    filteredData.forEach(item => {
+                        const type = item.e_type || 'Uncategorized';
+                        if (!groupedByType[type]) {
+                            groupedByType[type] = [];
+                        }
+                        groupedByType[type].push(item);
+                    });
+
+                    Object.keys(groupedByType).sort().forEach(type => {
+                        const typeHeader = document.createElement('h2');
+                        typeHeader.textContent = type;
+                        resultsContainer.appendChild(typeHeader);
+
+                        const typeList = document.createElement('ul');
+                        groupedByType[type].forEach(item => {
+                            const listItem = document.createElement('li');
+                            const tagLinks = [item.tag1, item.tag2, item.tag3, item.tag4, item.tag5]
+                                .filter(tag => tag && tag !== 'N/A')
+                                .map(tag => createTagLink(tag))
+                                .join(' ');
+                            
+                            // Format e_date: if before 2021, show '4+ years ago'
+                            let displayDate = 'N/A';
+                            if (item.e_date && item.e_date !== 'N/A') {
+                                const year = new Date(item.e_date).getFullYear();
+                                displayDate = (year < 2021) ? '4+ years ago' : item.e_date;
+                            }
+                            listItem.innerHTML = `
+                                <strong>ID:</strong> ${item.e_id}<br>
+                                <strong>Date:</strong> ${displayDate}<br>
+                                <strong>Title:</strong> ${item.e_title}<br>
+                                <strong>Description:</strong> ${item.e_desc}<br>
+                                <strong>Priority:</strong> ${item.e_priority}<br>
+                                <strong>Tags:</strong> ${tagLinks || 'N/A'}<br>
+                                <strong>End Date:</strong> ${item.e_date_end}<br>
+                                <strong>Sponsoring:</strong> ${item.e_sponsoring}<br>
+                                ${item.e_url !== 'N/A' ? `<strong>URL:</strong> <a href="${item.e_url}" target="_blank">${item.e_url}</a>` : ''}
+                            `;
+                            typeList.appendChild(listItem);
+                        });
+                        resultsContainer.appendChild(typeList);
+                    });
+                } else {
+                    resultsContainer.textContent = 'No results found.';
+                }
+            });
+        }
+
+        // Initial load
+        const initialSearchTerm = getSearchTerm();
+        updateResults(initialSearchTerm);
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', () => {
+            const newSearchTerm = getSearchTerm();
+            updateResults(newSearchTerm);
+        });
+
+        // Get timestamp for data file only
+        fetch('040625-skills.xlsx')
+            .then(response => response.headers.get('last-modified'))
+            .then(dataDate => {
+                document.getElementById('pageUpdate').textContent = BUILD_TIMESTAMP;
+                document.getElementById('dataUpdate').textContent = formatDate(dataDate);
+            })
+            .catch(error => {
+                console.error('Error fetching timestamps:', error);
+                document.getElementById('pageUpdate').textContent = BUILD_TIMESTAMP;
+                document.getElementById('dataUpdate').textContent = 'Unknown';
+            });
+    </script>
+
+    <footer>
+        <div class="footer-content" style="max-width:1200px;margin:0 auto;text-align:center;color:#666;font-size:14px;padding:20px 0;background-color:#f6f8fa;border-top:1px solid #eaeaea;">
+            <div style="margin-bottom:10px;">
+                <a target="_blank" href="https://sdooley.org/resume/pdf/" aria-label="PDF Resume" style="margin:0 15px;color:#666;text-decoration:none;"><i class="pdf-icon"></i> PDF Resume</a>
+                
+                <a href="https://sdooley-dev.github.io" aria-label="GitHub" style="margin:0 15px;color:#666;text-decoration:none;">GitHub</a>
+                 <!--
+                <a target="_blank" href="https://github.com/sdooley-dev/mclean-library-project/blob/main/README.md" aria-label="GitHub" style="margin:0 15px;color:#666;text-decoration:none;">GitHub</a>
+                -->
+                <a target="_blank" href="https://www.linkedin.com/in/stevedooley/" aria-label="LinkedIn" style="margin:0 15px;color:#666;text-decoration:none;">LinkedIn</a>
+            </div>
+            <div>
+                &copy; <span id="footerYear"></span> Steve Dooley. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+    </script>
+
+<script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/@denserai/embed-chat@1/dist/web.min.js";
+    Chatbot.init({
+      chatbotId: "c064bda6-03b6-4a37-85be-1caec8cfb2c1",
+    });
+  </script>  
+  
+  
+</body>
+</html> 
