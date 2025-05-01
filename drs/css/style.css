@@ -61,6 +61,8 @@
             top: 0;
             z-index: 100;
             backdrop-filter: blur(5px);
+            margin-left: 20px;
+            margin-right: 20px;
         }
         
         .header-container {
@@ -232,6 +234,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
         }
         
         /* Sidebar */
@@ -272,6 +276,8 @@
         .content {
             flex: 1;
             padding-left: 30px;
+            min-height: auto;
+            height: auto;
         }
         
         .content h1 {
@@ -296,20 +302,22 @@
         
         /* Section styling */
         section {
-            
-            scroll-margin-top: 80px; /* added 031824 */
-            
+            scroll-margin-top: 80px;
             border: none;
             border-left: 0px solid #333;
             padding: 5px 5px 5px 15px;
             margin-bottom: 10px;
             background-color: #ffffff;
+            min-height: auto;
+            height: auto;
         }
         
         /* Adjust the existing h1 and h2 margins to work better with the new border */
         .content section h1,
         .content section h2 {
-            margin-top: 0;  /* Remove top margin since we have padding */
+            margin-top: 0;
+            min-height: auto;
+            height: auto;
         }
         
         /* Remove the border-top from h2 since we now have section borders */
