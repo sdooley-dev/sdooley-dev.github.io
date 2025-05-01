@@ -185,11 +185,12 @@
         <button onclick="testURLScenarios()">Test URLs</button>
         <button onclick="testDataDisplay()">Test Display</button>
     </div>
-
+<!-- 
     <div id="timestamps" style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
         <div>Page last updated: <span id="pageUpdate"></span></div>
         <div>Data last updated: <span id="dataUpdate"></span></div>
     </div>
+    -->
 
     <script>
         // Mobile Menu Functionality
@@ -421,8 +422,14 @@
                             // Format e_date: if before 2021, show '4+ years ago'
                             let displayDate = 'N/A';
                             if (item.e_date && item.e_date !== 'N/A') {
-                                const year = new Date(item.e_date).getFullYear();
-                                displayDate = (year < 2021) ? '4+ years ago' : item.e_date;
+                                const date = new Date(item.e_date);
+                                const year = date.getFullYear();
+                                if (year < 2021) {
+                                    displayDate = '4+ years ago';
+                                } else {
+                                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                                    displayDate = `${monthNames[date.getMonth()]} ${year}`;
+                                }
                             }
                             listItem.innerHTML = `
                                 <div class="content-container" style="margin-top: 15px;">
