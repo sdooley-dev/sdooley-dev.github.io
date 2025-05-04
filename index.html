@@ -15,7 +15,7 @@
     <!-- Header will be loaded here -->
     <div id="header-container"></div>
 
-    <h1>Skills / Experience</h1>
+    <h1 id="page-title" style="padding-left: 10px;">Skills / Experience</h1>
     
     <ul id="results"></ul>
 
@@ -49,6 +49,7 @@
         function initializeMobileMenu() {
             const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenuBack = document.querySelector('.mobile-menu-back-btn');
             const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
             const body = document.body;
 
@@ -61,6 +62,13 @@
 
             if (mobileMenuClose) {
                 mobileMenuClose.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            }
+
+            if (mobileMenuBack) {
+                mobileMenuBack.addEventListener('click', function() {
                     mobileMenuOverlay.classList.remove('active');
                     body.classList.remove('menu-open');
                 });
@@ -153,14 +161,14 @@
 
         // Function to update the page title
         function updatePageTitle(searchTerm) {
+            const pageTitle = document.getElementById('page-title');
             if (searchTerm) {
-                const displayTerm = formatForDisplay(searchTerm)
-                    .split(' ')
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-                    .join(' ');
+                const displayTerm = formatForDisplay(searchTerm).toLowerCase();
                 document.title = `${displayTerm} - Search Results`;
+                pageTitle.textContent = `${displayTerm} skills & experience`;
             } else {
                 document.title = 'Steve Dooley, MBA';
+                pageTitle.textContent = 'skills & experience';
             }
         }
 
