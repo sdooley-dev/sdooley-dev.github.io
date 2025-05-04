@@ -10,168 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Add SheetJS CDN -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-    <!-- TODO: These styles might be removed later if they're covered by style.css -->
-    <style>
-        #results li {
-            list-style: none;
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        #results li:hover {
-            background-color: #f9f9f9;
-        }
-        .tag {
-            display: inline-block;
-            padding: 4px 8px;
-            margin: 2px;
-            background-color: #e9ecef;
-            border-radius: 3px;
-            text-decoration: none;
-            color: #333;
-        }
-        .tag:hover {
-            background-color: #dee2e6;
-            text-decoration: none;
-        }
-        h2 {
-            margin-top: 30px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-        .top-menu {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .menu-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-        .menu-item {
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            border-right: 1px solid #eee;
-        }
-        .menu-item:last-child {
-            border-right: none;
-        }
-        .menu-item:hover {
-            background-color: #f5f5f5;
-        }
-        .menu-link {
-            text-decoration: none;
-            color: #333;
-            display: block;
-            white-space: nowrap;
-        }
-        /* Customize chatbot background to black */
-        div[part="bot"] {
-            background-color: black !important;
-        }
-        /* New styles for content display */
-        .content-container {
-            display: block;
-            height: auto;
-            min-height: 0;
-        }
-        .content032825 {
-            display: block;
-            height: auto;
-            min-height: 0;
-        }
-        .event-content {
-            display: block;
-            height: auto;
-            min-height: 0;
-        }
-        .event-description {
-            display: block;
-            height: auto;
-            min-height: 0;
-            margin: 10px 0;
-        }
-        .event-tags {
-            display: block;
-            height: auto;
-            min-height: 0;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
-    <!-- Top Banner -->
-    <div class="top-banner">
-        <div class="banner-content">
-            Speed to Outcome.
-        </div>
-    </div>
-
-    <!-- Header with Navigation -->
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html" id="home"><img src="img/profile-steve-dooley.jfif" alt="Steve Dooley Logo" class="logo-img"></a>
-                <a href="index.html" class="logo-text">Steve Dooley</a>
-            </div>
-            <div class="search-box">
-                <!-- <input type="text" placeholder="Search"> -->
-            </div>
-
-            <div class="social-icons desktop-nav">
-                <a href="index.html" aria-label="GitHub">Home</a>
-                <a href="chatbot.html">Chatbot</a>
-                <a target="_blank" href="https://sdooley.org/resume/pdf/" aria-label="PDF Resume"><i class="pdf-icon"></i> PDF Resume</a>
-                
-                <a target="_blank" href="https://www.linkedin.com/in/stevedooley/" aria-label="LinkedIn">LinkedIn</a>
-            </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <div class="mobile-menu-overlay"> <!-- ### Mobile Menu Overlay ############ -->
-        <div class="mobile-menu-header">
-            <div class="logo">
-                <img src="img/profile-steve-dooley.jfif" alt="Steve Dooley Logo" class="logo-img">
-            </div>
-            <button class="mobile-menu-close" aria-label="Close menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <div class="mobile-menu-content">
-            <div class="mobile-menu-section">
-                <div class="mobile-menu-back">
-                    <a href="#" class="back-link"><i class="fas fa-chevron-left"></i> Back</a>
-                </div>
-                <!--<h2>DOCUMENTATION</h2> -->
-            </div>
-            
-            <nav class="mobile-nav">
-                <div class="mobile-menu-section">
-                    <ul>
-                        <li><a href="chatbot.html">Chatbot</a></li>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="https://sdooley.org/resume/pdf/" target="_blank">PDF Resume</a></li>
-                        <li><a href="https://sdooley-dev.github.io">GitHub</a></li>
-                        <li><a href="https://www.linkedin.com/in/stevedooley/" target="_blank">LinkedIn</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div> <!-- ### Mobile Menu Overlay ############ -->
+    <!-- Header will be loaded here -->
+    <div id="header-container"></div>
 
     <h1>Skills / Experience</h1>
     
@@ -185,34 +27,45 @@
         <button onclick="testURLScenarios()">Test URLs</button>
         <button onclick="testDataDisplay()">Test Display</button>
     </div>
-<!-- 
-    <div id="timestamps" style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
-        <div>Page last updated: <span id="pageUpdate"></span></div>
-        <div>Data last updated: <span id="dataUpdate"></span></div>
-    </div>
-    -->
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
 
     <script>
+        // Load header and footer content
+        Promise.all([
+            fetch('drs/inc/header.html').then(response => response.text()),
+            fetch('drs/inc/footer.html').then(response => response.text())
+        ])
+        .then(([headerData, footerData]) => {
+            document.getElementById('header-container').innerHTML = headerData;
+            document.getElementById('footer-container').innerHTML = footerData;
+            // Initialize mobile menu functionality after header is loaded
+            initializeMobileMenu();
+        })
+        .catch(error => console.error('Error loading content:', error));
+
         // Mobile Menu Functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializeMobileMenu() {
             const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const mobileMenuClose = document.querySelector('.mobile-menu-close');
             const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
             const body = document.body;
 
-            // Toggle mobile menu
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenuOverlay.classList.add('active');
-                body.classList.add('menu-open');
-            });
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.add('active');
+                    body.classList.add('menu-open');
+                });
+            }
 
-            // Close mobile menu
-            mobileMenuClose.addEventListener('click', function() {
-                mobileMenuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-            });
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            }
 
-            // Close menu when clicking on a link
             const mobileMenuLinks = document.querySelectorAll('.mobile-nav a');
             mobileMenuLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -220,7 +73,7 @@
                     body.classList.remove('menu-open');
                 });
             });
-        });
+        }
 
         // Add at the start of your script
         const isDebugMode = window.location.search.includes('debug=true');
@@ -307,7 +160,7 @@
                     .join(' ');
                 document.title = `${displayTerm} - Search Results`;
             } else {
-                document.title = 'Search Results';
+                document.title = 'Steve Dooley, MBA';
             }
         }
 
@@ -485,34 +338,5 @@
                 document.getElementById('dataUpdate').textContent = 'Unknown';
             });
     </script>
-
-    <footer>
-        <div class="footer-content" style="max-width:1200px;margin:0 auto;text-align:center;color:#666;font-size:14px;padding:20px 0;background-color:#f6f8fa;border-top:1px solid #eaeaea;">
-            <div style="margin-bottom:10px;">
-                <a target="_blank" href="https://sdooley.org/resume/pdf/" aria-label="PDF Resume" style="margin:0 15px;color:#666;text-decoration:none;"><i class="pdf-icon"></i> PDF Resume</a>
-                
-                <a href="https://sdooley-dev.github.io" aria-label="GitHub" style="margin:0 15px;color:#666;text-decoration:none;">GitHub</a>
-                 <!--
-                <a target="_blank" href="https://github.com/sdooley-dev/mclean-library-project/blob/main/README.md" aria-label="GitHub" style="margin:0 15px;color:#666;text-decoration:none;">GitHub</a>
-                -->
-                <a target="_blank" href="https://www.linkedin.com/in/stevedooley/" aria-label="LinkedIn" style="margin:0 15px;color:#666;text-decoration:none;">LinkedIn</a>
-            </div>
-            <div>
-                &copy; <span id="footerYear"></span> Steve Dooley. All rights reserved.
-            </div>
-        </div>
-    </footer>
-    <script>
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
-    </script>
-
-<script type="module">
-    import Chatbot from "https://cdn.jsdelivr.net/npm/@denserai/embed-chat@1/dist/web.min.js";
-    Chatbot.init({
-      chatbotId: "c064bda6-03b6-4a37-85be-1caec8cfb2c1",
-    });
-  </script>  
-  
-  
 </body>
 </html> 
