@@ -10,12 +10,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Add SheetJS CDN -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <style>
+        /* Fixed header styles */
+        #header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Main content styles */
+        body {
+            padding-top: 120px; /* Adjust this value based on your header height */
+        }
+
+        #page-title {
+            margin-top: 5px;
+            font-size: 1.8em;
+            color: #555;
+            font-weight: 400;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Ensure mobile menu overlay works with fixed header */
+        .mobile-menu-overlay {
+            top: 0;
+            z-index: 1001;
+        }
+    </style>
 </head>
 <body>
     <!-- Header will be loaded here -->
     <div id="header-container"></div>
 
-    <h1 id="page-title" style="padding-left: 10px;">Skills / Experience</h1>
+    <h1 id="page-title"></h1>
     
     <ul id="results"></ul>
 
@@ -168,7 +200,7 @@
                 pageTitle.textContent = `${displayTerm} skills & experience`;
             } else {
                 document.title = 'Steve Dooley, MBA';
-                pageTitle.textContent = 'skills & experience';
+                pageTitle.textContent = 'technical skills & experience';
             }
         }
 
@@ -185,41 +217,44 @@
             switch(eventType) {
                 case "01":
                     return {
-                        icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color: #4169E1;"></i>',
                         title: "Awards"
                     };
                 case "02":
                     return {
-                        icon: '<i class="fa fa-book" aria-hidden="true" title="Case Studies" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-book" aria-hidden="true" title="Case Studies" style="color: #4169E1;"></i>',
                         title: "Case Studies"
                     };
                 case "03":
                     return {
-                        icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates" style="color: #4169E1;"></i>',
                         title: "Courses & Certificates",
-                        anchor: "courses"
+                        anchor: "courses",
+                        title_blurb: "Please see some of the courses that I have completed."
                     };
                 case "04":
                     return {
-                        icon: '<i class="fa fa-certificate" aria-hidden="true" title="x" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-certificate" aria-hidden="true" title="x" style="color: #4169E1;"></i>',
                         title: "x"
                     };
                 case "05":
                     return {
-                        icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback" style="color: #4169E1;"></i>',
                         title: "Feedback"
                     };
                 case "06":
                     return {
-                        icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops" style="color: #4169E1;"></i>',
                         title: "Presentations & Workshops",
-                        anchor: "presentations"
+                        anchor: "presentations",
+                        title_blurb: "Please see some of the presentations that I have completed."
                     };
-                    case "07":
+                case "07":
                     return {
-                        icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies" style="color: #555555;"></i>',
+                        icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies" style="color: #4169E1;"></i>',
                         title: "Case Studies",
-                        anchor: "case-studies"
+                        anchor: "case-studies",
+                        title_blurb: "Please see some of the case studies that I have completed."
                     };
                 default:
                     return {
@@ -270,9 +305,36 @@
                         if (typeInfo.anchor) {
                             typeHeader.id = typeInfo.anchor;
                         }
+                        // Make all section headers royal blue
+                        typeHeader.style.color = '#4169E1';
                         resultsContainer.appendChild(typeHeader);
+                        
+                        // Add title blurb for Courses & Certificates, Presentations & Workshops, or Case Studies sections
+                        if ((typeInfo.title === "Courses & Certificates" || typeInfo.title === "Presentations & Workshops" || typeInfo.title === "Case Studies") && typeInfo.title_blurb) {
+                            const blurb = document.createElement('p');
+                            blurb.style.color = '#666';
+                            blurb.style.marginTop = '0';
+                            blurb.style.marginBottom = '20px';
+                            blurb.style.paddingLeft = '30px';
+                            blurb.style.fontStyle = 'italic';
+                            blurb.style.fontSize = '1.1em';
+                            blurb.style.borderLeft = '3px solid #555';
+                            blurb.style.paddingLeft = '15px';
+                            blurb.style.marginLeft = '10px';
+                            
+                            // Get tag from URL hash or use 'technical' as fallback
+                            const tagFromUrl = window.location.hash.slice(1) || 'technical';
+                            // Replace hyphens with spaces in the tag
+                            const formattedTag = tagFromUrl.replace(/-/g, ' ');
+                            // Create the blurb text with conditional styling for the tag
+                            const blurbText = `Please see some of the ${formattedTag === 'technical' ? formattedTag : `<span style="color: #4169E1; font-weight: bold;">${formattedTag}</span>`} ${typeInfo.title === "Courses & Certificates" ? "courses" : typeInfo.title === "Presentations & Workshops" ? "presentations & workshops" : "case studies"} that I have completed.`;
+                            blurb.innerHTML = blurbText;
+                            resultsContainer.appendChild(blurb);
+                        }
 
                         const typeList = document.createElement('ul');
+                        // Sort items within each type group alphabetically by title
+                        groupedByType[type].sort((a, b) => a.e_title.localeCompare(b.e_title));
                         groupedByType[type].forEach(item => {
                             const listItem = document.createElement('li');
                             const tagLinks = [item.tag1, item.tag2, item.tag3, item.tag4, item.tag5]
