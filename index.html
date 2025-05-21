@@ -1,367 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Steve Dooley, MBA</title>
-    <link rel="icon" type="image/x-icon" href="https://sdooley.org/images/favicon/favicon.ico">
-    <link rel="stylesheet" href="drs/css/style.css">
-    <link rel="stylesheet" href="drs/css/style2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://sdooley.org/images/favicon/favicon.ico"
+    />
+    <link rel="stylesheet" href="drs/css/style.css" />
+    <link rel="stylesheet" href="drs/css/style2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <!-- Add SheetJS CDN -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <style>
-        /* Fixed header styles */
-        #header-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+      /* Fixed header styles */
+      #header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-        /* Main content styles */
-        body {
-            padding-top: 120px; /* Adjust this value based on your header height */
-        }
+      /* Main content styles */
+      body {
+        padding-top: 120px; /* Adjust this value based on your header height */
+      }
 
-        #page-title {
-            margin-top: 5px;
-            font-size: 1.8em;
-            color: #555;
-            font-weight: 400;
-            padding-left: 10px;
-            margin-bottom: 20px;
-        }
+      #page-title {
+        margin-top: 5px;
+        font-size: 1.8em;
+        color: #555;
+        font-weight: 400;
+        padding-left: 10px;
+        margin-bottom: 20px;
+      }
 
-        /* Ensure mobile menu overlay works with fixed header */
-        .mobile-menu-overlay {
-            top: 0;
-            z-index: 1001;
-        }
+      /* Ensure mobile menu overlay works with fixed header */
+      .mobile-menu-overlay {
+        top: 0;
+        z-index: 1001;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header will be loaded here -->
     <div id="header-container"></div>
 
     <h1 id="page-title"></h1>
-    
+
     <ul id="results"></ul>
 
     <!-- moved debug controls and timestamp info to bottom -->
 
     <!-- Add debug controls that only show in development -->
-    <div id="testControls" style="display: none; margin-bottom: 20px;">
-        <button onclick="runTests()">Run All Tests</button>
-        <button onclick="testURLScenarios()">Test URLs</button>
-        <button onclick="testDataDisplay()">Test Display</button>
+    <div id="testControls" style="display: none; margin-bottom: 20px">
+      <button onclick="runTests()">Run All Tests</button>
+      <button onclick="testURLScenarios()">Test URLs</button>
+      <button onclick="testDataDisplay()">Test Display</button>
     </div>
 
     <!-- Footer will be loaded here -->
     <div id="footer-container"></div>
 
     <script>
-        // Load header and footer content
-        Promise.all([
-            fetch('drs/inc/header.html').then(response => response.text()),
-            fetch('drs/inc/footer.html').then(response => response.text())
-        ])
+      // Load header and footer content
+      Promise.all([
+        fetch("drs/inc/header.html").then((response) => response.text()),
+        fetch("drs/inc/footer.html").then((response) => response.text()),
+      ])
         .then(([headerData, footerData]) => {
-            document.getElementById('header-container').innerHTML = headerData;
-            document.getElementById('footer-container').innerHTML = footerData;
-            // Initialize mobile menu functionality after header is loaded
-            initializeMobileMenu();
+          document.getElementById("header-container").innerHTML = headerData
+          document.getElementById("footer-container").innerHTML = footerData
+          // Initialize mobile menu functionality after header is loaded
+          initializeMobileMenu()
         })
-        .catch(error => console.error('Error loading content:', error));
+        .catch((error) => console.error("Error loading content:", error))
 
-        // Mobile Menu Functionality
-        function initializeMobileMenu() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileMenuClose = document.querySelector('.mobile-menu-close');
-            const mobileMenuBack = document.querySelector('.mobile-menu-back-btn');
-            const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-            const body = document.body;
+      // Mobile Menu Functionality
+      function initializeMobileMenu() {
+        const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+        const mobileMenuClose = document.querySelector(".mobile-menu-close")
+        const mobileMenuBack = document.querySelector(".mobile-menu-back-btn")
+        const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay")
+        const body = document.body
 
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    mobileMenuOverlay.classList.add('active');
-                    body.classList.add('menu-open');
-                });
+        if (mobileMenuToggle) {
+          mobileMenuToggle.addEventListener("click", function () {
+            mobileMenuOverlay.classList.add("active")
+            body.classList.add("menu-open")
+          })
+        }
+
+        if (mobileMenuClose) {
+          mobileMenuClose.addEventListener("click", function () {
+            mobileMenuOverlay.classList.remove("active")
+            body.classList.remove("menu-open")
+          })
+        }
+
+        if (mobileMenuBack) {
+          mobileMenuBack.addEventListener("click", function () {
+            mobileMenuOverlay.classList.remove("active")
+            body.classList.remove("menu-open")
+          })
+        }
+
+        const mobileMenuLinks = document.querySelectorAll(".mobile-nav a")
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenuOverlay.classList.remove("active")
+            body.classList.remove("menu-open")
+          })
+        })
+      }
+
+      // Add at the start of your script
+      const isDebugMode = window.location.search.includes("debug=true")
+
+      if (isDebugMode) {
+        document.getElementById("testControls").style.display = "block"
+        // Load test script dynamically
+        const testScript = document.createElement("script")
+        testScript.src = "tests.js"
+        document.body.appendChild(testScript)
+      }
+
+      // Build timestamp
+      const BUILD_TIMESTAMP = new Date().toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+
+      // Add this function at the start of your script section
+      function formatDate(date) {
+        return new Date(date).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      }
+
+      // Function to load XLSX data
+      function loadXLSX(url, callback) {
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`)
             }
+            return response.arrayBuffer()
+          })
+          .then((data) => {
+            const workbook = XLSX.read(data, {
+              type: "array",
+              cellDates: true, // Handle dates properly
+              dateNF: "yyyy-mm-dd", // Date format
+            })
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]]
+            const jsonData = XLSX.utils.sheet_to_json(firstSheet, {
+              raw: false, // Convert all data to strings
+              defval: "N/A", // Default value for empty cells
+            })
+            console.log("Loaded XLSX data:", jsonData) // Debug loaded data
+            callback(jsonData)
+          })
+          .catch((error) => {
+            console.error("Error loading XLSX:", error)
+            document.getElementById("results").textContent =
+              "Error loading data."
+          })
+      }
 
-            if (mobileMenuClose) {
-                mobileMenuClose.addEventListener('click', function() {
-                    mobileMenuOverlay.classList.remove('active');
-                    body.classList.remove('menu-open');
-                });
+      // Function to format search term for URL (spaces to hyphens)
+      function formatForUrl(term) {
+        return term.replace(/\s+/g, "-")
+      }
+
+      // Function to format search term for display (hyphens to spaces)
+      function formatForDisplay(term) {
+        return term.replace(/-+/g, " ")
+      }
+
+      // Function to get search term from URL hash
+      function getSearchTerm() {
+        const hashValue = window.location.hash.slice(1)
+        return formatForDisplay(hashValue)
+      }
+
+      // Function to update the page title
+      function updatePageTitle(searchTerm) {
+        const pageTitle = document.getElementById("page-title")
+        if (searchTerm) {
+          const displayTerm = formatForDisplay(searchTerm).toLowerCase()
+          document.title = `${displayTerm} - Search Results`
+          pageTitle.textContent = `${displayTerm} skills & experience`
+        } else {
+          document.title = "Steve Dooley, MBA"
+          pageTitle.textContent = "technical skills & experience"
+        }
+      }
+
+      // Function to create a clickable tag link
+      function createTagLink(tag) {
+        if (!tag || tag === "N/A") return ""
+        const formattedTag = formatForUrl(tag.trim())
+        return `<a href="#${formattedTag}" class="tag" onclick="event.preventDefault(); window.location.hash = '${formattedTag}'; window.scrollTo(0, 0);">${tag}</a>`
+      }
+
+      // Function to get event type icon and title
+      function getEventTypeInfo(type) {
+        const eventType = type.substring(0, 2)
+        switch (eventType) {
+          case "01":
+            return {
+              icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color: #4169E1;"></i>',
+              title: "Awards",
             }
-
-            if (mobileMenuBack) {
-                mobileMenuBack.addEventListener('click', function() {
-                    mobileMenuOverlay.classList.remove('active');
-                    body.classList.remove('menu-open');
-                });
+          case "02":
+            return {
+              icon: '<i class="fa fa-id-badge" aria-hidden="true" title="Work Experience" style="color: #4169E1;"></i>',
+              title: "Work Experience",
+              anchor: "experience",
+              title_blurb: "Here is some of the Work Experience that I have.",
             }
-
-            const mobileMenuLinks = document.querySelectorAll('.mobile-nav a');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenuOverlay.classList.remove('active');
-                    body.classList.remove('menu-open');
-                });
-            });
-        }
-
-        // Add at the start of your script
-        const isDebugMode = window.location.search.includes('debug=true');
-        
-        if (isDebugMode) {
-            document.getElementById('testControls').style.display = 'block';
-            // Load test script dynamically
-            const testScript = document.createElement('script');
-            testScript.src = 'tests.js';
-            document.body.appendChild(testScript);
-        }
-        
-        // Build timestamp
-        const BUILD_TIMESTAMP = new Date().toLocaleString('en-US', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-
-        // Add this function at the start of your script section
-        function formatDate(date) {
-            return new Date(date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
-
-        // Function to load XLSX data
-        function loadXLSX(url, callback) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.arrayBuffer();
-                })
-                .then(data => {
-                    const workbook = XLSX.read(data, { 
-                        type: 'array',
-                        cellDates: true, // Handle dates properly
-                        dateNF: 'yyyy-mm-dd' // Date format
-                    });
-                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                    const jsonData = XLSX.utils.sheet_to_json(firstSheet, {
-                        raw: false, // Convert all data to strings
-                        defval: 'N/A' // Default value for empty cells
-                    });
-                    console.log('Loaded XLSX data:', jsonData); // Debug loaded data
-                    callback(jsonData);
-                })
-                .catch(error => {
-                    console.error('Error loading XLSX:', error);
-                    document.getElementById('results').textContent = 'Error loading data.';
-                });
-        }
-
-        // Function to format search term for URL (spaces to hyphens)
-        function formatForUrl(term) {
-            return term.replace(/\s+/g, '-');
-        }
-
-        // Function to format search term for display (hyphens to spaces)
-        function formatForDisplay(term) {
-            return term.replace(/-+/g, ' ');
-        }
-
-        // Function to get search term from URL hash
-        function getSearchTerm() {
-            const hashValue = window.location.hash.slice(1);
-            return formatForDisplay(hashValue);
-        }
-
-        // Function to update the page title
-        function updatePageTitle(searchTerm) {
-            const pageTitle = document.getElementById('page-title');
-            if (searchTerm) {
-                const displayTerm = formatForDisplay(searchTerm).toLowerCase();
-                document.title = `${displayTerm} - Search Results`;
-                pageTitle.textContent = `${displayTerm} skills & experience`;
-            } else {
-                document.title = 'Steve Dooley, MBA';
-                pageTitle.textContent = 'technical skills & experience';
+          case "03":
+            return {
+              icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates" style="color: #4169E1;"></i>',
+              title: "Courses & Certificates",
+              anchor: "courses",
+              title_blurb:
+                "Please see some of the courses that I have completed.",
             }
-        }
-
-        // Function to create a clickable tag link
-        function createTagLink(tag) {
-            if (!tag || tag === 'N/A') return '';
-            const formattedTag = formatForUrl(tag.trim());
-            return `<a href="#${formattedTag}" class="tag" onclick="event.preventDefault(); window.location.hash = '${formattedTag}'; window.scrollTo(0, 0);">${tag}</a>`;
-        }
-
-        // Function to get event type icon and title
-        function getEventTypeInfo(type) {
-            const eventType = type.substring(0, 2);
-            switch(eventType) {
-                case "01":
-                    return {
-                        icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color: #4169E1;"></i>',
-                        title: "Awards"
-                    };
-                case "02":
-                    return {
-                        icon: '<i class="fa fa-book" aria-hidden="true" title="Case Studies" style="color: #4169E1;"></i>',
-                        title: "Case Studies"
-                    };
-                case "03":
-                    return {
-                        icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates" style="color: #4169E1;"></i>',
-                        title: "Courses & Certificates",
-                        anchor: "courses",
-                        title_blurb: "Please see some of the courses that I have completed."
-                    };
-                case "04":
-                    return {
-                        icon: '<i class="fa fa-certificate" aria-hidden="true" title="x" style="color: #4169E1;"></i>',
-                        title: "x"
-                    };
-                case "05":
-                    return {
-                        icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback" style="color: #4169E1;"></i>',
-                        title: "Feedback"
-                    };
-                case "06":
-                    return {
-                        icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops" style="color: #4169E1;"></i>',
-                        title: "Presentations & Workshops",
-                        anchor: "presentations",
-                        title_blurb: "Please see some of the presentations that I have completed."
-                    };
-                case "07":
-                    return {
-                        icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies" style="color: #4169E1;"></i>',
-                        title: "Case Studies",
-                        anchor: "case-studies",
-                        title_blurb: "Please see some of the case studies that I have completed."
-                    };
-                default:
-                    return {
-                        icon: '',
-                        title: type
-                    };
+          case "04":
+            return {
+              icon: '<i class="fa fa-certificate" aria-hidden="true" title="x" style="color: #4169E1;"></i>',
+              title: "x",
+            }
+          case "05":
+            return {
+              icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback" style="color: #4169E1;"></i>',
+              title: "Feedback",
+            }
+          case "06":
+            return {
+              icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops" style="color: #4169E1;"></i>',
+              title: "Presentations & Workshops",
+              anchor: "presentations",
+              title_blurb:
+                "Please see some of the presentations that I have completed.",
+            }
+          case "07":
+            return {
+              icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies" style="color: #4169E1;"></i>',
+              title: "Case Studies",
+              anchor: "case-studies",
+              title_blurb:
+                "Please see some of the case studies that I have completed.",
+            }
+          default:
+            return {
+              icon: "",
+              title: type,
             }
         }
+      }
 
-        // Function to perform the search and update results
-        function updateResults(searchTerm) {
-            updatePageTitle(searchTerm);
+      // Function to perform the search and update results
+      function updateResults(searchTerm) {
+        updatePageTitle(searchTerm)
 
-            loadXLSX('040625-skills.xlsx', data => {
-                let filteredData;
-                
-                if (!searchTerm) {
-                    filteredData = data;
-                } else {
-                    filteredData = data.filter(item => {
-                        return [item.tag1, item.tag2, item.tag3, item.tag4, item.tag5].some(tag => 
-                            tag && tag !== 'N/A' && tag.toLowerCase().includes(searchTerm.toLowerCase())
-                        );
-                    });
+        loadXLSX("040625-skills.xlsx", (data) => {
+          let filteredData
+
+          if (!searchTerm) {
+            filteredData = data
+          } else {
+            filteredData = data.filter((item) => {
+              return [
+                item.tag1,
+                item.tag2,
+                item.tag3,
+                item.tag4,
+                item.tag5,
+              ].some(
+                (tag) =>
+                  tag &&
+                  tag !== "N/A" &&
+                  tag.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+            })
+          }
+
+          // Always sort by ID
+          filteredData.sort((a, b) => Number(a.e_id) - Number(b.e_id))
+
+          const resultsContainer = document.getElementById("results")
+          resultsContainer.innerHTML = ""
+
+          if (filteredData.length > 0) {
+            // Always group by Type
+            const groupedByType = {}
+            filteredData.forEach((item) => {
+              const type = item.e_type || "Uncategorized"
+              if (!groupedByType[type]) {
+                groupedByType[type] = []
+              }
+              groupedByType[type].push(item)
+            })
+
+            Object.keys(groupedByType)
+              .sort()
+              .forEach((type) => {
+                const typeInfo = getEventTypeInfo(type)
+                const typeHeader = document.createElement("h2")
+                typeHeader.innerHTML = `${typeInfo.icon} ${typeInfo.title}`
+                if (typeInfo.anchor) {
+                  typeHeader.id = typeInfo.anchor
+                }
+                // Make all section headers royal blue
+                typeHeader.style.color = "#4169E1"
+                resultsContainer.appendChild(typeHeader)
+
+                // Add title blurb for Courses & Certificates, Presentations & Workshops, or Case Studies sections
+                if (
+                  (typeInfo.title === "Courses & Certificates" ||
+                    typeInfo.title === "Presentations & Workshops" ||
+                    typeInfo.title === "Case Studies") &&
+                  typeInfo.title_blurb
+                ) {
+                  const blurb = document.createElement("p")
+                  blurb.style.color = "#666"
+                  blurb.style.marginTop = "0"
+                  blurb.style.marginBottom = "20px"
+                  blurb.style.paddingLeft = "30px"
+                  blurb.style.fontStyle = "italic"
+                  blurb.style.fontSize = "1.1em"
+                  blurb.style.borderLeft = "3px solid #555"
+                  blurb.style.paddingLeft = "15px"
+                  blurb.style.marginLeft = "10px"
+
+                  // Get tag from URL hash or use 'technical' as fallback
+                  const tagFromUrl =
+                    window.location.hash.slice(1) || "technical"
+                  // Replace hyphens with spaces in the tag
+                  const formattedTag = tagFromUrl.replace(/-/g, " ")
+                  // Create the blurb text with conditional styling for the tag
+                  const blurbText = `Please see some of the ${
+                    formattedTag === "technical"
+                      ? formattedTag
+                      : `<span style="color: #4169E1; font-weight: bold;">${formattedTag}</span>`
+                  } ${
+                    typeInfo.title === "Courses & Certificates"
+                      ? "courses"
+                      : typeInfo.title === "Presentations & Workshops"
+                      ? "presentations & workshops"
+                      : "case studies"
+                  } that I have completed.`
+                  blurb.innerHTML = blurbText
+                  resultsContainer.appendChild(blurb)
                 }
 
-                // Always sort by ID
-                filteredData.sort((a, b) => Number(a.e_id) - Number(b.e_id));
+                const typeList = document.createElement("ul")
+                // Sort items within each type group alphabetically by title
+                groupedByType[type].sort((a, b) =>
+                  a.e_title.localeCompare(b.e_title)
+                )
+                groupedByType[type].forEach((item) => {
+                  const listItem = document.createElement("li")
+                  const tagLinks = [
+                    item.tag1,
+                    item.tag2,
+                    item.tag3,
+                    item.tag4,
+                    item.tag5,
+                  ]
+                    .filter((tag) => tag && tag !== "N/A")
+                    .map((tag) => createTagLink(tag))
+                    .join(" ")
 
-                const resultsContainer = document.getElementById('results');
-                resultsContainer.innerHTML = '';
-
-                if (filteredData.length > 0) {
-                    // Always group by Type
-                    const groupedByType = {};
-                    filteredData.forEach(item => {
-                        const type = item.e_type || 'Uncategorized';
-                        if (!groupedByType[type]) {
-                            groupedByType[type] = [];
-                        }
-                        groupedByType[type].push(item);
-                    });
-
-                    Object.keys(groupedByType).sort().forEach(type => {
-                        const typeInfo = getEventTypeInfo(type);
-                        const typeHeader = document.createElement('h2');
-                        typeHeader.innerHTML = `${typeInfo.icon} ${typeInfo.title}`;
-                        if (typeInfo.anchor) {
-                            typeHeader.id = typeInfo.anchor;
-                        }
-                        // Make all section headers royal blue
-                        typeHeader.style.color = '#4169E1';
-                        resultsContainer.appendChild(typeHeader);
-                        
-                        // Add title blurb for Courses & Certificates, Presentations & Workshops, or Case Studies sections
-                        if ((typeInfo.title === "Courses & Certificates" || typeInfo.title === "Presentations & Workshops" || typeInfo.title === "Case Studies") && typeInfo.title_blurb) {
-                            const blurb = document.createElement('p');
-                            blurb.style.color = '#666';
-                            blurb.style.marginTop = '0';
-                            blurb.style.marginBottom = '20px';
-                            blurb.style.paddingLeft = '30px';
-                            blurb.style.fontStyle = 'italic';
-                            blurb.style.fontSize = '1.1em';
-                            blurb.style.borderLeft = '3px solid #555';
-                            blurb.style.paddingLeft = '15px';
-                            blurb.style.marginLeft = '10px';
-                            
-                            // Get tag from URL hash or use 'technical' as fallback
-                            const tagFromUrl = window.location.hash.slice(1) || 'technical';
-                            // Replace hyphens with spaces in the tag
-                            const formattedTag = tagFromUrl.replace(/-/g, ' ');
-                            // Create the blurb text with conditional styling for the tag
-                            const blurbText = `Please see some of the ${formattedTag === 'technical' ? formattedTag : `<span style="color: #4169E1; font-weight: bold;">${formattedTag}</span>`} ${typeInfo.title === "Courses & Certificates" ? "courses" : typeInfo.title === "Presentations & Workshops" ? "presentations & workshops" : "case studies"} that I have completed.`;
-                            blurb.innerHTML = blurbText;
-                            resultsContainer.appendChild(blurb);
-                        }
-
-                        const typeList = document.createElement('ul');
-                        // Sort items within each type group alphabetically by title
-                        groupedByType[type].sort((a, b) => a.e_title.localeCompare(b.e_title));
-                        groupedByType[type].forEach(item => {
-                            const listItem = document.createElement('li');
-                            const tagLinks = [item.tag1, item.tag2, item.tag3, item.tag4, item.tag5]
-                                .filter(tag => tag && tag !== 'N/A')
-                                .map(tag => createTagLink(tag))
-                                .join(' ');
-                            
-                            // Format e_date: if before 2021, show '4+ years ago'
-                            let displayDate = 'N/A';
-                            if (item.e_date && item.e_date !== 'N/A') {
-                                const date = new Date(item.e_date);
-                                const year = date.getFullYear();
-                                if (year < 2021) {
-                                    displayDate = '4+ years ago';
-                                } else {
-                                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                                    displayDate = `${monthNames[date.getMonth()]} ${year}`;
-                                }
-                            }
-                            listItem.innerHTML = `
+                  // Format e_date: if before 2021, show '4+ years ago'
+                  let displayDate = "N/A"
+                  if (item.e_date && item.e_date !== "N/A") {
+                    const date = new Date(item.e_date)
+                    const year = date.getFullYear()
+                    if (year < 2021) {
+                      displayDate = "4+ years ago"
+                    } else {
+                      const monthNames = [
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                      ]
+                      displayDate = `${monthNames[date.getMonth()]} ${year}`
+                    }
+                  }
+                  listItem.innerHTML = `
                                 <div class="content-container" style="margin-top: 15px;">
                                     <div class="content032825">
                                         <div class="event-title">
                                             <h3>${item.e_title}</h3>
                                             <div style="color: #666;">
-                                                <i>${item.e_sponsoring} <span style="font-size: 0.8em;"> | ${displayDate}</span></i>
-                                                ${item.e_url !== 'N/A' ? `<a href="${item.e_url}" target="_blank" style="color: #666; font-size: 0.8em;"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.8em; opacity: 0.7;"></i></a>` : ''}
+                                                <i>${
+                                                  item.e_sponsoring
+                                                } <span style="font-size: 0.8em;"> | ${displayDate}</span></i>
+                                                ${
+                                                  item.e_url !== "N/A"
+                                                    ? `<a href="${item.e_url}" target="_blank" style="color: #666; font-size: 0.8em;"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.8em; opacity: 0.7;"></i></a>`
+                                                    : ""
+                                                }
                                             </div>
                                         </div>
                                         <div class="event-content">
@@ -374,47 +441,47 @@
                                         </div>
                                     </div>
                                 </div>
-                            `;
-                            typeList.appendChild(listItem);
-                        });
-                        resultsContainer.appendChild(typeList);
-                    });
-                } else {
-                    resultsContainer.textContent = 'No results found.';
-                }
-            });
-        }
+                            `
+                  typeList.appendChild(listItem)
+                })
+                resultsContainer.appendChild(typeList)
+              })
+          } else {
+            resultsContainer.textContent = "No results found."
+          }
+        })
+      }
 
-        // Initial load
-        const initialSearchTerm = getSearchTerm();
-        updateResults(initialSearchTerm);
+      // Initial load
+      const initialSearchTerm = getSearchTerm()
+      updateResults(initialSearchTerm)
 
-        // Listen for hash changes
-        window.addEventListener('hashchange', () => {
-            const newSearchTerm = getSearchTerm();
-            updateResults(newSearchTerm);
-        });
+      // Listen for hash changes
+      window.addEventListener("hashchange", () => {
+        const newSearchTerm = getSearchTerm()
+        updateResults(newSearchTerm)
+      })
 
-        // Get timestamp for data file only
-        fetch('040625-skills.xlsx')
-            .then(response => response.headers.get('last-modified'))
-            .then(dataDate => {
-                document.getElementById('pageUpdate').textContent = BUILD_TIMESTAMP;
-                document.getElementById('dataUpdate').textContent = formatDate(dataDate);
-            })
-            .catch(error => {
-                console.error('Error fetching timestamps:', error);
-                document.getElementById('pageUpdate').textContent = BUILD_TIMESTAMP;
-                document.getElementById('dataUpdate').textContent = 'Unknown';
-            });
+      // Get timestamp for data file only
+      fetch("040625-skills.xlsx")
+        .then((response) => response.headers.get("last-modified"))
+        .then((dataDate) => {
+          document.getElementById("pageUpdate").textContent = BUILD_TIMESTAMP
+          document.getElementById("dataUpdate").textContent =
+            formatDate(dataDate)
+        })
+        .catch((error) => {
+          console.error("Error fetching timestamps:", error)
+          document.getElementById("pageUpdate").textContent = BUILD_TIMESTAMP
+          document.getElementById("dataUpdate").textContent = "Unknown"
+        })
     </script>
 
     <script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/@denserai/embed-chat@1/dist/web.min.js";
-  Chatbot.init({
-    chatbotId: "c064bda6-03b6-4a37-85be-1caec8cfb2c1",
-  });
-</script> 
-    
-</body>
-</html> 
+      import Chatbot from "https://cdn.jsdelivr.net/npm/@denserai/embed-chat@1/dist/web.min.js"
+      Chatbot.init({
+        chatbotId: "c064bda6-03b6-4a37-85be-1caec8cfb2c1",
+      })
+    </script>
+  </body>
+</html>
