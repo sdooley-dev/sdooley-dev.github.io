@@ -336,7 +336,7 @@
 
                 // Add title blurb for Courses & Certificates, Presentations & Workshops, or Case Studies sections
                 if (
-                    typeInfo.title === "Work Experience" ||
+                  (typeInfo.title === "Work Experience" ||
                     typeInfo.title === "Courses & Certificates" ||
                     typeInfo.title === "Presentations & Workshops" ||
                     typeInfo.title === "Case Studies") &&
@@ -364,7 +364,9 @@
                       ? formattedTag
                       : `<span style="color: #4169E1; font-weight: bold;">${formattedTag}</span>`
                   } ${
-                    typeInfo.title === "Courses & Certificates"
+                    typeInfo.title === "Work Experience"
+                      ? "experience"
+                      : typeInfo.title === "Courses & Certificates"
                       ? "courses"
                       : typeInfo.title === "Presentations & Workshops"
                       ? "presentations & workshops"
