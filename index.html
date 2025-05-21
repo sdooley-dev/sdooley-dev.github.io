@@ -233,7 +233,8 @@
               icon: '<i class="fa fa-id-badge" aria-hidden="true" title="Work Experience" style="color: #4169E1;"></i>',
               title: "Work Experience",
               anchor: "experience",
-              title_blurb: "Here is some of the Work Experience that I have.",
+              title_blurb:
+                "Please see some of the Work Experience that I have.",
             }
           case "03":
             return {
@@ -335,7 +336,8 @@
 
                 // Add title blurb for Courses & Certificates, Presentations & Workshops, or Case Studies sections
                 if (
-                  (typeInfo.title === "Courses & Certificates" ||
+                    typeInfo.title === "Work Experience" ||
+                    typeInfo.title === "Courses & Certificates" ||
                     typeInfo.title === "Presentations & Workshops" ||
                     typeInfo.title === "Case Studies") &&
                   typeInfo.title_blurb
