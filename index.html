@@ -359,7 +359,7 @@
                   // Replace hyphens with spaces in the tag
                   const formattedTag = tagFromUrl.replace(/-/g, " ")
                   // Create the blurb text with conditional styling for the tag
-                  const blurbText = `Please see some of the ${
+                  const blurbText = `View some of my ${
                     formattedTag === "technical"
                       ? formattedTag
                       : `<span style="color: #4169E1; font-weight: bold;">${formattedTag}</span>`
@@ -371,7 +371,7 @@
                       : typeInfo.title === "Presentations & Workshops"
                       ? "presentations & workshops"
                       : "case studies"
-                  } that I have completed.`
+                  } .`
                   blurb.innerHTML = blurbText
                   resultsContainer.appendChild(blurb)
                 }
