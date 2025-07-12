@@ -1,0 +1,17 @@
+//a[normalize-space()='Help Center']
+
+//p[@class='lwc-4rt99a8doqk override-text-style slds-truncate textBlock_desktopTabletMobile dxp-active-tab-text-style']
+
+//button[@name='program']
+
+//button[@name='issueTopic']
+
+[placeholder="Search for a closed case\.\.\."]
+
+//textarea[@name='issueDescription']
+
+//div[@slot='footer']
+
+//span[@class='slds-file-selector__button slds-button slds-button_neutral']
+
+//button[@name='submitRequest']
