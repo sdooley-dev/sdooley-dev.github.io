@@ -1,0 +1,53 @@
+entry,type,prepend,web element,web element no space,url
+20,label,KC HL,Background Information,BackgroundInformation,
+21,label,KC HL,Overview Video,OverviewVideo,
+22,link,KC HL,Overview Video,OverviewVideo,https://www.youtube.com/watch?v=KTDw4Lh7Kso 
+23,label,KC HL,FAQs,FAQs,
+24,link,KC HL,FAQs,FAQs,https://www.va.gov/HOMELESS/squares/docs/SQUARES_FAQS.pdf
+25,label,KC HL,Homeless Website,HomelessWebsite,
+26,link,KC HL,Homeless Website,HomelessWebsite,http://www.va.gov/homeless/squares
+27,label,KC HL,Homeless Programs Office,HomelessPrograms Office,
+28,link,KC HL,Homeless Programs Office,HomelessPrograms Office,https://www.va.gov/homeless/
+here,,,,,
+29,subheader,KC HL,Eligibility Resources,EligibilityResources,
+30,label,KC HL,Eligibility Table,EligibilityTable,
+31,link,KC HL,Eligibility Table,EligibilityTable,https://vaemcc.my.salesforce.com/sfc/p/#t0000000Gziw/a/OE000000008F/q22GVcYBV.hkdN68mV9LsyxQUC9yE4R_PbJmToANtBU 
+32,label,KC HL,SSVF Program Guide,SSVFProgramGuide,
+33,link,KC HL,SSVF Program Guide,SSVFProgramGuide,https://www.va.gov/HOMELESS/ssvf/docs/SSVF_Program_Guide.pdf 
+34,label,KC HL,GPD Website,GPDWebsite,
+35,link,KC HL,GPD Website,GPDWebsite,https://www.va.gov/HOMELESS/GPD_ProviderWebsite.asp 
+36,label,KC HL,Health Eligibility Website,HealthEligibilityWebsite,
+37,link,KC HL,Health Eligibility Website,HealthEligibilityWebsite,https://www.va.gov/health-care/eligibility/ 
+38,label,KC HL,National Archives and Records Administration (NARA),NationalArchivesandRecordsAdministration(NARA),
+39,link,KC HL,National Archives and Records Administration (NARA),NationalArchivesandRecordsAdministration(NARA),https://www.archives.gov/veterans 
+40,label,KC HL,Defense Personnel Records Information Retrieval System,DefensePersonnelRecordsInformationRetrievalSystem,
+41,link,KC HL,Defense Personnel Records Information Retrieval System,DefensePersonnelRecordsInformationRetrievalSystem,https://www.dpris.dod.mil/#/home/home-home 
+42,label,KC HL,Veteran Status Verification,VeteranStatusVerification,
+43,link,KC HL,Veteran Status Verification,VeteranStatusVerification,https://vaemcc.my.salesforce.com/sfc/p/#t0000000Gziw/a/OE000000009X/OQYsFAVqHp0CO1iWMUpaXn5A5iyYlqBoJy8Qm4gbtpk 
+44,label,KC HL,VA Locator,VALocator,
+45,link,KC HL,VA Locator,VALocator,https://www.va.gov/find-locations/ 
+46,label,KC HL,Helpful Resources,HelpfulResources,
+47,link,KC HL,Helpful Resources,HelpfulResources,https://vaemcc.my.salesforce.com/sfc/p/#t0000000Gziw/a/OE000000009S/To7Nu6w2k.1OpHYWp4zQgb46sAexwXk_KEm2X5z34QM 
+48,label,KC HL,NARA,NARA,
+49,link,KC HL,NARA,NARA,https://vetrecs.archives.gov/VeteranRequest/home.html 
+50,subheader,KC HL,Search Guides,SearchGuides,
+51,label,KC HL,Search Tools Video,SearchToolsVideo,
+52,link,KC HL,Search Tools Video,SearchToolsVideo,https://www.youtube.com/watch?v=ash2Pnye6zc 
+53,label,KC HL,Single Search,SingleSearch,
+54,link,KC HL,Single Search,SingleSearch,https://vaemcc.my.salesforce.com/sfc/p/#t0000000Gziw/a/OE000000009c/6yM6rLMBD4pTm.Fcto9vBB1OD._9MAw35KfhMUD.r3o 
+55,label,KC HL,Bulk Search Instructions,BulkSearchInstructions,
+56,link,KC HL,Bulk Search Instructions,BulkSearchInstructions,https://www.va.gov/HOMELESS/squares/docs/SQUARES3_QRG_Bulk_Veteran_Search.pdf 
+57,label,KC HL,Bulk Search Template,BulkSearchTemplate,
+58,link,KC HL,Bulk Search Template,BulkSearchTemplate,https://vaemcc.my.salesforce.com/sfc/p/#t0000000Gziw/a/OE000000007v/13QwGx4GaRLZDLQLM8XcixtD94iohZAEAf9ujdy7TIU 
+59,subheader,KC HL,Application Instructions,ApplicationInstructions,
+60,label,KC HL,VA User Guide,VAUserGuide,
+61,link,KC HL,VA User Guide,VAUserGuide,https://www.va.gov/HOMELESS/squares/docs/SQUARES3_QRG_Internal_VA_Users_Request_and_Access_a_SQUARES_Account.pdf 
+62,label,KC HL,External Standard User Registration,ExternalStandardUserRegistration,
+63,link,KC HL,External Standard User Registration,ExternalStandardUserRegistration,https://www.va.gov/HOMELESS/squares/docs/SQUARES3_QRG_Non-VA_Standard_User_Registration_and_Access_a_SQUARES_Account.pdf 
+64,label,KC HL,Approval Hierarchy,ApprovalHierarchy,
+65,link,KC HL,Approval Hierarchy,ApprovalHierarchy,https://vaemcc.my.salesforce.com/sfc/p/#t0000000Gziw/a/OE000000009h/T24jmuSHiRAXigab0.fteLhyDFfB_cgKKL11AFYZWEg 
+66,subheader,KC HL,Video Library,VideoLibrary,
+67,label,KC HL,Overview Video,OverviewVideo,
+68,link,KC HL,Overview Video,OverviewVideo,https://www.youtube.com/watch?v=KTDw4Lh7Kso 
+69,label,KC HL,Search Tools Video,SearchToolsVideo,
+70,link,KC HL,Search Tools Video,SearchToolsVideo,https://www.youtube.com/watch?v=ash2Pnye6zc
