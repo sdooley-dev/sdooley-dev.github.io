@@ -7,10 +7,6 @@ with open("template.xml", "r") as file:
 # Create a single output file
 output_filename = "output.xml"
 with open(output_filename, "w") as outfile:
-    # Write the opening root element
-    outfile.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-    outfile.write('<root>\n')
-    
     # Read CSV and generate XML content for each row
     with open("data.csv", newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -28,14 +24,13 @@ with open(output_filename, "w") as outfile:
                     xml_filled = xml_filled.replace("[varResultName]", value)
                 elif key == "varField":
                     xml_filled = xml_filled.replace("[varField]", value)
+                elif key == "varPageObject":
+                    xml_filled = xml_filled.replace("[varPageObject]", value)
                 elif key == "varValue":
                     xml_filled = xml_filled.replace("[varValue]", value)
             
-            # Append the filled XML to the output file
-            outfile.write(xml_filled)
+            # Append the filled XML to the output file with a newline separator
+            outfile.write(xml_filled + "\n")
             print(f"Processed row {i}")
-    
-    # Write the closing root element
-    outfile.write('\n</root>')
 
 print(f"Generated: {output_filename}")
