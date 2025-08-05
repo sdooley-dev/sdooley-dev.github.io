@@ -1,0 +1,48 @@
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" 
+            guid="[varGuid]" isTitleUpdated="true" 
+            name="UiAssert" testItemId="[varTestItemId]" title="[varTitle]">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Values</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="[varResultName]">
+                      <fieldLocator uri="ui:pageobject:field?field=[varField]&amp;pageId=pageobjects.[varPageObject]"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                          <value class="value" valueClass="string">[varValue]</value>
+                        </uiAttributeAssertion>
+                        <uiAttributeAssertion attributeName="message" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="visible" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="disabled" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="readOnly" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="focused" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inlineEditable" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inView" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="options" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="locatorParams"/>
+                <argument id="beforeWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="autoRetry">
+                  <value class="uiWait" uri="ui:wait:autoRetry:timeout=10"/>
+                </argument>
+              </arguments>
+            </apiCall>
