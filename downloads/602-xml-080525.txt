@@ -1,0 +1,191 @@
+9b609678-434c-43b2-925f-885477f6f14b
+
+1718-1763
+
+Using row 70 from the csv, please create the XML code for the test step.
+
+Replace [var_guid] with a standard 36 character GUID value.
+Replace [var_testItemId] with "201"
+Replace [var_title] with "UI Assert KC Homeless Background Information"
+Replace [var_resultName] with "KCHLBackgroundInformation"
+Replace [var_field] with "KCHLBackgroundInformation"
+Replace [var_value] with Background Information
+
+[var_guid] 9b609678-434c-43b2-925f-885477f6f14b
+[var_testItemId] 201
+[var_title] with UI Assert KC Homeless Background Information
+[var_resultName] KCHLBackgroundInformation
+[var_field] KCHLBackgroundInformation
+[var_field] KCHLBackgroundInformation
+[var_value] Background Information
+
+## Here is the code:
+
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" 
+            guid="[### var_guid]" isTitleUpdated="true" 
+            name="UiAssert" testItemId="[### var_testItemId]" title="[### var_title]">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Values</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="[### var_resultName]">
+                      <fieldLocator uri="ui:pageobject:field?field=[### var_field]&amp;pageId=pageobjects.[### var_field]"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                          <value class="value" valueClass="string">### [var_value]</value>
+                        </uiAttributeAssertion>
+                        <uiAttributeAssertion attributeName="message" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="visible" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="disabled" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="readOnly" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="focused" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inlineEditable" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inView" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="options" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="locatorParams"/>
+                <argument id="beforeWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="autoRetry">
+                  <value class="uiWait" uri="ui:wait:autoRetry:timeout=10"/>
+                </argument>
+              </arguments>
+            </apiCall>
+
+
+
+
+## Here is the example:
+
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" 
+            guid="9b609678-434c-43b2-925f-885477f6f14b" isTitleUpdated="true" 
+            name="UiAssert" testItemId="135" title="UI Assert KC Homeless Background Information">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Values</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="KCHLBackgroundInformation">
+                      <fieldLocator uri="ui:pageobject:field?field=KCHLBackgroundInformation&amp;pageId=pageobjects.POHelpDeskKnowledgeCenter"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                          <value class="value" valueClass="string">Background Information</value>
+                        </uiAttributeAssertion>
+                        <uiAttributeAssertion attributeName="message" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="visible" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="disabled" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="readOnly" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="focused" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inlineEditable" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inView" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="options" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="locatorParams"/>
+                <argument id="beforeWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="autoRetry">
+                  <value class="uiWait" uri="ui:wait:autoRetry:timeout=10"/>
+                </argument>
+              </arguments>
+            </apiCall>
+            
+            
+######################################################################################
+
+
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" guid="9b609678-434c-43b2-925f-885477f6f14b" isTitleUpdated="true" name="UiAssert" testItemId="135" title="UI Assert KC Homeless Background Information">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">Values</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="KCHLBackgroundInformation">
+                      <fieldLocator uri="ui:pageobject:field?field=KCHLBackgroundInformation&amp;pageId=pageobjects.POHelpDeskKnowledgeCenter"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                          <value class="value" valueClass="string">Background Information</value>
+                        </uiAttributeAssertion>
+                        <uiAttributeAssertion attributeName="message" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="visible" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="disabled" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="readOnly" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="focused" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inlineEditable" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="inView" comparisonType="None"/>
+                        <uiAttributeAssertion attributeName="options" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" displayValue="]" mutable="Mutable"/>
+                </argument>
+                <argument id="locatorParams"/>
+                <argument id="beforeWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="autoRetry">
+                  <value class="uiWait" uri="ui:wait:autoRetry:timeout=10"/>
+                </argument>
+              </arguments>
+            </apiCall>
+
+
+
+10 GUIDs
+
+2a6b7d39-8e1f-47c2-9d5a-61b5f3c08e24
+f83c9e57-021d-48a6-b7f5-9c30e2d15b8c
+75d1e406-a93c-4f82-b10d-e35c9af67842
+19c8a7d5-3b42-4e96-80f1-267c5ad3e9b0
+c4e8f607-2915-4ad3-b29c-18df764a30e5
+8b2d47c3-5a9e-40f1-b763-92c1d5e08a4f
+36e9f072-14d8-45a3-9b6c-7058f2e19d73
+d1a73c48-5f90-4e62-8b25-3c7f096d41eb
+5e20f9d7-416c-48ab-93e5-0c87d2b1f634
+a9b4c3d2-e5f6-47a8-9b1c-0d2e4f6a8b0c

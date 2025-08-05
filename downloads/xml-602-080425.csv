@@ -1,0 +1,16 @@
+varEntry,,testItemId,varTitle,varResultName,varField,varValue
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,[var_testItemId] 201,,,
+,,,[var_title] with UI Assert KC Homeless Background Information,,,
+,,,[var_resultName] KCHLBackgroundInformation,,,
+,,,[var_field] KCHLBackgroundInformation,,,
+,,,[var_field] KCHLBackgroundInformation,,,
+,,,[var_value] Background Information,,,
+,,,,,,
+,,,,,,
+,,,,,,
+e23,f83c9e57-021d-48a6-b7f5-9c30e2d15b8c,202,Assert KC HL FAQs,FAQs,FAQs,FAQs
+e24,75d1e406-a93c-4f82-b10d-e35c9af67842,203,Assert KC HL FAQs Link,FAQs,FAQs,https://www.va.gov/HOMELESS/squares/docs/SQUARES_FAQS.pdf
