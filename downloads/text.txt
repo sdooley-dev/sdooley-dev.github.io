@@ -1,0 +1,33 @@
+
+Automated test complete.
+
+Uploaded Automated test files associated with SQUAR-602:
+
+Test Case - XML
+602-help-desk-knowledge-center_v4.testcase
+
+Test Run Result - PDF
+602-help-desk-knowledge-center_v4_result.pdf
+
+Test Steps - PDF
+602-help-desk-knowledge-center_v4_test_steps.pdf
+
+Page Pbject with field mappings - java
+602-POHelpDeskKnowledgeCenter.java
+
+Test Analytics (inc. Execution Time per step)
+602-test-run.png
+
+
+
+##############
+
+Hi Janelle xxx - I uploaded many of the associated files built for the automation of 602 [link].
+
+From a reporting perspective, I'm not sure any of these will be useful.  However, I can see potential for the 
+[total test ryn analytics xxx] report, where I calculate the total time it takes for each step to run per second.
+
+I could see that being useful to demonstrate efficiencies gained with Test Automation.
+
+Happy to out together anything you think may be useful.
+
