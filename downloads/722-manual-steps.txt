@@ -1,0 +1,136 @@
+1
+Login as organization manager.
+
+Data
+None
+Expected Result
+User is able to login,.
+
+Attachments (0)
+
+2
+
+Action
+
+Navigate to My SQUARES page from navigation menu and click My Organization.
+
+Data
+None
+Expected Result
+
+The tab will show the following sections: 
+
+Organization Profile (title)
+Section: "Organization Name" 
+ Section: Enrolled Programs
+Section: VA Grants
+Section: Organization Requests
+Use Agreements (ONLY VISIBLE TO NON-GRANTEE ORGS)
+
+
+3
+Under Use Agreement section, click the Submit Use Agreement button.
+
+Data
+None
+Expected Result
+
+Submit Use Agreement Window opens displaying:
+
+Use Agreement section
+Title
+SQUARES USE AGREEMENT BETWEEN UNITED STATES DEPARTMENT OF VETERANS’ AFFAIRS AND (organization name)
+Agreement text body
+Line 1 includes (organization name)
+Line 11 includes (organization manager name) and (organization name)
+Signature section 
+DEPARTMENT OF VETERANS AFFAIRS
+Raymond Ivaska signature
+Raymond Ivaska printed name
+OIT Representative
+Todays date 
+Organization Name
+Signed by
+Organization Manager Title
+Organization Manager Email
+Signature Date
+Confirmation checkbox
+Submit Use Agreement button
+Attachments (0)
+
+
+
+4
+
+Action
+With the confirmation checkbox blank, click submit button.
+
+Data
+None
+Expected Result
+Verify that the following error message appears: 
+
+You must agree to the Use Agreement.
+Attachments (0)
+
+
+5
+Action
+Select the confirmation checkbox and click the Submit Use Agreement button.
+
+Data
+None
+Expected Result
+Use agreement will be submitted and window will disappear. 
+A new row will be created under the Use Agreement section.
+Attachments (0)
+
+6
+
+Action
+
+Verify that the organization manager receives an email alert with the PDF included.
+
+Data
+None
+Expected Result
+
+Subject: Organization Request Submission Notification
+
+Dear (submitter full name),
+
+Your request for (organization name), on (submission date), to access SQUARES has been received.
+
+Please allow VA Operations to review your SQUARES organization enrollment request. If your organization is approved, you will receive an email confirmation, so you can proceed with submitting a manager-level application Click here and refer to the Apply for Access Instructions.
+
+Thank you for submitting your organization request to SQUARES! If you have any questions please contact the SQUARES Admin by submitting a Help Desk Ticket.
+
+Thank You,
+
+SQUARES Operations
+
+
+######
+
+7
+
+Action
+As a system admin or operations user, navigate to the related account record and open the Request tab.
+
+Data
+None
+Expected Result
+Verify that under Organization related list a new record is created for this Use Agreement submission,
+
+Attachments (0)
+
+8
+Action
+Open the Organization Request record and verify the updates.
+
+Data
+None
+Expected Result
+User Salesforce Insector to verify SQRS_Source__c field is set to "Submit Use Agreement"
+Verify under Files, there is a Use Agreement file attached.
+Attachments (0)
