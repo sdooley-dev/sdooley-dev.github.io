@@ -3,19 +3,19 @@ Automated test complete.
 
 Uploaded Automated test files associated with SQUAR-602:
 
-Test Case - XML
+// Test Case - XML
 602-help-desk-knowledge-center_v4.testcase
 
-Test Run Result - PDF
-602-help-desk-knowledge-center_v4_result.pdf
+Help Desk Test Plan Run Result Example - PDF
+SQUARES_plans_Help Desk Test Plan 20250810 1335.pdf
 
-Test Steps - PDF
+// Test Steps - PDF
 602-help-desk-knowledge-center_v4_test_steps.pdf
 
-Page Pbject with field mappings - java
+// Page Object with field mappings - java
 602-POHelpDeskKnowledgeCenter.java
 
-Test Analytics (inc. Execution Time per step)
+//Test Analytics (inc. Execution Time per step)
 602-test-run.png
 
 
