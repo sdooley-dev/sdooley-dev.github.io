@@ -119,6 +119,12 @@
             margin-left: 15px;
             color: #666;
         }
+
+        /* icons for title */
+        .icon-081725 {
+            margin-right: 3px;
+            color: #778899
+        }
         
         /* Mobile Menu Toggle */
         .mobile-menu-toggle {
