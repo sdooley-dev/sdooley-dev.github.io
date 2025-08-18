@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile-Optimized Image Carousel</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Carousel container */
+      .carousel-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 2rem auto;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Track for slides */
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Individual slides */
+      .carousel-slide {
+        min-width: 100%;
+        height: auto;
+        flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .carousel-slide img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      /* Navigation arrows */
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .carousel-arrow:hover {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .carousel-arrow:active {
+        transform: translateY(-50%) scale(0.95);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .prev-arrow {
+        left: 10px;
+      }
+
+      .next-arrow {
+        right: 10px;
+      }
+
+      .carousel-arrow i {
+        color: #505a5b;
+      }
+
+      /* Indicator dots */
+      .carousel-indicators {
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .indicator-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .indicator-dot.active {
+        background-color: white;
+        transform: scale(1.2);
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .carousel-container {
+          margin: 1rem auto;
+        }
+
+        .carousel-arrow {
+          width: 48px;
+          height: 48px;
+        }
+
+        .prev-arrow {
+          left: 5px;
+        }
+
+        .next-arrow {
+          right: 5px;
+        }
+
+        .indicator-dot {
+          width: 12px;
+          height: 12px;
+          margin: 0 6px;
+        }
+
+        /* Improve tap targets */
+        .carousel-indicators {
+          bottom: 20px;
+        }
+      }
+
+      /* Page title and description */
+      .page-title {
+        text-align: center;
+        margin: 2rem 0 1rem;
+        color: #333;
+      }
+
+      .description {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        padding: 0 1rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="page-title">Mobile-Optimized Image Carousel</h1>
+    <p class="description">
+      A responsive, touch-friendly carousel for LinkedIn-style image
+      presentations.
+    </p>
+
+    <div class="carousel-container">
+      <!-- Navigation arrows -->
+      <button class="carousel-arrow prev-arrow" aria-label="Previous slide">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button class="carousel-arrow next-arrow" aria-label="Next slide">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </button>
+
+      <!-- Images container -->
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img
+            src="https://via.placeholder.com/800x400/FF5733/FFFFFF?text=Slide+1"
+            srcset="
+              https://via.placeholder.com/400x200/FF5733/FFFFFF?text=Slide+1 400w,
+              https://via.placeholder.com/800x400/FF5733/FFFFFF?text=Slide+1 800w
+            "
+            sizes="(max-width: 768px) 100vw, 800px"
+            alt="Slide 1"
+            loading="eager"
+          />
+        </div>
+        <div class="carousel-slide">
+          <img
+            src="https://via.placeholder.com/800x400/33A8FF/FFFFFF?text=Slide+2"
+            srcset="
+              https://via.placeholder.com/400x200/33A8FF/FFFFFF?text=Slide+2 400w,
+              https://via.placeholder.com/800x400/33A8FF/FFFFFF?text=Slide+2 800w
+            "
+            sizes="(max-width: 768px) 100vw, 800px"
+            alt="Slide 2"
+            loading="lazy"
+          />
+        </div>
+        <div class="carousel-slide">
+          <img
+            src="https://via.placeholder.com/800x400/40E0D0/FFFFFF?text=Slide+3"
+            srcset="
+              https://via.placeholder.com/400x200/40E0D0/FFFFFF?text=Slide+3 400w,
+              https://via.placeholder.com/800x400/40E0D0/FFFFFF?text=Slide+3 800w
+            "
+            sizes="(max-width: 768px) 100vw, 800px"
+            alt="Slide 3"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Indicator dots -->
+      <div class="carousel-indicators">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+
+    <script>
+      // Initialize carousel functionality
+      function initializeCarousel() {
+        const track = document.querySelector(".carousel-track")
+        const slides = Array.from(document.querySelectorAll(".carousel-slide"))
+        const nextButton = document.querySelector(".next-arrow")
+        const prevButton = document.querySelector(".prev-arrow")
+        const dotsContainer = document.querySelector(".carousel-indicators")
+
+        if (!track || !slides.length) return // Exit if elements not found
+
+        let currentIndex = 0
+        let touchStartX = 0
+        let touchEndX = 0
+        let isDragging = false
+        let startTime = 0
+
+        // Create indicator dots
+        slides.forEach((_, index) => {
+          const dot = document.createElement("div")
+          dot.classList.add("indicator-dot")
+          if (index === 0) dot.classList.add("active")
+          dot.addEventListener("click", () => {
+            goToSlide(index)
+          })
+          dotsContainer.appendChild(dot)
+        })
+
+        // Update indicators
+        function updateDots() {
+          const dots = Array.from(document.querySelectorAll(".indicator-dot"))
+          dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex)
+          })
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+          if (index < 0) index = slides.length - 1
+          if (index >= slides.length) index = 0
+
+          track.style.transform = `translateX(-${index * 100}%)`
+          currentIndex = index
+          updateDots()
+        }
+
+        // Event listeners
+        nextButton.addEventListener("click", () => {
+          goToSlide(currentIndex + 1)
+        })
+
+        prevButton.addEventListener("click", () => {
+          goToSlide(currentIndex - 1)
+        })
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") {
+            goToSlide(currentIndex + 1)
+          } else if (e.key === "ArrowLeft") {
+            goToSlide(currentIndex - 1)
+          }
+        })
+
+        // Touch events for mobile
+        track.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStartX = e.changedTouches[0].screenX
+            startTime = new Date().getTime()
+            isDragging = true
+          },
+          { passive: true }
+        )
+
+        track.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!isDragging) return
+
+            const currentX = e.changedTouches[0].screenX
+            const diff = touchStartX - currentX
+            const slideWidth = slides[0].offsetWidth
+
+            // Prevent overscrolling
+            if (
+              (currentIndex === 0 && diff < 0) ||
+              (currentIndex === slides.length - 1 && diff > 0)
+            ) {
+              // Reduce drag effect at ends
+              track.style.transform = `translateX(calc(-${
+                currentIndex * 100
+              }% - ${diff / 4}px))`
+            } else {
+              track.style.transform = `translateX(calc(-${
+                currentIndex * 100
+              }% - ${diff}px))`
+            }
+
+            // Prevent page scrolling when swiping carousel
+            if (Math.abs(diff) > 10) {
+              e.preventDefault()
+            }
+          },
+          { passive: false }
+        )
+
+        track.addEventListener("touchend", (e) => {
+          if (!isDragging) return
+
+          const endTime = new Date().getTime()
+          const timeElapsed = endTime - startTime
+          touchEndX = e.changedTouches[0].screenX
+          const diff = touchStartX - touchEndX
+
+          // Reset transform to avoid jumpy behavior
+          track.style.transition = "none"
+          track.style.transform = `translateX(-${currentIndex * 100}%)`
+
+          // Force browser to acknowledge the above style before changing it
+          setTimeout(() => {
+            track.style.transition = "transform 0.5s ease-in-out"
+            handleSwipe(diff, timeElapsed)
+            isDragging = false
+          }, 10)
+        })
+
+        function handleSwipe(diff, timeElapsed) {
+          const swipeThreshold = 50
+          const velocityThreshold = 0.3 // pixels per millisecond
+
+          const velocity = Math.abs(diff) / timeElapsed
+
+          if (
+            diff > swipeThreshold ||
+            (diff > 20 && velocity > velocityThreshold)
+          ) {
+            // Swipe left - go to next slide
+            goToSlide(currentIndex + 1)
+          } else if (
+            diff < -swipeThreshold ||
+            (diff < -20 && velocity > velocityThreshold)
+          ) {
+            // Swipe right - go to previous slide
+            goToSlide(currentIndex - 1)
+          } else {
+            // Return to current slide if swipe wasn't strong enough
+            goToSlide(currentIndex)
+          }
+        }
+
+        // Optional: Auto-play functionality
+        let autoplayInterval
+
+        function startAutoplay() {
+          autoplayInterval = setInterval(() => {
+            goToSlide(currentIndex + 1)
+          }, 5000) // Change slide every 5 seconds
+        }
+
+        function stopAutoplay() {
+          clearInterval(autoplayInterval)
+        }
+
+        // Uncomment to enable autoplay
+        // startAutoplay();
+
+        // Stop autoplay on user interaction
+        track.addEventListener("mouseenter", stopAutoplay)
+        track.addEventListener("touchstart", stopAutoplay, { passive: true })
+
+        // Restart autoplay when user leaves
+        // track.addEventListener('mouseleave', startAutoplay);
+
+        // Handle visibility changes (when user switches tabs)
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") {
+            stopAutoplay()
+          } else {
+            // startAutoplay();
+          }
+        })
+
+        // Handle window resize to recalculate dimensions
+        let resizeTimer
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer)
+          resizeTimer = setTimeout(() => {
+            // Update the transform to maintain current slide position
+            goToSlide(currentIndex)
+          }, 250)
+        })
+      }
+
+      // Initialize when DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeCarousel()
+      })
+    </script>
+  </body>
+</html>
