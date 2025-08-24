@@ -23,7 +23,7 @@ export function getEventTypeInfo(type){
 function getTier1Icon(category){
   const val = String(category || '').trim().toLowerCase();
   switch (val) {
-    case 'data analytics':           return '<i class="fa fa-bar-chart" aria-hidden="true"></i>';       // modern for bar-chart
+    case 'data analytics':           return '<i class="fa-solid fa-chart-simple" aria-hidden="true"></i>';       // modern for bar-chart
     case 'dev-ops':                  return '<i class="fa fa-code-fork" aria-hidden="true"></i>';
     case 'cloud':                    return '<i class="fa fa-cloud" aria-hidden="true"></i>';
     case 'programming':              return '<i class="fa fa-code" aria-hidden="true"></i>';
@@ -32,7 +32,7 @@ function getTier1Icon(category){
     case 'data engineering':         return '<i class="fa fa-table" aria-hidden="true"></i>';
     case 'qa engineering':           return '<i class="fa fa-square-check" aria-hidden="true"></i>';    // modern for check-square-o
     case 'artificial intelligence':  return '<i class="fa fa-brain" aria-hidden="true"></i>';           // replacement for nonstandard "check-brain"
-    case 'video':                    return '<i class="fa fa-youtube-play" aria-hidden="true"></i>';           // replacement for nonstandard "check-brain"
+    case 'video':                    return '<i class="fa-brands fa-youtube" aria-hidden="true"></i>';           // replacement for nonstandard "check-brain"
     
     default:                         return '';
   }
