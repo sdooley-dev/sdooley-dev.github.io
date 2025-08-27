@@ -421,7 +421,7 @@
       function createTagLink(tag) {
         if (!tag || tag === "N/A") return ""
         const formatted = formatForUrl(tag.trim())
-        return `<a href="#${formatted}" class="tag" onclick="event.preventDefault(); window.location.hash='${formatted}'; window.scrollTo(0,0);">${tag}</a>`
+        return `<a href='#${formatted}' class='tag' onclick='event.preventDefault(); window.location.search=""; window.location.hash="${formatted}"; window.scrollTo(0,0);'>${tag}</a>`
       }
 
       /* ---- LIST (cards) ---- */
