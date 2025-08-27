@@ -515,7 +515,10 @@
       function renderDetail(itemId, backHash) {
         loadXLSX(DATA_URL)
           .then((data) => {
-            const item = data.find((x) => String(x.e_id) === String(itemId))
+            const itemIndex = data.findIndex(
+              (x) => String(x.e_id) === String(itemId)
+            )
+            const item = data[itemIndex]
             const content = document.getElementById("content")
             if (!item) {
               updatePageTitle("Not found")
@@ -556,41 +559,76 @@
               ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" onerror="this.closest('.detail-media').classList.remove('has-image'); this.replaceWith(Object.assign(document.createElement('div'),{className:'media-title-fallback',textContent:'${safeTitle}'}))">`
               : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`
 
+            // Lightbox overlay style
+            const overlayStyle = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;`
+            const cardStyle = `max-width:600px;width:96vw;box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:18px;overflow:hidden;position:relative;`
+
+            // Arrow navigation
+            const prevIndex = itemIndex > 0 ? itemIndex - 1 : null
+            const nextIndex = itemIndex < data.length - 1 ? itemIndex + 1 : null
+            const prevId = prevIndex !== null ? data[prevIndex].e_id : null
+            const nextId = nextIndex !== null ? data[nextIndex].e_id : null
+
             content.innerHTML = `
-            <div class="detail-wrapper">
-              <div class="back-row"><a href="${backHref}">← Back to ${
-              backTarget ? formatForDisplay(backTarget) : "all topics"
-            }</a></div>
-              <div class="detail-card">
-                <div class="${mediaClass}">${detailMedia}</div>
-                <div class="detail-header">
-                  <!-- Title below media intentionally removed -->
-                  <div class="detail-meta">
-                    ${sponsor ? `<span>${sponsor}</span>` : ""}
-                    ${
-                      fullDate
-                        ? `<span style="margin-left:8px;">| ${fullDate}</span>`
-                        : ""
-                    }
-                    ${
-                      item.e_url !== "N/A"
-                        ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>`
-                        : ""
-                    }
-                    <!-- e_id intentionally removed on detail -->
+              <div id="lightbox-overlay" style="${overlayStyle}">
+                <div class="detail-card" style="${cardStyle}">
+                  <div style="position:absolute;top:16px;left:16px;z-index:10;">
+                    <a href="${backHref}" style="color:#4169e1;font-size:1.2em;text-decoration:none;font-weight:600;">← Back</a>
                   </div>
+                  ${
+                    prevId
+                      ? `<button id="arrow-left" style="position:absolute;top:50%;left:-48px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8592;</button>`
+                      : ""
+                  }
+                  ${
+                    nextId
+                      ? `<button id="arrow-right" style="position:absolute;top:50%;right:-48px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8594;</button>`
+                      : ""
+                  }
+                  <div class="${mediaClass}">${detailMedia}</div>
+                  <div class="detail-header">
+                    <div class="detail-meta">
+                      ${sponsor ? `<span>${sponsor}</span>` : ""}
+                      ${
+                        fullDate
+                          ? `<span style="margin-left:8px;">| ${fullDate}</span>`
+                          : ""
+                      }
+                      ${
+                        item.e_url !== "N/A"
+                          ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>`
+                          : ""
+                      }
+                    </div>
+                  </div>
+                  <div class="section-divider"></div>
+                  <div class="detail-body" style="padding: 0 24px;">${
+                    item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""
+                  }</div>
+                  ${
+                    tagLinks
+                      ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>`
+                      : ""
+                  }
                 </div>
-                <div class="section-divider"></div>
-                <div class="detail-body" style="padding: 0 24px;">${
-                  item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""
-                }</div>
-                ${
-                  tagLinks
-                    ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>`
-                    : ""
-                }
               </div>
-            </div>`
+            `
+
+            // Add arrow navigation event listeners
+            setTimeout(() => {
+              const leftBtn = document.getElementById("arrow-left")
+              const rightBtn = document.getElementById("arrow-right")
+              if (leftBtn && prevId) {
+                leftBtn.addEventListener("click", () => {
+                  window.location.hash = `item/${prevId}/${backHash || ""}`
+                })
+              }
+              if (rightBtn && nextId) {
+                rightBtn.addEventListener("click", () => {
+                  window.location.hash = `item/${nextId}/${backHash || ""}`
+                })
+              }
+            }, 0)
           })
           .catch((err) => {
             console.error("Error loading XLSX:", err)
