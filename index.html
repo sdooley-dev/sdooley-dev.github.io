@@ -516,7 +516,7 @@
         loadXLSX(DATA_URL)
           .then((data) => {
             const itemIndex = data.findIndex(
-              (x) => String(x.e_id) === String(itemId)
+              (x) => String(x.e_id).trim() === String(itemId).trim()
             )
             const item = data[itemIndex]
             const content = document.getElementById("content")
