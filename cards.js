@@ -104,6 +104,7 @@ export function buildCard(item, backHash=""){
           </div>
           <div class="card-foot">
             <span class="eid">${(item.e_id !== undefined && item.e_id !== null) ? item.e_id : ""}</span>
+            <span class="sort-order" style="color: #bbb; font-size: 0.95em; margin-left: 10px;">${(item.sort_order !== undefined && item.sort_order !== null) ? item.sort_order : ""}</span>
           </div>
         </div>
       </div>
