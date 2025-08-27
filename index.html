@@ -558,8 +558,30 @@
               ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" onerror="this.closest('.detail-media').classList.remove('has-image'); this.replaceWith(Object.assign(document.createElement('div'),{className:'media-title-fallback',textContent:'${safeTitle}'}))">`
               : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`
 
-            // Fix: define fullDate before using it
-            const fullDate = formatDate(item.e_date)
+            // Use displayDateShort logic for old dates
+            function displayDateShort(value) {
+              if (!value || value === "N/A") return ""
+              const d = new Date(value)
+              if (Number.isNaN(+d)) return ""
+              const y = d.getFullYear()
+              if (y < 2021) return "4+ years ago"
+              const m = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+              ][d.getMonth()]
+              return `${m} ${y}`
+            }
+            const fullDate = displayDateShort(item.e_date)
             // Lightbox overlay style
             // Make overlay scrollable and card wider
             const overlayStyle = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:auto;`
