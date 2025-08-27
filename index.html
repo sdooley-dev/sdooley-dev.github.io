@@ -572,52 +572,29 @@
             content.innerHTML = `
               <div id="lightbox-overlay" style="${overlayStyle}">
                 <div class="detail-card" style="${cardStyle}">
-                  <div style="position:absolute;top:16px;left:16px;z-index:10;">
-                    <a href="${backHref}" style="color:#4169e1;font-size:1.2em;text-decoration:none;font-weight:600;">← Back</a>
-                  </div>
-                  ${
-                    prevId
-                      ? `<button id="arrow-left" style="position:absolute;top:50%;left:-48px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8592;</button>`
-                      : ""
-                  }
-                  ${
-                    nextId
-                      ? `<button id="arrow-right" style="position:absolute;top:50%;right:-48px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8594;</button>`
-                      : ""
-                  }
+                  <button id="close-lightbox" style="position:absolute;top:16px;right:16px;z-index:10;background:none;border:none;font-size:2em;color:#374151;cursor:pointer;line-height:1;">&times;</button>
+                  ${prevId ? `<button id="arrow-left" style="position:absolute;top:50%;left:-48px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8592;</button>` : ""}
+                  ${nextId ? `<button id="arrow-right" style="position:absolute;top:50%;right:-48px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8594;</button>` : ""}
                   <div class="${mediaClass}">${detailMedia}</div>
                   <div class="detail-header">
                     <div class="detail-meta">
                       ${sponsor ? `<span>${sponsor}</span>` : ""}
-                      ${
-                        fullDate
-                          ? `<span style="margin-left:8px;">| ${fullDate}</span>`
-                          : ""
-                      }
-                      ${
-                        item.e_url !== "N/A"
-                          ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>`
-                          : ""
-                      }
+                      ${fullDate ? `<span style="margin-left:8px;">| ${fullDate}</span>` : ""}
+                      ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                     </div>
                   </div>
                   <div class="section-divider"></div>
-                  <div class="detail-body" style="padding: 0 24px;">${
-                    item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""
-                  }</div>
-                  ${
-                    tagLinks
-                      ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>`
-                      : ""
-                  }
+                  <div class="detail-body" style="padding: 0 24px;">${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}</div>
+                  ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
                 </div>
               </div>
-            `
+            `;
 
-            // Add arrow navigation event listeners
+            // Add arrow navigation and close event listeners
             setTimeout(() => {
               const leftBtn = document.getElementById("arrow-left")
               const rightBtn = document.getElementById("arrow-right")
+              const closeBtn = document.getElementById("close-lightbox")
               if (leftBtn && prevId) {
                 leftBtn.addEventListener("click", () => {
                   window.location.hash = `item/${prevId}/${backHash || ""}`
@@ -626,6 +603,11 @@
               if (rightBtn && nextId) {
                 rightBtn.addEventListener("click", () => {
                   window.location.hash = `item/${nextId}/${backHash || ""}`
+                })
+              }
+              if (closeBtn) {
+                closeBtn.addEventListener("click", () => {
+                  window.location.hash = backHash ? `#${backHash}` : "#"
                 })
               }
             }, 0)
