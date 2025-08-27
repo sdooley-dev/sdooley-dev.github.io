@@ -561,8 +561,9 @@
             // Fix: define fullDate before using it
             const fullDate = formatDate(item.e_date)
             // Lightbox overlay style
-            const overlayStyle = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;`
-            const cardStyle = `max-width:600px;width:96vw;box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:18px;overflow:hidden;position:relative;`
+            // Make overlay scrollable and card wider
+            const overlayStyle = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:auto;`
+            const cardStyle = `max-width:900px;width:98vw;min-height:200px;max-height:90vh;box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:18px;overflow:auto;position:relative;background:#fff;display:flex;flex-direction:column;`
 
             // Arrow navigation
             const prevIndex = itemIndex > 0 ? itemIndex - 1 : null
