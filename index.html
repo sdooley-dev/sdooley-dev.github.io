@@ -226,7 +226,7 @@
         padding: 0 16px 40px;
       }
       .detail-card {
-        border: 1px solid #e5e7eb;
+        border: none;
         border-radius: 16px;
         padding: 0 0 20px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
@@ -575,16 +575,28 @@
               <div id="lightbox-overlay" style="${overlayStyle}">
                 <div class="detail-card" style="${cardStyle}">
                   <button id="close-lightbox" style="position:absolute;top:16px;right:16px;z-index:10;background:none;border:none;font-size:2em;color:#374151;cursor:pointer;line-height:1;">&times;</button>
-                  ${
-                    prevId
-                      ? `<button id="arrow-left" style="position:absolute;top:50%;left:8px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8592;</button>`
-                      : ""
-                  }
-                  ${
-                    nextId
-                      ? `<button id="arrow-right" style="position:absolute;top:50%;right:8px;transform:translateY(-50%);background:#fff;border:none;border-radius:50%;width:40px;height:40px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:1.8em;cursor:pointer;z-index:10;">&#8594;</button>`
-                      : ""
-                  }
+                 
+                 
+${
+  prevId
+    ? `<button id="arrow-left" style="position:absolute;top:50%;left:8px;transform:translateY(-50%);background:none;border:none;border-radius:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;opacity:0.45;z-index:10;cursor:pointer;transition:opacity 0.2s;">
+       <span style='display:inline-block;width:40px;height:40px;background:#ffe600;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;'>
+         <i class="fa fa-chevron-left" style="font-size:2em;color:#222;"></i>
+       </span>
+     </button>`
+    : ""
+}
+${
+  nextId
+    ? `<button id="arrow-right" style="position:absolute;top:50%;right:8px;transform:translateY(-50%);background:none;border:none;border-radius:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;opacity:0.45;z-index:10;cursor:pointer;transition:opacity 0.2s;">
+       <span style='display:inline-block;width:40px;height:40px;background:#ffe600;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;'>
+         <i class="fa fa-chevron-right" style="font-size:2em;color:#222;"></i>
+       </span>
+     </button>`
+    : ""
+}
+
+
                   <div class="${mediaClass}">${detailMedia}</div>
                   <div class="detail-header">
                     <div class="detail-meta">
