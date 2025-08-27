@@ -437,16 +437,23 @@
 
         loadXLSX(DATA_URL)
           .then((data) => {
-            let filtered = !searchTerm
-              ? data
-              : data.filter((it) =>
-                  [it.tag1, it.tag2, it.tag3, it.tag4, it.tag5].some(
-                    (t) =>
-                      t &&
-                      t !== "N/A" &&
-                      t.toLowerCase().includes(searchTerm.toLowerCase())
-                  )
+            // Check for ?ids=47,46,34 in the URL
+            const urlParams = new URLSearchParams(window.location.search)
+            const idsParam = urlParams.get("ids")
+            let filtered = data
+            if (idsParam) {
+              const idsArr = idsParam.split(",").map((id) => id.trim())
+              filtered = data.filter((it) => idsArr.includes(String(it.e_id)))
+            } else if (searchTerm) {
+              filtered = data.filter((it) =>
+                [it.tag1, it.tag2, it.tag3, it.tag4, it.tag5].some(
+                  (t) =>
+                    t &&
+                    t !== "N/A" &&
+                    t.toLowerCase().includes(searchTerm.toLowerCase())
                 )
+              )
+            }
             filtered.sort((a, b) => Number(a.e_id) - Number(b.e_id))
 
             const content = document.getElementById("content")
