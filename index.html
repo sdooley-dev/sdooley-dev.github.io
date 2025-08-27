@@ -3,96 +3,293 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Steve Dooley, MBA</title>
-    <link rel="icon" type="image/x-icon" href="https://sdooley.org/images/favicon/favicon.ico" />
+    <title>Steve Dooley - Senior Consultant</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://sdooley.org/images/favicon/favicon.ico"
+    />
 
     <!-- your site CSS (optional) -->
     <link rel="stylesheet" href="drs/css/style.css" />
     <link rel="stylesheet" href="drs/css/style2.css" />
 
     <!-- Font Awesome + SheetJS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
     <style>
       /* Layout */
-      #header-container { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,.06); }
-      body { padding-top: 120px; background:#f8fafc; color:#0f172a; }
-      #page-title { margin-top: 5px; font-size: 1.8em; color: #555; font-weight: 400; padding-left: 10px; margin-bottom: 20px; }
+      #header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+      }
+      body {
+        padding-top: 120px;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      #page-title {
+        margin-top: 5px;
+        font-size: 1.8em;
+        color: #555;
+        font-weight: 400;
+        padding-left: 10px;
+        margin-bottom: 20px;
+      }
 
       /* Grid */
-      #content { max-width: 1100px; margin: 0 auto; padding: 0 16px 40px; }
-      #results { list-style: none; padding: 0; margin: 0; }
-      #results ul { list-style: none; padding: 0; margin: 8px 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-      #results li { margin: 0; }
-      #results h2 { margin: 18px 6px 8px; color:#4169E1; }
+      #content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 16px 40px;
+      }
+      #results {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #results ul {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 32px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      #results li {
+        margin: 0;
+      }
+      #results h2 {
+        margin: 18px 6px 8px;
+        color: #4169e1;
+      }
 
       /* Card shell */
       .content032825 {
         border: 1px solid #e5e7eb;
         border-radius: 16px;
         background: #fff;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 16px rgba(0,0,0,0.06);
-        transition: box-shadow .15s ease, transform .15s ease;
-        height: 380px;           /* equal height; trimmed bottom whitespace */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+          0 8px 16px rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.15s ease, transform 0.15s ease;
+        height: 380px; /* equal height; trimmed bottom whitespace */
         display: flex;
         flex-direction: column;
       }
-      .content032825:hover { box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 10px 22px rgba(0,0,0,0.08); transform: translateY(-1px); }
-
-
+      .content032825:hover {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06),
+          0 10px 22px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+      }
 
       /* Taller dark header so icon/title never clip */
-.card-media { position: relative; height: 110px; border-radius: 12px; overflow: hidden; margin:10px; background: #0f172a; display:flex; align-items:center; justify-content:center; text-decoration:none; }
+      .card-media {
+        position: relative;
+        height: 110px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 10px;
+        background: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
 
-.media-title-fallback {
-  width:100%; height:100%;
-  display:flex; align-items:center; justify-content:center;
-  padding: 26px 16px 12px;       /* more top padding + a touch more bottom */
-  text-align:center; color:#e5e7eb; font-weight:800; font-size:1.05rem;
-}
+      .media-title-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 26px 16px 12px; /* more top padding + a touch more bottom */
+        text-align: center;
+        color: #e5e7eb;
+        font-weight: 800;
+        font-size: 1.05rem;
+      }
 
       /* category icon + title stack inside the fallback header */
-      .tier1-stack { display:flex; flex-direction:column; align-items:center; gap:8px; }
-      .tier1-stack .tier1-icon { display:block; line-height:1; }
-      .tier1-stack .tier1-title { display:block; line-height:1.2; }
-      .tier1-stack .tier1-icon i { font-size:28px; color:#e5e7eb; opacity:.95; }
+      .tier1-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .tier1-stack .tier1-icon {
+        display: block;
+        line-height: 1;
+      }
+      .tier1-stack .tier1-title {
+        display: block;
+        line-height: 1.2;
+      }
+      .tier1-stack .tier1-icon i {
+        font-size: 28px;
+        color: #e5e7eb;
+        opacity: 0.95;
+      }
 
       /* Body */
-      .card-body { flex:1; display:flex; flex-direction:column; padding: 0 18px 10px; }
-      .event-content { margin-top: 8px; flex:1; display:flex; flex-direction:column; }
+      .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 0 18px 10px;
+      }
+      .event-content {
+        margin-top: 8px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
 
       /* Sponsor/date row (above desc) */
-      .meta-top { display:flex; justify-content:space-between; align-items:center; gap:8px; min-height:28px; }
-      .sponsor-badge { display:inline-flex; align-items:center; gap:6px; background:#111827; color:#e5e7eb; padding:4px 10px; border-radius:999px; font-size:.85rem; font-weight:600; max-width:70%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .sponsor-badge i { color:#e5e7eb !important; }
-      .sponsor-text { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-      .meta-right { color:#555; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .meta-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        min-height: 28px;
+      }
+      .sponsor-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #111827;
+        color: #e5e7eb;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        max-width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sponsor-badge i {
+        color: #e5e7eb !important;
+      }
+      .sponsor-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .meta-right {
+        color: #555;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       /* Description (60 chars + inline more) */
-      .event-description { color:#374151; line-height:1.45; overflow:hidden; }
-      .more-inline { color:#4169E1; text-decoration:none; }
-      .more-inline:hover { text-decoration:underline; }
+      .event-description {
+        color: #374151;
+        line-height: 1.45;
+        overflow: hidden;
+      }
+      .more-inline {
+        color: #4169e1;
+        text-decoration: none;
+      }
+      .more-inline:hover {
+        text-decoration: underline;
+      }
 
       /* Footer: ID bottom-left */
-      .card-foot { margin-top:auto; display:flex; justify-content:flex-start; align-items:center; font-size:.75rem; color:#9ca3af; }
-      .card-foot .eid { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .card-foot {
+        margin-top: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+      .card-foot .eid {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
 
       /* Detail page */
-      .detail-wrapper { max-width: 960px; margin: 0 auto; padding: 0 16px 40px; }
-      .detail-card { border: 1px solid #e5e7eb; border-radius: 16px; padding: 0 0 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 16px rgba(0,0,0,0.06); background: #fff; overflow:hidden; }
-      .detail-media { position:relative; height: 160px; background:#0f172a; display:flex; align-items:center; justify-content:center; margin:0; border-bottom:1px solid #e5e7eb; }
-      .detail-media.has-image { height: 80px; }          /* detail: 80px if image present */
-      .detail-media img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
-      .detail-media .media-title-fallback { color:#e5e7eb; font-weight:800; font-size:2rem; } /* larger fallback title */
-      .detail-header { padding: 8px 24px 8px; }          /* compact; no H2 title below */
-      .detail-meta { color:#666; margin-top:4px; }
-      .back-row { margin: 12px 0 12px; padding: 0 24px; }
-      .back-row a { color:#4169E1; text-decoration:none; }
-      .verify-link { color:#666; font-size:.95em; margin-left:6px; }
-      .section-divider { height:1px; background:#eee; margin:18px 24px; }
+      .detail-wrapper {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 16px 40px;
+      }
+      .detail-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 0 0 20px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+          0 8px 16px rgba(0, 0, 0, 0.06);
+        background: #fff;
+        overflow: hidden;
+      }
+      .detail-media {
+        position: relative;
+        height: 160px;
+        background: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .detail-media.has-image {
+        height: 80px;
+      } /* detail: 80px if image present */
+      .detail-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .detail-media .media-title-fallback {
+        color: #e5e7eb;
+        font-weight: 800;
+        font-size: 2rem;
+      } /* larger fallback title */
+      .detail-header {
+        padding: 8px 24px 8px;
+      } /* compact; no H2 title below */
+      .detail-meta {
+        color: #666;
+        margin-top: 4px;
+      }
+      .back-row {
+        margin: 12px 0 12px;
+        padding: 0 24px;
+      }
+      .back-row a {
+        color: #4169e1;
+        text-decoration: none;
+      }
+      .verify-link {
+        color: #666;
+        font-size: 0.95em;
+        margin-left: 6px;
+      }
+      .section-divider {
+        height: 1px;
+        background: #eee;
+        margin: 18px 24px;
+      }
 
-      @media (min-width: 1280px){ #content { max-width: 1200px; } }
+      @media (min-width: 1280px) {
+        #content {
+          max-width: 1200px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -108,204 +305,348 @@
 
     <script type="module">
       // import { buildCard, getEventTypeInfo } from './cards.js';
-        import { buildCard } from './cards.js';
+      import { buildCard } from "./cards.js"
 
       /* ---- Header/Footer loader from ./drs/inc/ ---- */
       Promise.all([
-        fetch('./drs/inc/header.html').then(r => r.ok ? r.text() : ''),
-        fetch('./drs/inc/footer.html').then(r => r.ok ? r.text() : '')
-      ]).then(([headerHtml, footerHtml]) => {
-        const headerEl = document.getElementById('header-container');
-        const footerEl = document.getElementById('footer-container');
-        if (headerEl) headerEl.innerHTML = headerHtml;
-        if (footerEl) footerEl.innerHTML = footerHtml;
+        fetch("./drs/inc/header.html").then((r) => (r.ok ? r.text() : "")),
+        fetch("./drs/inc/footer.html").then((r) => (r.ok ? r.text() : "")),
+      ])
+        .then(([headerHtml, footerHtml]) => {
+          const headerEl = document.getElementById("header-container")
+          const footerEl = document.getElementById("footer-container")
+          if (headerEl) headerEl.innerHTML = headerHtml
+          if (footerEl) footerEl.innerHTML = footerHtml
 
-        // Optional mobile menu wiring if header provides those elements:
-        try {
-          const overlay = document.querySelector('.mobile-menu-overlay');
-          const body = document.body;
-          document.querySelector('.mobile-menu-toggle')?.addEventListener('click', () => {
-            overlay?.classList.add('active'); body.classList.add('menu-open');
-          });
-          const close = () => { overlay?.classList.remove('active'); body.classList.remove('menu-open'); };
-          document.querySelector('.mobile-menu-close')?.addEventListener('click', close);
-          document.querySelector('.mobile-menu-back-btn')?.addEventListener('click', close);
-          document.querySelectorAll('.mobile-nav a')?.forEach(a => a.addEventListener('click', close));
-        } catch (e) {}
-      }).catch(console.error);
+          // Optional mobile menu wiring if header provides those elements:
+          try {
+            const overlay = document.querySelector(".mobile-menu-overlay")
+            const body = document.body
+            document
+              .querySelector(".mobile-menu-toggle")
+              ?.addEventListener("click", () => {
+                overlay?.classList.add("active")
+                body.classList.add("menu-open")
+              })
+            const close = () => {
+              overlay?.classList.remove("active")
+              body.classList.remove("menu-open")
+            }
+            document
+              .querySelector(".mobile-menu-close")
+              ?.addEventListener("click", close)
+            document
+              .querySelector(".mobile-menu-back-btn")
+              ?.addEventListener("click", close)
+            document
+              .querySelectorAll(".mobile-nav a")
+              ?.forEach((a) => a.addEventListener("click", close))
+          } catch (e) {}
+        })
+        .catch(console.error)
 
       /* ---- Data loading (XLSX) ----
          Keep caching by default; bump ?sv=2 on the page URL after you update the sheet
          to force a fresh fetch. Optionally add &nocache once for a single no-store load. */
-      const QS = new URLSearchParams(location.search);
-      const SHEET_VERSION = QS.get('sv') || '1';
-      const NO_CACHE = QS.has('nocache');
-      const DATA_URL = `040625-skills.xlsx?v=${encodeURIComponent(SHEET_VERSION)}`;
+      const QS = new URLSearchParams(location.search)
+      const SHEET_VERSION = QS.get("sv") || "1"
+      const NO_CACHE = QS.has("nocache")
+      const DATA_URL = `040625-skills.xlsx?v=${encodeURIComponent(
+        SHEET_VERSION
+      )}`
 
-      function formatDate(date){
-        if(!date || date === "N/A") return "";
-        try { return new Date(date).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"2-digit"}); }
-        catch { return ""; }
-      }
-      function formatForUrl(term){ return (term||"").replace(/\s+/g,"-") }
-      function formatForDisplay(term){ return (term||"").replace(/-+/g," ") }
-
-      function loadXLSX(url){
-        const req = new Request(url, { cache: NO_CACHE ? "no-store" : "default" });
-        return fetch(req).then(r => {
-          if(!r.ok) throw new Error(`HTTP ${r.status}`);
-          return r.arrayBuffer();
-        }).then(buf => {
-          const wb = XLSX.read(buf, { type: "array", cellDates: true, dateNF: "yyyy-mm-dd" });
-          const sheet = wb.Sheets[wb.SheetNames[0]];
-          return XLSX.utils.sheet_to_json(sheet, { raw: false, defval: "N/A" });
-        });
-      }
-
-      function getRoute(){
-        const hash = window.location.hash.replace(/^#/,"");
-        if(hash.startsWith("item/")){
-          const [, id, back=""] = hash.split("/");
-          return { mode:"detail", id, back };
+      function formatDate(date) {
+        if (!date || date === "N/A") return ""
+        try {
+          return new Date(date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "2-digit",
+          })
+        } catch {
+          return ""
         }
-        return { mode:"list", term: formatForDisplay(hash) };
+      }
+      function formatForUrl(term) {
+        return (term || "").replace(/\s+/g, "-")
+      }
+      function formatForDisplay(term) {
+        return (term || "").replace(/-+/g, " ")
       }
 
-      function updatePageTitle(text, fallback){
-        const el = document.getElementById("page-title");
-        const t = (text && text.trim()) ? text : (fallback || "");
-        if(t){ document.title = `${t} - Steve Dooley, MBA`; el.textContent = t; }
-        else { document.title = "Steve Dooley, MBA"; el.textContent = "technical skills & experience"; }
+      function loadXLSX(url) {
+        const req = new Request(url, {
+          cache: NO_CACHE ? "no-store" : "default",
+        })
+        return fetch(req)
+          .then((r) => {
+            if (!r.ok) throw new Error(`HTTP ${r.status}`)
+            return r.arrayBuffer()
+          })
+          .then((buf) => {
+            const wb = XLSX.read(buf, {
+              type: "array",
+              cellDates: true,
+              dateNF: "yyyy-mm-dd",
+            })
+            const sheet = wb.Sheets[wb.SheetNames[0]]
+            return XLSX.utils.sheet_to_json(sheet, {
+              raw: false,
+              defval: "N/A",
+            })
+          })
       }
 
-      function createTagLink(tag){
-        if(!tag || tag === "N/A") return "";
-        const formatted = formatForUrl(tag.trim());
-        return `<a href="#${formatted}" class="tag" onclick="event.preventDefault(); window.location.hash='${formatted}'; window.scrollTo(0,0);">${tag}</a>`;
+      function getRoute() {
+        const hash = window.location.hash.replace(/^#/, "")
+        if (hash.startsWith("item/")) {
+          const [, id, back = ""] = hash.split("/")
+          return { mode: "detail", id, back }
+        }
+        return { mode: "list", term: formatForDisplay(hash) }
+      }
+
+      function updatePageTitle(text, fallback) {
+        const el = document.getElementById("page-title")
+        const t = text && text.trim() ? text : fallback || ""
+        if (t) {
+          document.title = `${t} - Steve Dooley, MBA`
+          el.textContent = t
+        } else {
+          document.title = "Steve Dooley, MBA"
+          el.textContent = "technical skills & experience"
+        }
+      }
+
+      function createTagLink(tag) {
+        if (!tag || tag === "N/A") return ""
+        const formatted = formatForUrl(tag.trim())
+        return `<a href="#${formatted}" class="tag" onclick="event.preventDefault(); window.location.hash='${formatted}'; window.scrollTo(0,0);">${tag}</a>`
       }
 
       /* ---- LIST (cards) ---- */
-      function renderList(searchTerm){
-        updatePageTitle((searchTerm?`${formatForDisplay(searchTerm).toLowerCase()} skills & experience`:""), "technical skills & experience");
+      function renderList(searchTerm) {
+        updatePageTitle(
+          searchTerm
+            ? `${formatForDisplay(
+                searchTerm
+              ).toLowerCase()} skills & experience`
+            : "",
+          "technical skills & experience"
+        )
 
-        loadXLSX(DATA_URL).then(data => {
-          let filtered = !searchTerm
-            ? data
-            : data.filter(it => [it.tag1,it.tag2,it.tag3,it.tag4,it.tag5]
-                  .some(t => t && t !== "N/A" && t.toLowerCase().includes(searchTerm.toLowerCase())));
-          filtered.sort((a,b) => Number(a.e_id) - Number(b.e_id));
+        loadXLSX(DATA_URL)
+          .then((data) => {
+            let filtered = !searchTerm
+              ? data
+              : data.filter((it) =>
+                  [it.tag1, it.tag2, it.tag3, it.tag4, it.tag5].some(
+                    (t) =>
+                      t &&
+                      t !== "N/A" &&
+                      t.toLowerCase().includes(searchTerm.toLowerCase())
+                  )
+                )
+            filtered.sort((a, b) => Number(a.e_id) - Number(b.e_id))
 
-          const content = document.getElementById("content");
-          content.innerHTML = '<ul id="results"></ul>';
-          const results = document.getElementById("results");
+            const content = document.getElementById("content")
+            content.innerHTML = '<ul id="results"></ul>'
+            const results = document.getElementById("results")
 
-          if(!filtered.length){ results.textContent = "No results found."; return; }
+            if (!filtered.length) {
+              results.textContent = "No results found."
+              return
+            }
 
-          // Group by e_type
-          const grouped = {};
-          for(const it of filtered){ const t = it.e_type || "Uncategorized"; (grouped[t] ||= []).push(it); }
+            // Group by e_type
+            const grouped = {}
+            for (const it of filtered) {
+              const t = it.e_type || "Uncategorized"
+              ;(grouped[t] ||= []).push(it)
+            }
 
-          for(const type of Object.keys(grouped).sort()){
-            const info = getEventTypeInfo(type);
-            const h2 = document.createElement("h2");
-            h2.innerHTML = `${info.icon} ${info.title}`;
-            if(info.anchor) h2.id = info.anchor;
-            results.appendChild(h2);
+            for (const type of Object.keys(grouped).sort()) {
+              const info = getEventTypeInfo(type)
+              const h2 = document.createElement("h2")
+              h2.innerHTML = `${info.icon} ${info.title}`
+              if (info.anchor) h2.id = info.anchor
+              results.appendChild(h2)
 
-            const ul = document.createElement("ul");
-            grouped[type]
-              .sort((a,b)=> a.e_title.localeCompare(b.e_title))
-              .forEach(item => {
-                const li = document.createElement("li");
-                const currentHash = window.location.hash.replace(/^#/, "");
-                li.innerHTML = buildCard(item, currentHash);   // card markup from cards.js
-                ul.appendChild(li);
-              });
-            results.appendChild(ul);
-          }
-        }).catch(err => {
-          console.error("Error loading XLSX:", err);
-          const results = document.getElementById("results");
-          if(results) results.textContent = "Error loading data.";
-        });
+              const ul = document.createElement("ul")
+              grouped[type]
+                .sort((a, b) => {
+                  // Sort by sort_order (numerically ascending), fallback to e_title
+                  const sa = Number(a.sort_order)
+                  const sb = Number(b.sort_order)
+                  if (!isNaN(sa) && !isNaN(sb)) {
+                    return sa - sb
+                  } else if (!isNaN(sa)) {
+                    return -1
+                  } else if (!isNaN(sb)) {
+                    return 1
+                  } else {
+                    return a.e_title.localeCompare(b.e_title)
+                  }
+                })
+                .forEach((item) => {
+                  const li = document.createElement("li")
+                  const currentHash = window.location.hash.replace(/^#/, "")
+                  li.innerHTML = buildCard(item, currentHash) // card markup from cards.js
+                  ul.appendChild(li)
+                })
+              results.appendChild(ul)
+            }
+          })
+          .catch((err) => {
+            console.error("Error loading XLSX:", err)
+            const results = document.getElementById("results")
+            if (results) results.textContent = "Error loading data."
+          })
       }
 
       /* ---- DETAIL (image 80px if present; otherwise large fallback title) ---- */
-      function renderDetail(itemId, backHash){
-        loadXLSX(DATA_URL).then(data => {
-          const item = data.find(x => String(x.e_id) === String(itemId));
-          const content = document.getElementById("content");
-          if(!item){
-            updatePageTitle("Not found");
-            content.innerHTML = `<div class="detail-wrapper"><p>Item not found.</p><p class="back-row"><a href="#${decodeURIComponent(backHash||"")}">← Back</a></p></div>`;
-            return;
-          }
+      function renderDetail(itemId, backHash) {
+        loadXLSX(DATA_URL)
+          .then((data) => {
+            const item = data.find((x) => String(x.e_id) === String(itemId))
+            const content = document.getElementById("content")
+            if (!item) {
+              updatePageTitle("Not found")
+              content.innerHTML = `<div class="detail-wrapper"><p>Item not found.</p><p class="back-row"><a href="#${decodeURIComponent(
+                backHash || ""
+              )}">← Back</a></p></div>`
+              return
+            }
 
-          const fullDate = formatDate(item.e_date);
-          const tagLinks = [item.tag1,item.tag2,item.tag3,item.tag4,item.tag5]
-            .filter(t => t && t !== "N/A")
-            .map(createTagLink)
-            .join(" ");
-          const sponsor = (item.e_sponsoring && item.e_sponsoring !== "N/A") ? item.e_sponsoring : "";
-          updatePageTitle(item.e_title);
-          const backTarget = decodeURIComponent(backHash || "");
-          const backHref = `#${backTarget}`;
+            const fullDate = formatDate(item.e_date)
+            const tagLinks = [
+              item.tag1,
+              item.tag2,
+              item.tag3,
+              item.tag4,
+              item.tag5,
+            ]
+              .filter((t) => t && t !== "N/A")
+              .map(createTagLink)
+              .join(" ")
+            const sponsor =
+              item.e_sponsoring && item.e_sponsoring !== "N/A"
+                ? item.e_sponsoring
+                : ""
+            updatePageTitle(item.e_title)
+            const backTarget = decodeURIComponent(backHash || "")
+            const backHref = `#${backTarget}`
 
-          const hasImage = item.e_image && item.e_image !== "N/A";
-          const safeTitle = String(item.e_title || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-          const mediaClass = hasImage ? "detail-media has-image" : "detail-media";
-          const detailMedia = hasImage
-            ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" onerror="this.closest('.detail-media').classList.remove('has-image'); this.replaceWith(Object.assign(document.createElement('div'),{className:'media-title-fallback',textContent:'${safeTitle}'}))">`
-            : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`;
+            const hasImage = item.e_image && item.e_image !== "N/A"
+            const safeTitle = String(item.e_title || "")
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+            const mediaClass = hasImage
+              ? "detail-media has-image"
+              : "detail-media"
+            const detailMedia = hasImage
+              ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" onerror="this.closest('.detail-media').classList.remove('has-image'); this.replaceWith(Object.assign(document.createElement('div'),{className:'media-title-fallback',textContent:'${safeTitle}'}))">`
+              : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`
 
-          content.innerHTML = `
+            content.innerHTML = `
             <div class="detail-wrapper">
-              <div class="back-row"><a href="${backHref}">← Back to ${backTarget ? formatForDisplay(backTarget) : 'all topics'}</a></div>
+              <div class="back-row"><a href="${backHref}">← Back to ${
+              backTarget ? formatForDisplay(backTarget) : "all topics"
+            }</a></div>
               <div class="detail-card">
                 <div class="${mediaClass}">${detailMedia}</div>
                 <div class="detail-header">
                   <!-- Title below media intentionally removed -->
                   <div class="detail-meta">
                     ${sponsor ? `<span>${sponsor}</span>` : ""}
-                    ${fullDate ? `<span style="margin-left:8px;">| ${fullDate}</span>` : ""}
-                    ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
+                    ${
+                      fullDate
+                        ? `<span style="margin-left:8px;">| ${fullDate}</span>`
+                        : ""
+                    }
+                    ${
+                      item.e_url !== "N/A"
+                        ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>`
+                        : ""
+                    }
                     <!-- e_id intentionally removed on detail -->
                   </div>
                 </div>
                 <div class="section-divider"></div>
-                <div class="detail-body" style="padding: 0 24px;">${(item.e_desc && item.e_desc !== "N/A") ? item.e_desc : ""}</div>
-                ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ''}
+                <div class="detail-body" style="padding: 0 24px;">${
+                  item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""
+                }</div>
+                ${
+                  tagLinks
+                    ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>`
+                    : ""
+                }
               </div>
-            </div>`;
-        }).catch(err => {
-          console.error("Error loading XLSX:", err);
-          const results = document.getElementById("results");
-          if(results) results.textContent = "Error loading data.";
-        });
+            </div>`
+          })
+          .catch((err) => {
+            console.error("Error loading XLSX:", err)
+            const results = document.getElementById("results")
+            if (results) results.textContent = "Error loading data."
+          })
       }
 
-      function getEventTypeInfo(type){
+      function getEventTypeInfo(type) {
         // keeps headings/icons for each e_type
-        const eventType = String(type || '').substring(0,2);
+        const eventType = String(type || "").substring(0, 2)
         switch (eventType) {
-          case "01": return { icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color:#4169E1;"></i>', title: "Awards" };
-          case "02": return { icon: '<i class="fa fa-id-badge" aria-hidden="true" title="Work Experience"></i>', title: "Work Experience", anchor: "experience" };
-          case "03": return { icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates"></i>', title: "Courses & Certificates", anchor: "courses" };
-          case "04": return { icon: '<i class="fa fa-certificate" aria-hidden="true" title="x"></i>', title: "x" };
-          case "05": return { icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback"></i>', title: "Feedback" };
-          case "06": return { icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops"></i>', title: "Presentations & Workshops", anchor: "presentations" };
-          case "07": return { icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies"></i>', title: "Case Studies", anchor: "case-studies" };
-          default:   return { icon: "", title: type || "Uncategorized" };
+          case "01":
+            return {
+              icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color:#4169E1;"></i>',
+              title: "Awards",
+            }
+          case "02":
+            return {
+              icon: '<i class="fa fa-id-badge" aria-hidden="true" title="Work Experience"></i>',
+              title: "Work Experience",
+              anchor: "experience",
+            }
+          case "03":
+            return {
+              icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates"></i>',
+              title: "Courses & Certificates",
+              anchor: "courses",
+            }
+          case "04":
+            return {
+              icon: '<i class="fa fa-certificate" aria-hidden="true" title="x"></i>',
+              title: "x",
+            }
+          case "05":
+            return {
+              icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback"></i>',
+              title: "Feedback",
+            }
+          case "06":
+            return {
+              icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops"></i>',
+              title: "Presentations & Workshops",
+              anchor: "presentations",
+            }
+          case "07":
+            return {
+              icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies"></i>',
+              title: "Case Studies",
+              anchor: "case-studies",
+            }
+          default:
+            return { icon: "", title: type || "Uncategorized" }
         }
       }
 
-      function handleRoute(){
-        const r = getRoute();
-        if(r.mode==='detail') renderDetail(r.id, r.back);
-        else renderList(r.term);
+      function handleRoute() {
+        const r = getRoute()
+        if (r.mode === "detail") renderDetail(r.id, r.back)
+        else renderList(r.term)
       }
-      handleRoute();
-      window.addEventListener("hashchange", handleRoute);
+      handleRoute()
+      window.addEventListener("hashchange", handleRoute)
     </script>
   </body>
 </html>
