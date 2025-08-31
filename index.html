@@ -70,7 +70,10 @@
       }
       #results h2 {
         margin: 18px 6px 8px;
-        color: #4169e1;
+        color: #0f172a;
+      }
+      #results h2 i {
+        color: #6b7280 !important;
       }
 
       /* Card shell */
@@ -153,29 +156,36 @@
         flex-direction: column;
       }
 
-      /* Sponsor/date row (above desc) */
-      .meta-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 8px;
-        min-height: 28px;
-      }
-      .sponsor-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #111827;
-        color: #e5e7eb;
-        padding: 4px 10px;
-        border-radius: 999px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        max-width: 70%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+             /* Sponsor/date row (above desc) */
+       .meta-top {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         gap: 8px;
+         min-height: 28px;
+         width: 100%;
+         overflow: hidden;
+       }
+       .meta-left {
+         flex: 1;
+         min-width: 0;
+         overflow: hidden;
+       }
+                            .sponsor-badge {
+           display: inline-flex;
+           align-items: center;
+           gap: 6px;
+           background: #111827;
+           color: #e5e7eb;
+           padding: 4px 10px;
+           border-radius: 999px;
+           font-size: 0.85rem;
+           font-weight: 600;
+           max-width: 100%;
+           white-space: nowrap;
+           overflow: hidden;
+           text-overflow: ellipsis;
+         }
       .sponsor-badge i {
         color: #e5e7eb !important;
       }
@@ -184,13 +194,19 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .meta-right {
-        color: #555;
-        font-size: 0.9rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+             .meta-right {
+         color: #555;
+         font-size: 0.9rem;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+       }
+       .meta-date {
+         color: #555;
+         font-size: 0.9rem;
+         margin-top: 4px;
+         margin-bottom: 8px;
+       }
 
       /* Description (60 chars + inline more) */
       .event-description {
@@ -538,25 +554,30 @@
               .filter((t) => t && t !== "N/A")
               .map(createTagLink)
               .join(" ")
-            const sponsor =
-              item.e_sponsoring && item.e_sponsoring !== "N/A"
-                ? item.e_sponsoring
-                : ""
+                         const sponsor =
+               item.e_sponsoring && item.e_sponsoring !== "N/A"
+                 ? item.e_sponsoring
+                 : ""
+                           const sponsorDisplay = sponsor === "Booz Allen" 
+                ? `<img src="img/logo/booz-allen-hamilton.png" alt="Booz Allen Hamilton" style="height: 20px; width: auto; vertical-align: middle;">`
+                : sponsor === "Palantir"
+                ? `<img src="img/logo/palantir.png" alt="Palantir" style="height: 20px; width: auto; vertical-align: middle;">`
+                : sponsor === "Salesforce"
+                ? `<img src="img/logo/salesforce.png" alt="Salesforce" style="height: 20px; width: auto; vertical-align: middle;">`
+                : sponsor
             updatePageTitle(item.e_title)
             const backTarget = decodeURIComponent(backHash || "")
             const backHref = `#${backTarget}`
 
-            const hasImage = item.e_image && item.e_image !== "N/A"
-            const safeTitle = String(item.e_title || "")
-              .replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-            const mediaClass = hasImage
-              ? "detail-media has-image"
-              : "detail-media"
-            const detailMedia = hasImage
-              ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" onerror="this.closest('.detail-media').classList.remove('has-image'); this.replaceWith(Object.assign(document.createElement('div'),{className:'media-title-fallback',textContent:'${safeTitle}'}))">`
-              : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`
+                         const safeTitle = String(item.e_title || "")
+               .replace(/&/g, "&amp;")
+               .replace(/</g, "&lt;")
+               .replace(/>/g, "&gt;")
+             const hasImage = item.e_image && item.e_image !== "N/A"
+             const mediaClass = hasImage ? "detail-media has-image" : "detail-media"
+                           const detailMedia = hasImage 
+                ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" style="width: 100%; height: 100%; object-fit: contain; object-position: center; display: block;">`
+                : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`
 
             // Use displayDateShort logic for old dates
             function displayDateShort(value) {
@@ -585,7 +606,7 @@
             // Lightbox overlay style
             // Make overlay scrollable and card wider
             const overlayStyle = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:auto;`
-            const cardStyle = `max-width:900px;width:98vw;min-height:200px;max-height:90vh;box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:18px;overflow:auto;position:relative;background:#fff;display:flex;flex-direction:column;`
+                         const cardStyle = `max-width:900px;width:98vw;height:80vh;box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:18px;overflow:hidden;position:relative;background:#fff;display:flex;flex-direction:column;`
 
             // Arrow navigation
             const prevIndex = itemIndex > 0 ? itemIndex - 1 : null
@@ -593,79 +614,114 @@
             const prevId = prevIndex !== null ? data[prevIndex].e_id : null
             const nextId = nextIndex !== null ? data[nextIndex].e_id : null
 
-            content.innerHTML = `
-              <div id="lightbox-overlay" style="${overlayStyle}">
-                <div class="detail-card" style="${cardStyle}">
-                  <button id="close-lightbox" style="position:absolute;top:16px;right:16px;z-index:10;background:none;border:none;font-size:2em;color:#374151;cursor:pointer;line-height:1;">&times;</button>
-                 
-                 
-${
-  prevId
-    ? `<button id="arrow-left" style="position:absolute;top:50%;left:8px;transform:translateY(-50%);background:none;border:none;border-radius:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;opacity:0.45;z-index:10;cursor:pointer;transition:opacity 0.2s;">
-      <i class="fa fa-chevron-left" style="font-size:2em;color:#222;"></i>
-    </button>`
-    : ""
-}
-${
-  nextId
-    ? `<button id="arrow-right" style="position:absolute;top:50%;right:8px;transform:translateY(-50%);background:none;border:none;border-radius:8px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;opacity:0.45;z-index:10;cursor:pointer;transition:opacity 0.2s;">
-      <i class="fa fa-chevron-right" style="font-size:2em;color:#222;"></i>
-    </button>`
-    : ""
-}
+                         content.innerHTML = `
+               <div id="lightbox-overlay" style="${overlayStyle}">
+                 <div class="detail-card" style="${cardStyle}">
+                   <button id="close-lightbox" style="position:absolute;top:16px;right:16px;z-index:10;background:#1e293b;border:none;border-radius:50%;width:48px;height:48px;font-size:1.5em;color:#ffffff;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.2);transition:background-color 0.2s ease;" title="Close" onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#1e293b'">&times;</button>
+                   
+                   ${
+                     prevId
+                       ? `<button id="arrow-left" style="position:fixed;top:50%;left:16px;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:none;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;opacity:0.8;z-index:2001;cursor:pointer;transition:all 0.2s ease;box-shadow:0 4px 12px rgba(0,0,0,0.15);" onmouseover="this.style.background='rgba(255,255,255,1)';this.style.opacity='1';this.querySelector('i').style.color='#1e293b'" onmouseout="this.style.background='rgba(255,255,255,0.9)';this.style.opacity='0.8';this.querySelector('i').style.color='#374151'">
+                         <i class="fa fa-chevron-left" style="font-size:1.8em;color:#374151;transition:color 0.2s ease;"></i>
+                       </button>`
+                       : ""
+                   }
+                   ${
+                     nextId
+                       ? `<button id="arrow-right" style="position:fixed;top:50%;right:16px;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:none;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;opacity:0.8;z-index:2001;cursor:pointer;transition:all 0.2s ease;box-shadow:0 4px 12px rgba(0,0,0,0.15);" onmouseover="this.style.background='rgba(255,255,255,1)';this.style.opacity='1';this.querySelector('i').style.color='#1e293b'" onmouseout="this.style.background='rgba(255,255,255,0.9)';this.style.opacity='0.8';this.querySelector('i').style.color='#374151'">
+                         <i class="fa fa-chevron-right" style="font-size:1.8em;color:#374151;transition:color 0.2s ease;"></i>
+                       </button>`
+                       : ""
+                   }
+                   
+                                       ${hasImage ? `
+                      <div style="display: flex; height: 100%;">
+                        <div style="width: 50%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                          <div style="width: 75%; height: 75%; display: flex; align-items: center; justify-content: center;">
+                            ${detailMedia}
+                          </div>
+                        </div>
+                        <div style="width: 50%; height: 100%; display: flex; flex-direction: column;">
+                         <div class="detail-header">
+                           <div class="detail-meta">
+                             ${sponsor ? `<span>${sponsorDisplay}</span>` : ""}
+                             ${fullDate ? `<span style="margin-left:8px;">| ${fullDate}</span>` : ""}
+                             ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
+                           </div>
+                         </div>
+                         <div class="section-divider"></div>
+                         <div class="detail-body" style="padding: 0 24px; flex: 1; overflow-y: auto;" id="detail-content">
+                           ${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}
+                         </div>
+                         ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
+                       </div>
+                     </div>
+                   ` : `
+                     <div class="${mediaClass}">${detailMedia}</div>
+                     <div class="detail-header">
+                       <div class="detail-meta">
+                         ${sponsor ? `<span>${sponsorDisplay}</span>` : ""}
+                         ${fullDate ? `<span style="margin-left:8px;">| ${fullDate}</span>` : ""}
+                         ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
+                       </div>
+                     </div>
+                     <div class="section-divider"></div>
+                     <div class="detail-body" style="padding: 0 24px; flex: 1; overflow-y: auto;" id="detail-content">
+                       ${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}
+                     </div>
+                     ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
+                   `}
+                 </div>
+               </div>
+             `
 
+                         // Check if e_desc is "[inc]" and load external HTML content
+             if (item.e_desc === "[inc]") {
+               const incFile = `drs/inc/html/${item.e_id}.html`
+               fetch(incFile)
+                 .then(response => {
+                   if (response.ok) {
+                     return response.text()
+                   } else {
+                     throw new Error(`HTTP ${response.status}`)
+                   }
+                 })
+                 .then(htmlContent => {
+                   const detailContent = document.getElementById("detail-content")
+                   if (detailContent) {
+                     detailContent.innerHTML = htmlContent
+                   }
+                 })
+                 .catch(error => {
+                   console.error(`Error loading include file ${incFile}:`, error)
+                   const detailContent = document.getElementById("detail-content")
+                   if (detailContent) {
+                     detailContent.innerHTML = `<p style="color: #ef4444;">Error loading content from ${incFile}</p>`
+                   }
+                 })
+             }
 
-
-                  <div class="${mediaClass}">${detailMedia}</div>
-                  <div class="detail-header">
-                    <div class="detail-meta">
-                      ${sponsor ? `<span>${sponsor}</span>` : ""}
-                      ${
-                        fullDate
-                          ? `<span style="margin-left:8px;">| ${fullDate}</span>`
-                          : ""
-                      }
-                      ${
-                        item.e_url !== "N/A"
-                          ? `<a class="verify-link" href="${item.e_url}" target="_blank"> | verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>`
-                          : ""
-                      }
-                    </div>
-                  </div>
-                  <div class="section-divider"></div>
-                  <div class="detail-body" style="padding: 0 24px;">${
-                    item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""
-                  }</div>
-                  ${
-                    tagLinks
-                      ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>`
-                      : ""
-                  }
-                </div>
-              </div>
-            `
-
-            // Add arrow navigation and close event listeners
-            setTimeout(() => {
-              const leftBtn = document.getElementById("arrow-left")
-              const rightBtn = document.getElementById("arrow-right")
-              const closeBtn = document.getElementById("close-lightbox")
-              if (leftBtn && prevId) {
-                leftBtn.addEventListener("click", () => {
-                  window.location.hash = `item/${prevId}/${backHash || ""}`
-                })
-              }
-              if (rightBtn && nextId) {
-                rightBtn.addEventListener("click", () => {
-                  window.location.hash = `item/${nextId}/${backHash || ""}`
-                })
-              }
-              if (closeBtn) {
-                closeBtn.addEventListener("click", () => {
-                  window.location.hash = backHash ? `#${backHash}` : "#"
-                })
-              }
-            }, 0)
+             // Add arrow navigation and close event listeners
+             setTimeout(() => {
+               const leftBtn = document.getElementById("arrow-left")
+               const rightBtn = document.getElementById("arrow-right")
+               const closeBtn = document.getElementById("close-lightbox")
+               if (leftBtn && prevId) {
+                 leftBtn.addEventListener("click", () => {
+                   window.location.hash = `item/${prevId}/${backHash || ""}`
+                 })
+               }
+               if (rightBtn && nextId) {
+                 rightBtn.addEventListener("click", () => {
+                   window.location.hash = `item/${nextId}/${backHash || ""}`
+                 })
+               }
+               if (closeBtn) {
+                 closeBtn.addEventListener("click", () => {
+                   window.location.hash = backHash ? `#${backHash}` : "#"
+                 })
+               }
+             }, 0)
           })
           .catch((err) => {
             console.error("Error loading XLSX:", err)
