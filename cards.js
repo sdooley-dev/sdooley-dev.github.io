@@ -1,5 +1,5 @@
 // cards.js — builds each card
-// - Media header: always dark fallback (no e_image), shows category_tier1 icon (own line) + title
+// - Media header: always dark fallback (no e_image), shows icon_item icon (own line) + title
 // - Sponsor shown as dark "pill" with type icon on the left
 // - Date on the right (above description)
 // - Description 60 chars + inline "more →"
@@ -19,20 +19,34 @@ export function getEventTypeInfo(type){
   }
 }
 
-// Map category_tier1 => Font Awesome icon (shown above title in the media header)
-function getTier1Icon(category){
-  const val = String(category || '').trim().toLowerCase();
-  switch (val) {
-    case 'data analytics':           return '<i class="fa-solid fa-chart-simple" aria-hidden="true"></i>';       // modern for bar-chart
+// Map icon_item => Font Awesome icon (shown above title in the media header)
+export function getTier1Icon(iconItem){
+  const val = String(iconItem || '').trim();
+  
+  // If icon_item is empty or N/A, fall back to category_tier1 for backward compatibility
+  if (!val || val === "N/A") {
+    return '';
+  }
+  
+  // Direct Font Awesome class mapping from icon_item field
+  // The icon_item field should contain the full Font Awesome class (e.g., "fa fa-code", "fa-solid fa-chart-simple")
+  if (val.startsWith('fa')) {
+    return `<i class="${val}" aria-hidden="true"></i>`;
+  }
+  
+  // Legacy support for category-based icons (fallback)
+  const categoryVal = val.toLowerCase();
+  switch (categoryVal) {
+    case 'data analytics':           return '<i class="fa-solid fa-chart-simple" aria-hidden="true"></i>';
     case 'dev-ops':                  return '<i class="fa fa-code-fork" aria-hidden="true"></i>';
     case 'cloud':                    return '<i class="fa fa-cloud" aria-hidden="true"></i>';
     case 'programming':              return '<i class="fa fa-code" aria-hidden="true"></i>';
     case 'database':                 return '<i class="fa fa-database" aria-hidden="true"></i>';
     case 'security':                 return '<i class="fa fa-shield" aria-hidden="true"></i>';
     case 'data engineering':         return '<i class="fa fa-table" aria-hidden="true"></i>';
-    case 'qa engineering':           return '<i class="fa fa-square-check" aria-hidden="true"></i>';    // modern for check-square-o
-    case 'artificial intelligence':  return '<i class="fa fa-brain" aria-hidden="true"></i>';           // replacement for nonstandard "check-brain"
-    case 'video':                    return '<i class="fa-brands fa-youtube" aria-hidden="true"></i>';           // replacement for nonstandard "check-brain"
+    case 'qa engineering':           return '<i class="fa fa-square-check" aria-hidden="true"></i>';
+    case 'artificial intelligence':  return '<i class="fa fa-brain" aria-hidden="true"></i>';
+    case 'video':                    return '<i class="fa-brands fa-youtube" aria-hidden="true"></i>';
     
     default:                         return '';
   }
@@ -66,7 +80,7 @@ export function buildCard(item, backHash=""){
 
   // Media header: ALWAYS dark fallback with category icon + title (no e_image)
   const safeTitle = escapeAttr(item.e_title || "");
-  const tierIcon = getTier1Icon(item.category_tier1);
+  const tierIcon = getTier1Icon(item.icon_item);
   const mediaClass = "card-media";
   const imageHtml = `
     <div class="media-title-fallback">
@@ -99,7 +113,7 @@ export function buildCard(item, backHash=""){
     ? `<div class="meta-top">
          <span class="meta-left">${sponsorBadge}</span>
        </div>
-       ${dateLabel ? `<div class="meta-date">${typeIcon} ${dateLabel}</div>` : ""}`
+               ${dateLabel ? `<div class="meta-date">${typeIcon} ${dateLabel} <span style="margin-left: 8px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${(item.e_id !== undefined && item.e_id !== null) ? item.e_id : ""}</span></div>` : ""}`
     : "";
 
   const cardHtml = `
@@ -116,7 +130,6 @@ export function buildCard(item, backHash=""){
             </div>
           </div>
           <div class="card-foot">
-            <span class="eid">${(item.e_id !== undefined && item.e_id !== null) ? item.e_id : ""}</span>
           </div>
         </div>
       </div>

@@ -66,7 +66,10 @@
         gap: 16px;
       }
       #results li {
-        margin: 0;
+        margin: 0 !important;
+        /* border: 1px solid #3b82f6 !important; */
+        border: 0 !important;
+        padding: 0 !important;
       }
       #results h2 {
         margin: 18px 6px 8px;
@@ -78,7 +81,7 @@
 
       /* Card shell */
       .content032825 {
-        border: 1px solid #e5e7eb;
+        border: 0px solid #dc2626;
         border-radius: 16px;
         background: #fff;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
@@ -87,6 +90,7 @@
         height: 380px; /* equal height; trimmed bottom whitespace */
         display: flex;
         flex-direction: column;
+        min-height: 380px;
       }
       .content032825:hover {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06),
@@ -114,7 +118,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 26px 16px 12px; /* more top padding + a touch more bottom */
+        padding: 10px 5px; /* reduced top padding, increased bottom padding */
         text-align: center;
         color: #e5e7eb;
         font-weight: 800;
@@ -127,14 +131,25 @@
         flex-direction: column;
         align-items: center;
         gap: 8px;
+        height: 100%;
+        justify-content: center;
       }
       .tier1-stack .tier1-icon {
         display: block;
         line-height: 1;
+        flex-shrink: 0;
       }
       .tier1-stack .tier1-title {
         display: block;
         line-height: 1.2;
+        max-height: 2.4em; /* 2 lines max */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        text-align: center;
       }
       .tier1-stack .tier1-icon i {
         font-size: 28px;
@@ -148,12 +163,14 @@
         display: flex;
         flex-direction: column;
         padding: 0 18px 10px;
+        min-height: 0;
       }
       .event-content {
         margin-top: 8px;
         flex: 1;
         display: flex;
         flex-direction: column;
+        min-height: 0;
       }
 
              /* Sponsor/date row (above desc) */
@@ -252,7 +269,7 @@
       }
       .detail-media {
         position: relative;
-        height: 160px;
+        height: 100px;
         background: #0f172a;
         display: flex;
         align-items: center;
@@ -273,8 +290,21 @@
       .detail-media .media-title-fallback {
         color: #e5e7eb;
         font-weight: 800;
-        font-size: 2rem;
-      } /* larger fallback title */
+        font-size: 1.5rem;
+      } /* responsive fallback title */
+      
+      /* Mobile responsive title sizing */
+      @media (max-width: 768px) {
+        .detail-media .media-title-fallback {
+          font-size: 1.2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .detail-media .media-title-fallback {
+          font-size: 1rem;
+        }
+      }
       .detail-header {
         padding: 8px 24px 8px;
       } /* compact; no H2 title below */
@@ -298,7 +328,7 @@
       .section-divider {
         height: 1px;
         background: #eee;
-        margin: 18px 24px;
+        margin: 0px 24px 5px 24px;
       }
 
       @media (min-width: 1280px) {
@@ -322,6 +352,9 @@
     <script type="module">
       // import { buildCard, getEventTypeInfo } from './cards.js';
       import { buildCard } from "./cards.js"
+      
+      // Import the getTier1Icon function for lightbox icons
+      import { getTier1Icon } from "./cards.js"
 
       /* ---- Header/Footer loader from ./drs/inc/ ---- */
       Promise.all([
@@ -365,7 +398,7 @@
          Keep caching by default; bump ?sv=2 on the page URL after you update the sheet
          to force a fresh fetch. Optionally add &nocache once for a single no-store load. */
       const QS = new URLSearchParams(location.search)
-      const SHEET_VERSION = QS.get("sv") || "1"
+      const SHEET_VERSION = QS.get("sv") || "2"
       const NO_CACHE = QS.has("nocache")
       const DATA_URL = `040625-skills.xlsx?v=${encodeURIComponent(
         SHEET_VERSION
@@ -575,9 +608,10 @@
                .replace(/>/g, "&gt;")
              const hasImage = item.e_image && item.e_image !== "N/A"
              const mediaClass = hasImage ? "detail-media has-image" : "detail-media"
-                           const detailMedia = hasImage 
+                           const detailIcon = getTier1Icon(item.icon_item);
+             const detailMedia = hasImage 
                 ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" style="width: 100%; height: 100%; object-fit: contain; object-position: center; display: block;">`
-                : `<div class="media-title-fallback"><span>${safeTitle}</span></div>`
+                : `<div class="media-title-fallback"><div style="display: flex; align-items: center; gap: 12px; justify-content: center;"><span class="tier1-icon">${detailIcon}</span><span class="tier1-title">${safeTitle}</span></div></div>`
 
             // Use displayDateShort logic for old dates
             function displayDateShort(value) {
@@ -652,6 +686,7 @@
                          <div class="section-divider"></div>
                          <div class="detail-body" style="padding: 0 24px; flex: 1; overflow-y: auto;" id="detail-content">
                            ${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}
+                           ${(item.e_id !== undefined && item.e_id !== null) ? `<div style="margin-top: 12px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${item.e_id}</div>` : ""}
                          </div>
                          ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
                        </div>
@@ -668,6 +703,7 @@
                      <div class="section-divider"></div>
                      <div class="detail-body" style="padding: 0 24px; flex: 1; overflow-y: auto;" id="detail-content">
                        ${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}
+                       ${(item.e_id !== undefined && item.e_id !== null) ? `<div style="margin-top: 12px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${item.e_id}</div>` : ""}
                      </div>
                      ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
                    `}
