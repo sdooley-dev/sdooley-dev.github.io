@@ -1,0 +1,87 @@
+<p>Python Data Transformation with PySpark</p>
+
+<p>Sample code from script:</p>
+
+<pre>
+from pyspark.sql import DataFrame
+from pyspark.sql.functions import col
+from transforms.api import Input, Output, transform_df, incremental, Check
+from transforms import expectations as E
+
+# Define Data Expectations checks on the flattened columns
+pk_check = Check(
+    E.primary_key('id'),
+    'Primary Key Uniqueness',
+    on_error='WARN'
+)
+negotiator_check = Check(
+    E.col('negotiator').is_in(['Bob', 'Alice', 'Charlie']),
+    'Negotiator Allowed Values',
+    on_error='WARN'
+)
+
+@incremental(
+    semantic_version=1,
+    snapshot_inputs=["snapshot_df"]
+)
+@transform_df(
+    raw_df=Input("ri.foundry.main.dataset.24b50338-e1d7-4323-98b4-5271867e1008"),
+    snapshot_df=Input("ri.foundry.main.dataset.5bf3d725-2760-450f-8c78-754c2d6a463b"),
+    output=Output(
+        "ri.foundry.main.dataset.57d30c95-9428-4912-b16e-e76cb2f5a608",
+        checks=[pk_check, negotiator_check]
+    )
+)
+def compute(raw_df: DataFrame, snapshot_df: DataFrame) -> DataFrame:
+    # Join the raw sales data with the static reps mapping table
+    joined_df = raw_df.join(snapshot_df, on="id", how="left")
+    
+    # Flatten struct columns to primitive columns
+    # Adjust 'value' and 'name' to match your schema if different
+    joined_df = joined_df.withColumn('id_flat', col('id.value'))
+    joined_df = joined_df.withColumn('negotiator_flat', col('negotiator.name'))
+    
+    return joined_df
+</pre>
+
+How the code works:
+<ul>
+  <li>
+    The <code>@incremental</code> decorator ensures that the transformation is
+    versioned and supports incremental updates.
+  </li>
+  <li>
+    The <code>@transform_df</code> decorator defines the input datasets, output
+    dataset, and associated checks.
+  </li>
+  <li>
+    The <code>compute</code> function joins raw sales data with a snapshot
+    dataset and flattens nested columns into primitive columns.
+  </li>
+  <li>
+    Data quality checks ensure primary key uniqueness and validate allowed
+    values for the negotiator column.
+  </li>
+</ul>
+
+<div
+  class="section-divider"
+  style="margin-top: 10px; margin-bottom: 10px"
+></div>
+
+Use Case:<br />
+This script is typically used in data pipelines to process and validate sales
+data, ensuring data quality and preparing it for downstream analytics or
+reporting.
+
+<div
+  class="section-divider"
+  style="margin-top: 10px; margin-bottom: 10px"
+></div>
+
+<p>Skills: Python, PySpark, Code Repository, Palantir</p>
+
+<div
+  class="section-divider"
+  style="margin-top: 10px; margin-bottom: 10px"
+></div>
