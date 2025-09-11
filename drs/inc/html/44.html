@@ -1,0 +1,52 @@
+<p><strong>Palantir Foundry × Salesforce Integration Overview</strong><br>
+Palantir Foundry ships with a <strong>native Salesforce connector</strong> that syncs Salesforce data (standard and custom objects) into Foundry datasets for exploration and analysis. The connector auto-discovers object schemas, maps Salesforce API types to Foundry field types, and supports high-volume <em>bulk</em> imports.</p>
+
+<p><strong>Key Features</strong></p>
+<ul>
+  <li>Connects to <strong>production or sandbox</strong> orgs</li>
+  <li>Secure authentication via <strong>OAuth 2.0 (JWT or username + password)</strong></li>
+  <li><strong>Auto-models</strong> Salesforce objects as Foundry datasets (browse/preview before import)</li>
+  <li><strong>Bulk import</strong> GA — <em>export back to Salesforce is not built in</em></li>
+</ul>
+
+<p><strong>Technical Setup Highlights</strong></p>
+<ul>
+  <li>Create a <strong>Salesforce Connected App</strong> with OAuth scope <code>api</code></li>
+  <li>Auth options: certificate (PFX, Base64) or OAuth client/secret</li>
+  <li>Ensure network/firewall rules allow Foundry → Salesforce (avoid <code>UnknownHostException</code>)</li>
+  <li><strong>Upgrade</strong> legacy connector versions for full support &amp; fixes</li>
+</ul>
+
+<p><strong>Use Cases</strong></p>
+<p><em>Data Sync &amp; Enrichment</em></p>
+<ul>
+  <li>Pull CRM data into Foundry for advanced analytics / AI models</li>
+  <li>Enrich Salesforce records with ERP, finance, or other enterprise data already in Foundry</li>
+  <li>Provide a 360° customer view blending Salesforce &amp; external sources</li>
+</ul>
+
+<p><em>Automation &amp; AI-Driven Support</em><br>
+Palantir deploys <strong>AI customer-service engines</strong> that query Salesforce plus SAP/UPS/ERP data to accelerate and improve case resolution.</p>
+
+<p><em>Security Review Acceleration</em><br>
+Link security docs stored in Foundry to <strong>Salesforce-managed sales cycles</strong>, giving buyers self-service access to required documentation.</p>
+
+<p><em>Enterprise-Scale Integration</em><br>
+Large-scale roll-outs alongside Workday, Concur, NetSuite, Oracle, Coupa using <strong>MuleSoft</strong> and agile methods to 10× integration throughput.</p>
+
+<p><strong>Challenges &amp; Workarounds</strong></p>
+<ul>
+  <li><strong>No native export</strong> → use Python transforms or ELT tools (e.g., Hightouch) to push data back</li>
+  <li>Missing OAuth scopes block access — double-check Connected App permissions</li>
+  <li>Misconfigured trusted IPs / firewalls break connectivity</li>
+</ul>
+
+<p><strong>Conceptual Flow</strong></p>
+<ol>
+  <li><strong>Setup</strong> — create Connected App (scope <code>api</code>), configure connector with OAuth creds / cert</li>
+  <li><strong>Import</strong> — bulk-load objects (Leads, Accounts, Opportunities) into Foundry datasets</li>
+  <li><strong>Enrich / Analyze</strong> — join with other data sources → analytics, AI training, dashboards</li>
+  <li><strong>(Optional) Sync Back</strong> — external tool / custom Python pushes enriched data to Salesforce</li>
+</ol>
+
+<!-- Palantir Foundry × Salesforce Integration Overview -->
