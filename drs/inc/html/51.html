@@ -1,0 +1,48 @@
+<p>JavaScript and TypeScript class for Salesforce LWCs</p>
+
+<p>Sample code from class:</p>
+
+<pre>
+  import { LightningElement, wire } from 'lwc'; import { reduceErrors } from 'c/ldsUtils'; 
+  
+  import FIRSTNAME_FIELD from '@salesforce/schema/Contact.FirstName'; 
+  
+  import LASTNAME_FIELD from '@salesforce/schema/Contact.LastName'; 
+  
+  import EMAIL_FIELD from '@salesforce/schema/Contact.Email'; 
+  
+  import getContacts from '@salesforce/apex/ContactController.getContacts'; 
+  
+  const COLUMNS = [ 
+  {label:'First Name', fieldName: FIRSTNAME_FIELD.fieldApiName, type: 'text' }, 
+  {label: 'Last Name', fieldName: LASTNAME_FIELD.fieldApiName, type: 'text' }, 
+  {label: 'Email', fieldName: EMAIL_FIELD.fieldApiName, type: 'text' } 
+  ]; 
+  
+  export default class ContactList extends LightningElement { columns = COLUMNS;
+  </pre
+>
+
+How the code works:
+<ul>
+  <li>
+    When the component is loaded, the getContacts Apex method is called
+    automatically via the @wire decorator.
+  </li>
+  <li>The fetched contact data is stored in the contacts property.</li>
+  <li>
+    The columns property defines the structure of the table that will display
+    the contact data.
+  </li>
+  <li>
+    If there are errors during data retrieval, the errors getter processes and
+    formats them for display.
+  </li>
+</ul>
+
+Use Case:<br />
+This component is typically used to display a table of contact records in a
+Salesforce Lightning page or app. It handles data retrieval and error management
+efficiently.
+
+<p>Skills: JavaScript, TypeScript, LWC, CSS, HTML</p>
