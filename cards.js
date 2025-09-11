@@ -8,13 +8,14 @@
 export function getEventTypeInfo(type){
   const eventType = String(type || '').substring(0,2);
   switch (eventType) {
-    case "01": return { icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards" style="color: #4169E1;"></i>', title: "Awards" };
+    case "01": return { icon: '<i class="fa fa-bullseye" aria-hidden="true" title="Featured" style="color: #4169E1;"></i>', title: "Featured", anchor: "featured", title_blurb: "Featured professional profile and contact information." };
     case "02": return { icon: '<i class="fa fa-id-badge" aria-hidden="true" title="Work Experience"></i>', title: "Work Experience", anchor: "experience", title_blurb: "Please see some of the Work Experience that I have." };
     case "03": return { icon: '<i class="fa fa-university" aria-hidden="true" title="Courses & Certificates"></i>', title: "Courses & Certificates", anchor: "courses", title_blurb: "Please see some of the courses that I have completed." };
     case "04": return { icon: '<i class="fa fa-certificate" aria-hidden="true" title="x"></i>', title: "x" };
     case "05": return { icon: '<i class="fa fa-comments-o" aria-hidden="true" title="Feedback"></i>', title: "Feedback" };
-    case "06": return { icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentations & Workshops"></i>', title: "Presentations & Workshops", anchor: "presentations", title_blurb: "Please see some of the presentations that I have completed." };
-    case "07": return { icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Case Studies"></i>', title: "Case Studies", anchor: "case-studies", title_blurb: "Please see some of the case studies that I have completed." };
+    case "06": return { icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentation or Workshop"></i>', title: "Presentation or Workshop", anchor: "presentations", title_blurb: "Please see some of the presentations that I have completed." };
+    case "07": return { icon: '<i class="fa fa-file-text" aria-hidden="true" title="Case Study"></i>', title: "Case Study", anchor: "case-studies", title_blurb: "Please see some of the case studies that I have completed." };
+    case "08": return { icon: '<i class="fa fa-trophy" aria-hidden="true" title="Award"></i>', title: "Award" };
     default:   return { icon: "", title: type || "Uncategorized" };
   }
 }
