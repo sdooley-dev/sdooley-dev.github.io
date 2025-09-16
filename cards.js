@@ -101,10 +101,20 @@ export function buildCard(item, backHash=""){
     : sponsor === "Palantir"
     ? `<img src="img/logo/palantir.png" alt="Palantir" title="${sponsor}" style="height: 20px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
     : sponsor === "Salesforce"
-    ? `<img src="img/logo/salesforce.png" alt="Salesforce" title="${sponsor}" style="height: 20px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
+    ? `<img src="img/logo/salesforcev2.png" alt="Salesforce" title="${sponsor}" style="height: 40px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
+    : sponsor === "Lockheed Martin Information Services"
+    ? `<img src="img/logo/lockheed-martin-blue.png" alt="Lockheed Martin Information Services" title="${sponsor}" style="height: 30px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
+    : sponsor === "Amazon Web Services (AWS)"
+    ? `<img src="img/logo/aws.png" alt="Amazon Web Services (AWS)" title="${sponsor}" style="height: 40px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
+    : sponsor === "Databricks"
+    ? `<img src="img/logo/databricks-long.png" alt="Databricks" title="${sponsor}" style="height: 20px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
+    : sponsor === "IBM"
+    ? `<img src="img/logo/ibm.png" alt="IBM" title="${sponsor}" style="height: 20px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
+    : sponsor === "Accenture"
+    ? `<img src="img/logo/accenture.png" alt="Accenture" title="${sponsor}" style="height: 20px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
     : sponsor;
     
-  const sponsorBadge = sponsor === "Booz Allen" || sponsor === "Palantir" || sponsor === "Salesforce"
+  const sponsorBadge = sponsor === "Booz Allen" || sponsor === "Palantir" || sponsor === "Salesforce" || sponsor === "Lockheed Martin Information Services" || sponsor === "Amazon Web Services (AWS)" || sponsor === "Databricks" || sponsor === "IBM" || sponsor === "Accenture"
     ? sponsorDisplay
     : sponsor
       ? `<span class="sponsor-badge"><span class="sponsor-text">${sponsor}</span></span>`
