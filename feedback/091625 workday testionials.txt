@@ -1,0 +1,736 @@
+
+
+
+
+Skip to main content
+
+Accessibility Overview
+
+MENU
+
+
+Search
+
+50
+
+1
+
+Steven Dooley | Steve Dooley (629459)
+Feedback Received
+Feedback Received39 items
+
+
+
+Feedback Received
+
+Actions
+Sort and filter column
+
+Date
+Sort and filter column
+
+From
+
+Question
+Sort and filter column
+
+Feedback
+Sort and filter column
+
+Badge
+Sort and filter column
+
+Private: Shared with Feedback Recipient
+Sort and filter column
+Opens in new window
+04/11/2025
+
+Employee's Photo (Vasser Muscat (621377))
+
+4/11/2025 On the Bench Checkin Notes
+
+No news from Anson Page about becoming 100% billable on SQUARES – Steve continues to be 50% billable.
+
+The Web Content Developer/Technical Writer Gig that Steve applied to previously was fully staffed.
+
+I followed up with Desiree Fraser on a possible Technical Business Analyst position for ISS/CPP project but it has not been decided yet – she is talking with the program manager next week to go over the need and what that project can afford.
+
+Steve had a 1 on 1 with Automated testing Provar SME/Lead (Royce)
+
+All has to be customized-edited, in Java for Provar
+Lead/SME (Royce) not working on Provar anymore
+Lead/SME (Royce)  feels it will take an advanced Provar person 6 mos to do what is being asked on SQUARES
+Steve just completed 3 days of Palantir training this week and has 3 days next week.
+
+Steve has been applying to jobs requisitions through Workday.  He keeps getting rejections for all the ones he applies to.
+
+Carrie Jester has reached out to Steve to talk to him about changing Job Families – if this happens, Steve may get a different Career Manager since he might be rolling up under a different Principal.
+
+Public Sector Solution certification – nothing happening on this right now, seems to not be a focus 
+
+No
+Opens in new window
+04/03/2025
+
+Employee's Photo (Vasser Muscat (621377))
+
+4/3/2025 On the Bench Checkin
+
+Provided these requisitions to Steve that he will apply today:
+
+Business Analyst (Charleston, SC)
+SharePoint Developer, Senior (Fort Meade, MD)
+Anson Page (current JL) said – trying to get him to 100%; back in Jan trying to get 2 automated testers
+
+TODO (Steve) – Will ask Carrie Jester about the following project which Virginia LeBrun (automated tester that left Booz Allen was on) : HDSO OP2 NCPS
+
+No
+Opens in new window
+04/03/2025
+
+Employee's Photo (Vasser Muscat (621377))
+
+3/27/2025 On-the-bench Checkin
+
+Steve concerned about finding another project that he is a good match for that is only 50% chargeable since he will be chargeable 50% on SQUARES starting 3/31/25 - no one going to want him?
+
+ACTION ITEM – Steve will talk to Jenny Flicker about that and how she handled it
+I brought Steve’s concern to the attention of my manager Carrie Jester. Per Carrie:
+Carrie reiterated that if there is a role that requires 100%, Steve should take it.
+Steve should still be looking for another role regardless if it's 50% or 100%
+Stephen Paylor serving as an informal mentor to Steve for automated testing
+
+Two potential opportunities for Steve have been identified:
+
+1.Gig for a Technical Writer – View Gig - Workday
+
+BLOCKER since Workday is down – ACTION ITEM - Steve to find his name and send his resume
+50% chargeable and a solid gig that says it may lead to more work is a compelling story - Carrie will advocate that this is supportable even if not billable
+Steve found the Gig contact name even though Workday is down and applied 3/27.
+2.CPP Scheduling ISS
+
+Desiree Fraser reached out to me and ask for recommendations for a Technical B.A. – They are still working through the details of the role
+During the salary meeting, Carrie reiterated that if there is a role that requires 100%, I should take it. She said that you guys had discussed it but wanted to repeat it here.  
+Having said that, I will be focused on this Automated Tester Role but at the same time Carrie repeated I should still be looking for another role regardless if it's 50% or 100% or whatever.
+Below are the activities Steve reported for Week: March 24-28
+
+SQUARES Onboarding
+-Sat in/Observed the SQUARES QA huddles, Automated Office Hours and Provar Office Hour meetings.
+-Requested access to the 2 required Jira instances
+-Became more comfortable with the Provar software and the types of tests required
+-Stephen Paylor gave me access to a 3 day recorded Provar training (Zoom) that I am doing
+BAH overall training
+-Completed Palantir initial exercises and obtained Palantir AIP & Foundry Fundamentals Cert.
+-Onboarded onto BAH/Palantir official partnership site including obtaining access to Foundry/Advana Slack channels
+-Onboarded onto BAH/Oracle official partnership site
+-Completed Udemy course on building Ai Agent for productivity
+No
+Opens in new window
+03/11/2025
+
+Employee's Photo (Alexandra Downs | Alex Downs (Terminated) (637136))
+
+I had the privilege of working with Steve Dooley for several months on a QA Regression team at Booz Allen. As with any project acclimations, there was quite a bit to learn and Steve lent himself as an incredible resource and mentor during our time working together. To say he knew our product is an understatement- Steve was the go to resource for anything product related, and I attribute my success on this team because of all of the knowledge that he provided me.
+
+I really appreciate how dedicated Steve was to our team. There is a difference between folks who just clock in for a 9-5 verses folks like this gentleman who truly wanted to see the success of our work come to fruition, and would do anything in his power to see this through.
+
+Having spent a great amount of time with Steve, I am continuously impressed by his dedication and curiosity for learning new technical skills. He's worked to become a jack of all trades in various Salesforce capabilities such as Omnistudio, Experience Cloud, and declarative capabilities, as well as JS, CSS, HTML, XML, and JSON, to name a few. Steve has also shared his interest and work with AWS, having obtained the AWS Cloud Practitioner certification and tapping into AWS GenAI workshops. I am excited to see his AWS journey continue as he continues on his career journey.
+
+It's been a pleasure working with Steve and I am certain he will go above and beyond in any role he is aligned to.
+
+Winner
+No
+Opens in new window
+03/06/2025
+
+Employee's Photo (Tristan Zanowic (633134))
+
+Steve has been a fantastic teammate on the VAHC Regression Team over the past year. Thanks to his extensive experience in both quality assurance and software development, Steve has helped the project identify and troubleshoot many bugs, saving the team countless hours of work. On top of being a thorough, efficient tester, Steve also provided important analysis into our team's testing suite, continuously improving our coverage and efficiency. His ability to bridge the gap between development and QA proved to be key to the success of the VAHC project. 
+
+Along with his QA ability, Steve was also a collaborative and dependable teammate. Even though I was the most junior member of the team, Steve welcomed my ideas and assisted me whenever asked. He quickly became a go-to source for our team, always lending a hand and going out of his way to help people with questions they had. It was a pleasure working with him, and I'm sure he would benefit any project in either QA or Development (if not both).
+
+Problem Solver
+No
+Opens in new window
+03/04/2025
+
+Employee's Photo (Tushar Patel (621413))
+
+I've worked with Steve on the regression testing team for the VAHC CRM project and Steve has been a valuable member of our team when it comes to his knowledge of the VAHC CRM application during testing of the application in different environments. He has contributed to analysis tasks on our team that have helped keep our baseline and regression tests organized and up to date. Steve always provides valuable input on tackling the testing of bugs and any situations where the team needs help with testing. He takes the time to research previous bugs or users stories that have an impact on any potential bugs or testing-related issues. Overall, Steve has been helpful during my time with him on the VAHC CRM project and would be a great QA team member to have on any Booz Allen project.
+
+Resourceful
+No
+Opens in new window
+02/20/2025
+
+Employee's Photo (Vasser Muscat (621377))
+
+2/19/2025 Snap Shot Chat Notes:
+
+As the PTEMS project ends on 3/23/25, Steve has been very proactive in researching and applying for internally posted Booz Allen positions and well as networking.  He is keeping both myself and my CM apprised of what he is applying for.  He also has been attending PTEMS Mobility Office Hours to learn more about networking and job searching tips and tricks.
+
+While he is searching for a new project, Steve continues to perform at a high level in his current QA role, being requested by the CRM QA Lead to test work as Steve does such a thorough and professional job.
+
+No
+Opens in new window
+02/20/2025
+
+Employee's Photo (Vasser Muscat (621377))
+
+1/15/2025 Snap Shot Chat Notes:
+
+Steve informed me that his Job Lead, Mike McKethan did provide private feedback to Steve, but I cannot view that in Workday.
+
+Jen Crumley also provided me feedback that I requested from her on Steve which is all very positive and glowing but was not shared in Workday with Steve.  I did let Steve know the gist of her feedback.
+
+At the request of Jen Crumley, Steve is now mentoring another new testing resource and he may go into Workday and formalize that relationship.
+
+Steve has received Provar access form Stephen Paylor (automated testing Lead) and got certified with it.
+
+Steve has start to attend a boot camp for Public Sector Services weekly and will go for 6-7 weeks. 1 hour attendance and then he is spending 6 hours outside of that on a weekly basis.
+
+No
+Opens in new window
+01/16/2025
+
+Employee's Photo (Michael McKethan | Mike McKethan (Terminated) (625342))
+
+Steve continues to be one of the highest performers on the CRM testing team. His dedication to getting these done during crunch time is always appreciated. We can always count on Steve to complete his testing scope. He also spearheads several analysis activities for release and feature gaps within our golden-set regression suite.
+
+Shout Out
+No
+Opens in new window
+01/14/2025
+
+Employee's Photo (Michael McKethan | Mike McKethan (Terminated) (625342))
+
+Steve continues to be one of the highest performers on the CRM testing team. His dedication to getting these done during crunch time is always appreciated. We can always count on Steve to complete his testing scope. He also spearheads several analysis activities for release and feature gaps within our golden-set regression suite.
+
+Shout Out
+Yes
+Opens in new window
+12/19/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+12/19/2024 Snap Shot Chat Notes:
+
+Steve is enjoying working on the VA Health Connect Regression Heroes team and realizes what a huge task and responsibility it is.
+
+Steve recently had a one-on-one with Jen Crumley (QA Lead for Salesforce practice), on Monday and received positive feedback; wants him on QA shared services team – down the road – needs to be aligned but needs to be setup in Workday correct with the correct Job Family.
+
+Steve is taking over testing for Softphone from a more senior testing engineer who is leaving – both Jennifer Crumley and Mike McKethan (JL) have confidence in Steve's ability to take this on.
+
+Steve’s recently received his Secret Security Clearance.
+
+Jen Crumley added on an interview for a new testing resource.
+
+Planning to go to a boot camp for Public Sector Services in January since the government is going away from Service Cloud.
+
+I will be reaching out to get more specific feedback from Jennifer Crumley.
+
+No
+Opens in new window
+12/19/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+11/27/2024 Snap Shot Chat notes:
+
+Steve asked about the news presented in the 11/22/2024 PTEMS 2.0 ALL HANDS meeting.  I shared with him my interpretation of the news, basically, that we lost the contract appeal, but a separate RFP has been issued that will cover the VA Health Connect work.
+
+Below are some accomplishments and kudos Steve has received over the last several months from his leads on the various projects he has been involved with:
+
+On 6/6/2024, Steve received a Passionate Service award from VA Health Connect Program Manager Carrie Jester thanking him for supporting a TeleEC hotfix testing effort over Memorial Day weekend. Carrie indicated his dedicated to the success of the project is noticed and appreciated.
+
+Steve worked on the BEERs demo effort prior to being staffed on VA Health Connect.  BEERs was a low code-no code navy recruiting demonstration using SF with integrated analytics to demonstrate the “art of the possible” for capturing and assessing Basic Enlistment Eligibility Requirements (BEERs).  On 7/9/2024, Steve received kudos from the Senior Lead Technologist, John Martin, who said, “Thank you Steve. This was made possible by your hard work.”
+
+On 8/1/2024, Steve received kudos from the CRM Development Lead, Omar Pastrana, for finding a bug.
+
+On 8/30/2024, Steve received another Passionate Service award from Saleforce Practice Testing Lead, Jennifer Crumley, for his late night testing on TeleEC.  Jennifer said, “Thank you for your dedication to our Veterans and VA Client. Your efforts the evening of August 20th ensured a quality release for Tele-EC and you are much appreciated!”
+
+On 9/16/2024, Steve receive kudos from his Job Lead, Mike McKethan, “Great job.  I really appreciate you and your work ethic. I know I can always depend on you to get a task done with little oversight.”
+
+Winner
+No
+Opens in new window
+11/27/2024
+
+Employee's Photo (Michael McKethan | Mike McKethan (Terminated) (625342))
+
+Steve has become a key member of our regression testing team. He is reliable and his work ethic is second to none. He continues to learn the application and we are giving him more responsibility. We always know we can count on Steve to accomplish tasks with excellence.
+
+Yes
+Opens in new window
+10/21/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+10/21/2024 Snap Shot notes:
+
+Steve’s job leader has changed from Jennifer Crumley to Mike McKethan.  Steve is currently on a team that is specializing in manually regression testing functionality across all the VA Health Connect applications, including CRM, TeleEC, and Provider Connect (PrC). During each week, he can be redirected to focus on whatever is needed at that time.
+
+In response to a recent Critical Production Issue involving VCL (Veterans Crisis Line), Steve worked until midnight on Thursday 10/17 and was on call until late on Friday.
+
+Right now, it seems that Steve’s involvement with the Performance Testing group has been minimal as there are other individuals involved that are taking care of needs, and also Steve’s services in regression testing VAHC application functionality is very much in need.
+
+Steve recently supplied me a list of his accomplishments and kudos that I will document in Workday.
+
+Steve alerted me that I will need to reschedule our next Snap Shot as he will be on PTO.
+
+No
+Opens in new window
+09/30/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+9/18/2024 Snap Shot Chat Notes:
+
+Steve has joined Performance Testing group (Ashish heading up the testers) that meets from time to time; so far there has not been much to do for CRM but there is for other projects – led by Marcus (architect), Bonnie (architect).
+
+Steve has learned the software K6 being used for this Performance Testing team’s efforts.
+
+QA is a shared service and the program/projects are the customers for this Performance Testing group.
+
+TODO (Steve) add goal(s) for testing in Workday.
+
+TODO (Steve) – send Vasser list of his accomplishments and kudos from others
+
+Determined
+No
+Opens in new window
+08/21/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+8/21/2023 Snap Shot Chat Notes:
+
+Steve continues to be very busy with his current testing assignments and has observed opportunities for potential process improvement – Steve should bring forth these ideas to his job lead, Jennifer Crumley.  Steve mentioned he thinks the recent ‘bug blitzes’ have been very helpful in focusing everyone’s attention.
+
+Jennifer Crumley, his current Job Lead, has scheduled regular one on one’s with Steve.
+
+Steve has spoken to Crumley about his interest in automation testing.  Jennifer directed Steve to concentrate any learning in this area on the Selenium tool as opposed to Eggplant.
+
+I mentioned to Steve that Jennifer Crumley is setting up a performance testing group/effort that needs personnel with JavaScript skills. Steve does have JavaScript skills and is very interested in further building and applying these skills.  I reached out to Jennifer and she has added Steve to her list of folks with JS skills as well as added Steve to the QA Shared Services Team Channel.  She will reach out to Steve for next steps of getting him involved.
+
+I spoke to Steve briefly concerning the recompete and echoed our leadership’s direction to continue/focus on our current path delivering high quality work every day.  I also reiterated Booz Allen’s desire to retain our folks and reassign them to other projects if we do indeed lose our protest. I mentioned the next upcoming PTEMS 2.0 Follow Up Discussion meeting on 8/23 where we may learn more.
+
+I received a questionnaire for a government clearance for Steve via mail, complete it and sent back promptly.
+
+No
+Opens in new window
+08/05/2024
+
+Employee's Photo (Jennifer Crumley (Terminated) (621082))
+
+August SnapShot
+
+Interested in automation long term - discussed using Selenium for internal processes
+
+Passionate about making time consuming processes more efficient
+
+Jennifer to reach out about API access in JIRA
+
+Clearance came through from Naval contract last week
+
+Steve will send a list to review of things that he feels he needs to work on and I'll review
+
+Liking QA so far!
+
+Very thankful for Steve's passion and flexibility on the QA team for VAHC. He has been a tremendous value add to our QA team and he's my go-to for off-the-wall assignments because he always handles everything with professionalism, curiosity, and grace.
+
+Thank you, Steve!
+
+Thank you
+No
+Opens in new window
+07/19/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+7/17/2024 Snap Shot Notes:
+
+Steve has been very busy in his new testing role, including supporting Mike McKethan with testing TXCC and a little of ClearTriage.
+
+Jennifer Crumley is his Job Lead – she will be setting up a one on one between the two of them soon; when they meet, Steve will mention his interest in automated testing – wanting to understand what the future holds for this and the tools being used – wanting to be challenged with the automation – is there a need first of all, and what direction is it going in.
+
+Steve recently received an email about security clearance SF86 form – thinks it is for Secret clearance – if we were to get a contract, he can be on a list for eligible staff to work on it – he was letting me know in case I get any questions as his CM; Mikey M and John Martin may know more about this, Lisa Malmanger was another one who got it to fill out this form
+
+No
+Opens in new window
+07/19/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+6/21/2024 Snapshot Notes:
+
+Steve indicated there was a lot to learn on the testing processes and all is going well with his new testing role.
+
+Regression testing is the focus of the 3 teams he is on 100% – Mike McKethan is his lead.
+
+Carrie pinged Steve while I was out on vacation – June 10 – threshold of hitting Admin hrs in May – explained it was the gap between BEERs and current project –
+
+Steve had hours at one point that were charged to Training but those got reallocated to BEERs
+
+Plan is for Steve to tell Mike M, Jenn Crumley that automated test interests him after he has more experience manually regression tested – if there is a need.
+
+Job Lead is Jen Crumley right now and Steven Paylor is the PM for the automated testing.
+
+Learning
+No
+Opens in new window
+06/06/2024
+
+Employee's Photo (Jennifer Flicker | Jenny Flicker (627083))
+
+Weekly mentoring call. Briefly discussed PTO request procedures, then discussed whether it was possible to leverage indexing functionality in Jira for a test classification task he's been assigned. I wasn't sure how to do it but was able to pull in a colleague who is very knowledgeable in Jira, Mike Kurnot, to show us both how to do it. It was a great learning experience for both of us and will be very useful in the future!
+
+Bright Idea
+No
+Opens in new window
+05/29/2024
+
+Employee's Photo (Jennifer Flicker | Jenny Flicker (627083))
+
+Weekly mentorship meeting summary - General project talk and discussion about some typical procedures for logging bugs. It is clear that Steve is adjusting very quickly to QA. He has been able to jump right into testing and is bringing immediate value to his team, including finding a critical issue that had not previously been discovered and documenting test results in a way will improve communication within the testing team.
+
+Determined
+No
+Opens in new window
+05/28/2024
+
+Employee's Photo (Jennifer Crumley (Terminated) (621082))
+
+Over the Memorial Day holiday weekend, VA Health Connect had to deliver a hot fix which was crucial to the client. The team was asked to conduct full regression testing and the work began at 5pm on Friday and went through 4pm Saturday. Steve volunteered to assist and helped get regression completed quickly and ahead of schedule. The hotfix was delivered to production with no issues.
+
+Steve, thank you for your commitment to delivering value to our clients!
+
+Thank you
+No
+Opens in new window
+05/15/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+5/15/2024 Snap Shot Notes:
+
+Reviewed goal submitted 
+
+Goal submitted was provided by Jen Crumley for all the VAHC team
+Suggested additional training goal to learn more about automated testing and Eggplant
+TODO (Steve) – submit an additional goal focused on some sort of training/expanding knowledge
+How are things with new VAHC testing position? 
+
+Very organized expectations, even the onboarding process
+Job is to execute tests and log results correctly with Xray and Jira
+Has a QA Mentor – Jenny Flicker not on VAHC, but on VTA
+How long on this current position – no end time, longer term would like to get into automation (Eggplant)
+Provided information on Job Family change
+
+Vasser shared info provided by Carrie, Erica with Steve
+Steve has decided for now to make compromises and not push changing job family to Dev/SE
+Erica’s guideline is to be doing the position (job skills) for at least 6 mos
+Steve’s time in positions:
+PMT – 1.5 mos as SE
+VTA – 8 mos as SE (built formulas)
+BEERS – 1.5 mos as Dev/SE with Omnistudio
+Provided feedback on recent VAHC Reporting position interview
+
+shared that Tim’s assessment was that Steve didn’t have enough knowledge to hit the ground running and it would take time to get Steve up-to-speed and we couldn’t afford that time
+No
+Opens in new window
+04/18/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+4/17/2024-4/18/2024 Snap Shot Notes:
+
+Since rolling off VTA, Steve has been working on a Salesforce OmniStudio functional prototype for the Navy called BEERS.  Steve was able to get up-to-speed very rapidly on OmniStudio – he figured it out and is a bit like ColdFusion that he worked on at Lockheed.
+
+Per Carrie Jester, Steve’s time for ‘being on the bench’ will start on Monday 4/22/2024.  He will have 30 days to get staffed on a project, otherwise severance proceedings will then start, giving him two weeks to find a position.  This was explained to Steve and he understands.
+
+I sent an open position requisition for a Provider Outreach and Engagement Specialist to see to consider.  Steve is willing to talk further/interview for the position.  Steve also mentioned he would be interested in a Systems Analyst role.
+
+Steve asked about the status of him changing his job profile from a Business Analyst to a Developer.  He is ready to interview and/or have a skills assessment.  I told him I would check on what and when he may be able to proceed with the next steps – the last I heard/understood is that the process to switch job profiles was still being developed.
+
+Resourceful
+No
+Opens in new window
+03/20/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+3/20/2024 Snapshot Notes:
+
+Steve was sent an email with request from Staffing to update Workday Job History/resume and Skills – Steve will have this done today 3/20/2024 since he will be out of the office on 3/21-3/22.
+Steve has been actively looking at Job Reqs since leaving VTA.
+I have followed up with Carrie Jester regarding any news regarding Kim Tobey documenting the job profile change process. Per Carrie, no new news as of yet but she will follow up again with Kim Tobey.
+Steve has talked to Carly in Salesforce staffing about his skills and desires for a new position so she is very aware.
+Steve is currently studying 8 hours a day for his Salesforce JavaScript developer certification.
+Steve has development experience (used ColdFusion – web-enabled Oracle legacy data in a browser) from Lockheed that he will add to his job history.
+Geek
+No
+Opens in new window
+03/15/2024
+
+Employee's Photo (Michael Kurnot | Mike Kurnot (625573))
+
+I worked with Steve on the PTEMS VTA project. I am the scrum master on the project and worked with Steve to onboard as well as throughout his time doing development work for the project. He originally came on to help us push to go-live and due to the value he provided the project, he ended up staying well past go live to continue providing post go live support. Steve did an amazing job working through complex reporting and formula work that the customer was requesting. This work often did not have robust requirements and the client frequently changed their minds/switched up the business purpose for the reports. Steve was diligent and took charge to get this work organized, documented, and completed to the business need the client had. If he needed additional context, he did not hesitate to reach out to the team or the client with questions. He did an amazing job of working with an often difficult client, balancing what they wanted with what we could contractually deliver. Steve also did a great job of ensuring his work was up to date in Jira with comments/notes to add useful context. I am thankful we got Steve on VTA for the time we did and would gladly work with Steve again in the future.
+
+No
+Opens in new window
+03/01/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+3/1/2024 Snap Shot Chat Notes:
+
+Discussed update on Steve transitioning from B.A. role to SE/Jr Dev
+There first must be a demand – we have more SEs than we have demand
+No clear defined process for transitioning from B.A. role to Dev/SE
+Should be an interview/assessment
+Kim Tobey is supposed to document a process
+TODO (Steve) update skills that align with being an SE and or Developer in Work Day
+Steve now thinks he aligns more with a Jr Dev role  vs. SE
+Earned 3 more Java Script badges and 1 SQL badge recently
+Steve feels confident he has peers who can vouch for his coding capabilities
+Steve has updated goals due 3/31
+Last day on VTA is 3/15 per JL, Anson Page
+There is an LWC class (via Stonypoint) next week that he wants to take
+TODO(Steve) get with Lenora Q to get into the LWC class
+TODO (Steve) send Vasser email confirming she approves him taking LWC class
+TODO (Vasser) – will approve Steve  attending LWC class via email
+TODO (Steve) reach out via to other contacts (Kim Tobey, Carly) about being available (salesforcestaffing@bah.com)
+Anson is going to try to reserve Steve as a resource for reporting part time in the future
+Steve participating in “SF Flow Club” – meets every Wed to work curriculum based on Udemy  courses – discussed homework
+Geek
+No
+Opens in new window
+01/17/2024
+
+Employee's Photo (Vasser Muscat (621377))
+
+1/17//2024 - Steve and I met for a Snap Shot chat today and discussed his extension on the VTA project to continue to support reporting needs, including the development of formula fields. Steve also inquired about changing his job title to indicate he is now a Solution Engineer or Developer, instead of a Business Analyst. I have been informed by my Manager that I will need to map Steve's skills to either the SE or Developer job profile, be in that role for ~ 6 months and then I will need to come forward with a recommendation for a transfer.  This is an outstanding action item I have to do for Steve.
+
+In the mean time, Steve has received very positive feedback from his JL in his current role and continues to work increasing his knowledge via learning and certifications, e.g. Artificial Intelligence badges.
+
+Yes
+Opens in new window
+01/16/2024
+
+Employee's Photo (Anju Bhakta (631967))
+
+You and I have worked together and I would appreciate your feedback about our interactions.  I would welcome your perspective on where you see me adding value to the firm and our clients, including any advice you may have for how to enhance my impact and contributions.  Finally, I would appreciate your insights on how I’m living our firm’s values, specifically calling out those you see as strengths as well as any opportunities I may have for growth.  Thank you for the feedback.
+
+?
+I had the pleasure of working with Steve on my first project, PMT, at BAH and I am ever-so grateful to have had the opportunity to work alongside with him. One of the first things I noticed about him is the Unflinching Courage he brought to the team. Always bringing bold ideas to the table and not afraid to speak his mind or ask tough questions, even when things got tricky. It definitely added a refreshing perspective to our discussions on our calls and the whole project itself. Steve's commitment to collective ingenuity was evident in his resourcefulness and creativity. He consistently sought ways to make a significant impact on every problem we encountered. What I learned from him in this part of the project is that he would think about how would this impact certain tasks in the future. Or what if things changed in the future, how would this task be impacted. Additionally, Steve's willingness to share resources and support team members illustrated a strong devotion to the collective success of the team and the project. Steve's embrace of diversity further contributed to harnessing the power of varied perspectives within the team. Steve's definitely got the heart of a champion. Always bringing good energy to the project and bouncing back from setbacks with a positive attitude. In addition to our eagerness to learn, his dedication to being the best on the team created a more motivating environment. Steve consistently upheld ferocious integrity in his actions. He demonstrated a commitment to doing what is right and held himself accountable for his work. This sense of accountability extended to his interactions with others, fostering a culture of trust and responsibility within the team. I believe Steve's contributions aligned seamlessly on the PMT project with the company's values and I am confident that he will continue to excel in his endeavors. Thank you for considering my feedback for Steve. If you have any further questions or require additional information, please feel free to reach out.
+
+No
+Opens in new window
+01/12/2024
+
+Employee's Photo (Anson Page (598518))
+
+Steve has continued to spearhead Reports Development as the lead on the Veterans Tracking Application Project. The reports document the status of Service member that go through the Integrated Disability Evaluation System processes to determine benefits and retention (in service, separated or retired).  The reports are briefed at high levels throughout the Veterans Administration (VA) and Department of Defense (DoD).  He has taken the lead to provide over the shoulder training to the DoD and VA teams impacting 2,200 end users of the application. In support of our Go Live on 12/11/2023, Steve has been able to present better ways of reporting for the client, facilitated working sessions, and implemented solutions for VTA reports. Steve has been SUPERB in the direct client facing space and is a great communicator on all activities required to complete tasks.  Steve continues to take the clients ask and make sure the solution is delivered in Salesforce.  Thanks for all of the great work and continued support to our clients. 
+
+Creative
+No
+Items per page
+30
+30
+
+
+1
+2
+
+
+1-30 of 39 items
+Menu
+
+
+### Page 2 #################################################################################
+
+Skip to main content
+
+Accessibility Overview
+
+MENU
+
+
+Search
+
+50
+
+1
+
+Steven Dooley | Steve Dooley (629459)
+Feedback Received
+Feedback Received39 items
+
+
+
+Feedback Received
+
+Actions
+Sort and filter column
+
+Date
+Sort and filter column
+
+From
+
+Question
+Sort and filter column
+
+Feedback
+Sort and filter column
+
+Badge
+Sort and filter column
+
+Private: Shared with Feedback Recipient
+Sort and filter column
+Opens in new window
+01/12/2024
+
+Employee's Photo (Jeffrey Wang (624338))
+
+You and I have worked together and I would appreciate your feedback about our interactions.  I would welcome your perspective on where you see me adding value to the firm and our clients, including any advice you may have for how to enhance my impact and contributions.  Finally, I would appreciate your insights on how I’m living our firm’s values, specifically calling out those you see as strengths as well as any opportunities I may have for growth.  Thank you for the feedback.
+
+?
+I attended the firm's Salesforce Academy with Steve from May 2023 to July 2023. From my time during the academy, I can say that Steve was always prepared for the classes. The biggest impression from my perspective was that Steve went above and beyond on the class presentation assignments, creating slide decks that were both visually appealing and thoroughly detailed. Additionally, Steve regularly asked insightful questions in class to spark engaging discussions. I'm confident that Steve will be a valuable asset in any future project that he may end up pursuing.
+
+No
+Opens in new window
+01/09/2024
+
+Employee's Photo (Jennifer Flicker | Jenny Flicker (627083))
+
+You and I have worked together and I would appreciate your feedback about our interactions.  I would welcome your perspective on where you see me adding value to the firm and our clients, including any advice you may have for how to enhance my impact and contributions.  Finally, I would appreciate your insights on how I’m living our firm’s values, specifically calling out those you see as strengths as well as any opportunities I may have for growth.  Thank you for the feedback.
+
+?
+Steve has been a developer on the VTA team for 4 months and has been a very helpful addition for several reasons. First, he is detail-oriented and keeps impeccable records of his work. This results in accurate and complete technical work. Additionally, he writes specific and easy-to-understand testing instructions. As a tester, this is very helpful as it almost eliminates the need to reach out for clarification. He also solicits feedback to make our dev/tester process faster and more efficient.
+
+His portion of assigned work, which has primarily been in the area of reports, is one of the most critical and most commonly used features in the app we developed for our users. In addition to completing the technical aspect of his work, he has been able to effectively train the stakeholders and reduce their frustration level in creating their own reports. I am thankful to have someone as skilled and communicative as Steve as part of our team!
+
+No
+Opens in new window
+01/09/2024
+
+Employee's Photo (Felicia Barboza (632863))
+
+You and I have worked together and I would appreciate your feedback about our interactions.  I would welcome your perspective on where you see me adding value to the firm and our clients, including any advice you may have for how to enhance my impact and contributions.  Finally, I would appreciate your insights on how I’m living our firm’s values, specifically calling out those you see as strengths as well as any opportunities I may have for growth.  Thank you for the feedback.
+
+?
+Steven is a motivated and highly efficient individual. While working with him on the PMT team he demonstrated so much enthusiasm for learning everything Salesforce.
+
+He would volunteer to take on User Stories that involved learning a new process, just to gain the experience.
+
+During daily stand ups he asked excellent refinement questions and provided feedback during solution conversations.
+
+Out of all the firm's values Steven embodies both a Champion's Heart and Collective Ingenuity which are invaluable to our clients and his team mates.
+
+No
+Opens in new window
+09/07/2023
+
+Employee's Photo (Anson Page (598518))
+
+Feedback based on VTA Snapshot conducted on 9/6. Steve joined the Veterans Tracking Application (VTA) project to provide support in transitioning DoD and VA from a .NET application to a Salesforce VTA 2.0 solution to stream and modernize the Integrated Disability Evaluation System (IDES). IDES is a joint Department of Defense (DoD) and VA disability evaluation process. VTA 2.0 will support both the Veterans Health Administration (VHA) and the Veterans Benefits Administration (VBA) branches. IDES seeks to ensure seamless service delivery by eliminating the duplicate, time consuming, and often confusing and overlapping elements of the two current disability processes. The IDES seeks to ensure the program provides Soldiers, Sailors, Marines, Airmen and Coast Guardsmen optimal service and satisfaction for them and their family in receiving quality, fair, and just care and benefits. Wounded, injured and/or ill Service Members (SMs) are entered into IDES based on their Service to see if they meet retention standards. VTA 2.0 tracks these SMs from entrance into IDES through Return to Duty or Separation (with/without benefits). The program executes 25K cases annually with routine communications between DoD and VA. Steve will be focused on the build of detailed reports, formulas, and providing training to the VA Reports Team which impacts 1,800 VTA Stakeholders (DoD and VA). We discussed documenting goals in Workday related to the project to track and document progress. Steve has been a vibrant burst of energy to the VTA Team and has stepped up to take on a high visibility task for the project success. Steve is eager and determined as a team player and has made an instant impact to customer solutions. Thanks Steve.
+
+Determined
+No
+Opens in new window
+08/08/2023
+
+Employee's Photo (Vasser Muscat (621377))
+
+From: Quarto, Lenora [USA] <Quarto_Lenora@bah.com>
+Sent: Monday, August 7, 2023 3:31 PM
+To: Muscat, Vasser [USA] <Muscat_Vasser@bah.com>
+Subject: Feedback for Steve
+Sensitivity: Confidential
+
+Booz Allen Hamilton Internal
+
+Hi Vasser,
+
+Here is my feedback for Steve and his performance in SFA:
+
+Steve joined SFA as a Junior Developer with the background of Business Analyst. I was extremely impressed with Steve’s level of growth during SFA, given the level of complexity the Developer path delves into. It is always a gift when someone from the consulting side of our projects learns the more technical aspect of our work, in this case, Salesforce, and Steve embraced learning the technical aspects of Salesforce right away. He always came to class prepared, ready to participate, practice, and ask great questions. Comparing Steve’s baseline level of performance (pre-test for Platform Developer I) and his final performance, there was a 45% increase in growth, according to the pre and post-test scores. This was the greatest growth gain in the entire class. Steve also finished in the top 3 of the Developer class, and there were folks in there that had backgrounds in coding. This is all to say that Steve held his own and then some working and performing next to other Developers, so I know that if this is his ultimate desire for his career path, I have no doubt he’ll be successful.
+
+Strengths: Steve is unafraid to dive into skills and concepts that most would be frightened of (coding languages and concepts). He approaches work as an opportunity to learn, improve, and continually grow his skillset. I would say his strengths are in the Passionate Service and Collective Ingenuity values. He is great at making meaningful connections with the work we do and the ever-changing technology landscape, as well as his resourcefulness and finding ways to have the biggest positive impact on the project he’s working on.
+
+Areas for Growth: Steve really just needs to practice his new skills and build upon them, so he can exhibit more confidence with the concepts. The value I would attribute to this is Unflinching Courage, where once he’s built more confidence on the Salesforce platform, he’ll be better able to speak up with his own bold ideas, even if he is the junior in the room.
+
+Steve has a bright future ahead of him here and he’s embracing the skills he sees are valued at the firm, going after the training to achieve that skillset. This type of mindset is exactly how we build experts within our own teams to make our projects stronger and our clients more satisfied with our work. I’m excited to see the impact Steve has on the development of solutions for our projects.
+
+I’d also like to thank you, Vasser, for empowering Steve to take on a shift like this – going from BA to being on a development team. This is how we find those hidden gems who like learning about the skills that are historically tougher to gain. This makes us stronger as a team and company, so – thank you!
+
+No
+Opens in new window
+04/25/2023
+
+Employee's Photo (Vasser Muscat (621377))
+
+4/18/2023 - Steve presented a formal demonstration of CRM Admin & Scheduling enhancements for the client and did a great job. He also did an internal demonstration of these same enhancements to the larger Development team on 4/21 and also did a great job.
+
+No
+Opens in new window
+04/25/2023
+
+Employee's Photo (Vasser Muscat (621377))
+
+Summary of 4/19 Snapshot:
+
+Action Item - Steve will document progress towards goals in a Word doc or via Workday Activity
+
+Steve thinks he has a ‘developer focus’ naturally, his mind works “give me the objectives and I’ll do that in a set timeline” – you solve something by being an SE or coding something
+
+Told Steve that he needs to have the following goals for FY2024 – by the time he goes to Salesforce Academy (May 8),
+
+Have as many CRs approved as possible with associated Stories in Team 4 backlog, refined and pointed. 
+Have a transition plan for topics and CRs that he has not completed so they can be transitioned to other BAs
+No
+Opens in new window
+04/25/2023
+
+Employee's Photo (Vasser Muscat (621377))
+
+On 3/15/2023 Steve asked my opinion about applying for Salesforce Academy. Steve feels having more intimate SF knowledge will help him to be a better Business Analyst. I told him I do not think he needs any more certifications to be an effective B.A. – the critical thing he needs is more experience which will only come from doing the project work.  However I did say I would support him applying if he still felt other wise. I also explained that we cannot hold the BA position for him on VAHC CRM, which he indicated he understood.
+
+On 3/28/2023 - Steve's spot was confirmed in SFA.
+
+No
+Opens in new window
+04/25/2023
+
+Employee's Photo (Vasser Muscat (621377))
+
+Summary of 1/18/2023 Snapshot conversation:
+
+Action Item – Steve to setup at least 2 goals to accomplish by 3/31/2023 in Workday, perhaps:
+
+Demo application internally (and/or externally to client)
+Plan, execute elaboration session with client
+Organize BL
+Update Business Rules document
+Steve was concerned about not having a specific focus when talks of combining Admin and Scheduling have been going on for the program – afraid there is not enough work to go around. I tried to alleviate concerns that we should have enough work to go around although assignments might be in flux
+
+Feedback to Steve:  needs to stay on point in oral and written communications
+
+No
+Items per page
+30
+30
+
+
+1
+2
+
+
+31-39 of 39 items
+1 Error
+
+Menu
+
