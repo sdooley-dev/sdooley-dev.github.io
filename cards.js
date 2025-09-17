@@ -48,6 +48,8 @@ export function getTier1Icon(iconItem){
     case 'qa engineering':           return '<i class="fa fa-square-check" aria-hidden="true"></i>';
     case 'artificial intelligence':  return '<i class="fa fa-brain" aria-hidden="true"></i>';
     case 'video':                    return '<i class="fa-brands fa-youtube" aria-hidden="true"></i>';
+    case 'comments':                 return '<i class="fa-regular fa-comments" aria-hidden="true"></i>';
+    case 'summary':                  return '<i class="fa-solid fa-list-check" aria-hidden="true"></i>';
     
     default:                         return '';
   }
