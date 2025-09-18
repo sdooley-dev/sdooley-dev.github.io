@@ -921,6 +921,50 @@
         }
       }
 
+      // Global function for expanding images
+      window.expandImage = function(img) {
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        `;
+        
+        // Create expanded image
+        const expandedImg = document.createElement('img');
+        expandedImg.src = img.src;
+        expandedImg.alt = img.alt;
+        expandedImg.style.cssText = `
+          max-width: 90vw;
+          max-height: 90vh;
+          object-fit: contain;
+          border-radius: 8px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        `;
+        
+        // Add close functionality
+        overlay.onclick = function() {
+          document.body.removeChild(overlay);
+        };
+        
+        // Prevent image click from closing
+        expandedImg.onclick = function(e) {
+          e.stopPropagation();
+        };
+        
+        overlay.appendChild(expandedImg);
+        document.body.appendChild(overlay);
+      };
+
       function handleRoute() {
         const r = getRoute()
         if (r.mode === "detail") renderDetail(r.id, r.back)
