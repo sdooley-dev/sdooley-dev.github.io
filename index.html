@@ -826,7 +826,19 @@
                  .then(htmlContent => {
                    const detailContent = document.getElementById("detail-content")
                    if (detailContent) {
-                     detailContent.innerHTML = htmlContent
+                     // Replace [image] placeholder with actual image code
+                     const processedContent = htmlContent.replace(
+                       /\[image\]/g, 
+                       `<img
+style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
+alt="${item.e_title || 'Image'}"
+src="img/cards/${item.e_id}.png"
+onclick="window.expandImage(this)"
+onmouseover="this.style.transform='scale(1.02)'"
+onmouseout="this.style.transform='scale(1)'"
+/>`
+                     )
+                     detailContent.innerHTML = processedContent
                    }
                  })
                  .catch(error => {
