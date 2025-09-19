@@ -340,6 +340,23 @@
         }
       }
     </style>
+
+    <!-- Vertical spacing for paragraphs and list items -->
+    <style>
+      p, li {
+        margin-bottom: 16px;
+      }
+      
+      /* Ensure last elements don't have extra bottom margin */
+      p:last-child, li:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Nested lists should have consistent spacing */
+      ul, ol {
+        margin-bottom: 16px;
+      }
+    </style>
   </head>
   <body>
     <!-- Header mount -->
