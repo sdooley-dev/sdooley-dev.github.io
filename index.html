@@ -80,6 +80,8 @@
         color: #6b7280 !important;
       }
 
+
+
       /* Card shell */
       .content032825 {
         border: 2px solid transparent;
@@ -175,6 +177,12 @@
         flex-direction: column;
         min-height: 0;
       }
+
+       #card-title-top h3 {
+         padding: 20px 0 15px 0;
+         margin: 0;
+         color: #0f172a;
+       }
 
              /* Sponsor/date row (above desc) */
        .meta-top {
@@ -529,19 +537,18 @@
             document.title = "Steve Dooley, MBA"
             el.innerHTML = `
               <h3>Data Engineering/AI <span style="color: #9ca3af; font-weight: 300;">||</span> Cloud/Enterprise Platforms <span style="color: #9ca3af; font-weight: 300;">||</span> QA Test Automation</h3>
-              <p style="text-align: center; color: #6b7280; font-size: 12px; font-weight: 600; margin: 10px 0 5px 0;">Experience and training in cooperation with these organizations:</p>
               <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
                 <img src="img/logo/booz-allen-hamilton.png" alt="Booz Allen Hamilton" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/lockheed-martin-blue.png" alt="Lockheed Martin" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/palantir.png" alt="Palantir" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/logo-salesforce2.png" alt="Salesforce" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
-                <img src="img/logo/logo-va.png" alt="VA" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/aws.png" alt="AWS" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/logo-dod.png" alt="Department of Defense" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/databricks-short.png" alt="Databricks" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/ibm.png" alt="IBM" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/accenture.png" alt="Accenture" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
               </div>
+              <p style="text-align: center; color: #6b7280; font-size: 12px; font-weight: 300; margin: 10px 0 5px 0;">Experience and training in cooperation with the organizations above</p>
             `
           }
         }
@@ -703,7 +710,7 @@
                            const detailIcon = getTier1Icon(item.icon_item);
              const detailMedia = hasImage 
                 ? `<img src="img/cards/${item.e_image}" alt="${safeTitle}" style="width: 100%; height: 100%; object-fit: contain; object-position: center; display: block;">`
-                : `<div class="media-title-fallback"><div style="display: flex; align-items: center; gap: 12px; justify-content: center;"><span class="tier1-icon">${detailIcon}</span><span class="tier1-title">${safeTitle}</span></div></div>`
+                : `<div class="media-title-fallback"><div style="display: flex; flex-direction: column; align-items: center; gap: 8px; justify-content: center;"><span class="tier1-icon">${detailIcon}</span><span class="tier1-title">${safeTitle}</span></div></div>`
 
             // Use displayDateShort logic for old dates
             function displayDateShort(value) {
@@ -743,7 +750,7 @@
                          content.innerHTML = `
                <div id="lightbox-overlay" style="${overlayStyle}">
                  <div class="detail-card" style="${cardStyle}">
-                   <button id="close-lightbox" style="position:absolute;top:16px;right:16px;z-index:10;background:#1e293b;border:none;border-radius:50%;width:48px;height:48px;font-size:1.5em;color:#ffffff;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.2);transition:background-color 0.2s ease;" title="Close" onmouseover="this.style.background='#dc2626'" onmouseout="this.style.background='#1e293b'">&times;</button>
+                   <button id="close-lightbox" style="position:absolute;top:8px;right:8px;z-index:10;background:#ffffff;border:1px solid #6b7280;border-radius:50%;width:40px;height:40px;font-size:1.2em;color:#374151;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;opacity:0.7;" title="Close" onmouseover="this.style.background='#dc2626';this.style.border='#dc2626';this.style.color='#ffffff';this.style.opacity='1'" onmouseout="this.style.background='#ffffff';this.style.border='#6b7280';this.style.color='#374151';this.style.opacity='0.7'">&times;</button>
                    
                    
                                        ${hasImage ? `
@@ -758,6 +765,7 @@
                            <div class="detail-meta">
                              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                                <div>
+                                 <div style="margin-bottom: 8px; color: #0f172a;">${getEventTypeInfo(item.e_type).icon} ${getEventTypeInfo(item.e_type).title}</div>
                                  ${sponsor ? `<div>${sponsorDisplay}</div>` : ""}
                                  <div style="margin-top:4px;">
                                    ${fullDate ? `<span>${fullDate}</span>` : ""}
@@ -766,13 +774,13 @@
                                </div>
                                <div style="display:flex;align-items:center;gap:8px;">
                                  <div style="display:flex;flex-direction:column;align-items:center;">
-                                   <button id="arrow-left" style="background:rgba(255,255,255,0.9);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;opacity:0.8;cursor:pointer;transition:all 0.2s ease;box-shadow:0 2px 8px rgba(0,0,0,0.15);" onmouseover="this.style.background='#10b981';this.style.opacity='1';this.querySelector('i').style.color='#ffffff'" onmouseout="this.style.background='rgba(255,255,255,0.9)';this.style.opacity='0.8';this.querySelector('i').style.color='#374151'">
+                                   <button id="arrow-left" style="background:#ffffff;border:1px solid #6b7280;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s ease;" onmouseover="this.style.background='#10b981';this.style.border='#10b981';this.querySelector('i').style.color='#ffffff'" onmouseout="this.style.background='#ffffff';this.style.border='#6b7280';this.querySelector('i').style.color='#374151'">
                                      <i class="fa fa-chevron-left" style="font-size:1.2em;color:#374151;transition:color 0.2s ease;"></i>
                                    </button>
                                    <span style="font-size:0.8em;color:#666;margin-top:2px;">Previous</span>
                                  </div>
                                  <div style="display:flex;flex-direction:column;align-items:center;">
-                                   <button id="arrow-right" style="background:rgba(255,255,255,0.9);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;opacity:0.8;cursor:pointer;transition:all 0.2s ease;box-shadow:0 2px 8px rgba(0,0,0,0.15);" onmouseover="this.style.background='#10b981';this.style.opacity='1';this.querySelector('i').style.color='#ffffff'" onmouseout="this.style.background='rgba(255,255,255,0.9)';this.style.opacity='0.8';this.querySelector('i').style.color='#374151'">
+                                   <button id="arrow-right" style="background:#ffffff;border:1px solid #6b7280;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s ease;" onmouseover="this.style.background='#10b981';this.style.border='#10b981';this.querySelector('i').style.color='#ffffff'" onmouseout="this.style.background='#ffffff';this.style.border='#6b7280';this.querySelector('i').style.color='#374151'">
                                      <i class="fa fa-chevron-right" style="font-size:1.2em;color:#374151;transition:color 0.2s ease;"></i>
                                    </button>
                                    <span style="font-size:0.8em;color:#666;margin-top:2px;">Next</span>
@@ -795,6 +803,7 @@
                        <div class="detail-meta">
                          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                            <div>
+                             <div style="margin-bottom: 8px; color: #0f172a;">${getEventTypeInfo(item.e_type).icon} ${getEventTypeInfo(item.e_type).title}</div>
                              ${sponsor ? `<div>${sponsorDisplay}</div>` : ""}
                              <div style="margin-top:4px;">
                                ${fullDate ? `<span>${fullDate}</span>` : ""}
