@@ -829,24 +829,45 @@
                </div>
              `
 
-                         // Check if e_desc is "[inc]" and load external HTML content
-             if (item.e_desc === "[inc]") {
-               const incFile = `drs/inc/html/${item.e_id}.html`
-               fetch(incFile)
-                 .then(response => {
-                   if (response.ok) {
-                     return response.text()
-                   } else {
-                     throw new Error(`HTTP ${response.status}`)
-                   }
-                 })
-                 .then(htmlContent => {
-                   const detailContent = document.getElementById("detail-content")
-                   if (detailContent) {
-                     // Replace [image] placeholder with actual image code
-                     const processedContent = htmlContent.replace(
-                       /\[image\]/g, 
-                       `<img
+                         // Check if e_desc contains file inclusions and load external HTML content
+             if (item.e_desc === "[inc]" || item.e_desc.includes("[") && item.e_desc.includes(".html]")) {
+               const detailContent = document.getElementById("detail-content")
+               if (detailContent) {
+                 let processedContent = ""
+                 
+                 if (item.e_desc === "[inc]") {
+                   // Handle single file inclusion
+                   const incFile = `drs/inc/html/${item.e_id}.html`
+                   fetch(incFile)
+                     .then(response => {
+                       if (response.ok) {
+                         return response.text()
+                       } else {
+                         throw new Error(`HTTP ${response.status}`)
+                       }
+                     })
+                     .then(htmlContent => {
+                       processedContent = htmlContent
+                       processContentWithIncludes(processedContent, detailContent, item)
+                     })
+                     .catch(error => {
+                       console.error(`Error loading include file ${incFile}:`, error)
+                       detailContent.innerHTML = `<p style="color: #ef4444;">Error loading content from ${incFile}</p>`
+                     })
+                 } else {
+                   // Handle multiple file inclusions like [31.html] [32.html]
+                   processedContent = item.e_desc
+                   processContentWithIncludes(processedContent, detailContent, item)
+                 }
+               }
+             }
+             
+             // Helper function to process content with includes
+             function processContentWithIncludes(content, detailContent, item) {
+               // Replace [image] placeholder with actual image code
+               let processedContent = content.replace(
+                 /\[image\]/g, 
+                 `<img
 style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
 alt="${item.e_title || 'Image'}"
 src="img/cards/${item.e_id}.png"
@@ -854,17 +875,44 @@ onclick="window.expandImage(this)"
 onmouseover="this.style.transform='scale(1.02)'"
 onmouseout="this.style.transform='scale(1)'"
 />`
-                     )
-                     detailContent.innerHTML = processedContent
-                   }
+               )
+               
+               // Replace multiple file inclusions like [31.html] [32.html]
+               processedContent = processedContent.replace(
+                 /\[(\d+\.html)\]/g,
+                 (match, filename) => {
+                   // This will be replaced with actual content in the next step
+                   return `<!--INCLUDE:${filename}-->`
+                 }
+               )
+               
+               detailContent.innerHTML = processedContent
+               
+               // Now load and replace the included files
+               const includePromises = []
+               const includeMatches = processedContent.match(/<!--INCLUDE:(\d+\.html)-->/g)
+               
+               if (includeMatches) {
+                 includeMatches.forEach(match => {
+                   const filename = match.replace(/<!--INCLUDE:|-->/g, '')
+                   const includePromise = fetch(`drs/inc/html/${filename}`)
+                     .then(response => response.ok ? response.text() : `[Content not found: ${filename}]`)
+                     .then(content => {
+                       // Replace the placeholder with actual content
+                       detailContent.innerHTML = detailContent.innerHTML.replace(match, content)
+                     })
+                     .catch(error => {
+                       console.error(`Error loading include file ${filename}:`, error)
+                       detailContent.innerHTML = detailContent.innerHTML.replace(match, `[Error loading: ${filename}]`)
+                     })
+                   includePromises.push(includePromise)
                  })
-                 .catch(error => {
-                   console.error(`Error loading include file ${incFile}:`, error)
-                   const detailContent = document.getElementById("detail-content")
-                   if (detailContent) {
-                     detailContent.innerHTML = `<p style="color: #ef4444;">Error loading content from ${incFile}</p>`
-                   }
+                 
+                 // Wait for all includes to load
+                 Promise.all(includePromises).then(() => {
+                   console.log(`Loaded ${includePromises.length} include files for item ${item.e_id}`)
                  })
+               }
              }
 
              // Add arrow navigation and close event listeners
