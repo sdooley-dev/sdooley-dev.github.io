@@ -181,7 +181,7 @@
        #card-title-top h3 {
          padding: 20px 0 15px 0;
          margin: 0;
-         color: #0f172a;
+         color: #000000;
        }
 
              /* Sponsor/date row (above desc) */
@@ -319,7 +319,7 @@
       .detail-header {
         padding: 8px 24px 8px;
       } /* compact; no H2 title below */
-      .detail-meta {
+      .detail-meta div {
         color: #666;
         margin-top: 4px;
       }
@@ -379,10 +379,10 @@
 
     <script type="module">
       // import { buildCard, getEventTypeInfo } from './cards.js';
-      import { buildCard } from "./cards.js"
+      import { buildCard } from "./cards.js?v=20240115h"
       
       // Import the getTier1Icon function for lightbox icons
-      import { getTier1Icon } from "./cards.js"
+      import { getTier1Icon } from "./cards.js?v=20240115h"
 
       // Add error handling for module loading
       window.addEventListener('error', function(e) {
@@ -592,7 +592,28 @@
                 )
               )
             }
-            filtered.sort((a, b) => Number(a.e_id) - Number(b.e_id))
+            // Separate cards with featured_top: "yes" to display at the top
+            const topCards = filtered.filter(item => String(item['featured_top'] || '').toLowerCase() === 'yes')
+            // Keep all cards for regular grouping (featured cards will appear twice)
+            const regularCards = filtered
+            
+            // Sort featured cards by sort_order (same logic as regular cards)
+            topCards.sort((a, b) => {
+              // Sort by sort_order (numerically ascending), fallback to e_title
+              const sa = Number(a.sort_order)
+              const sb = Number(b.sort_order)
+              if (!isNaN(sa) && !isNaN(sb)) {
+                return sa - sb
+              } else if (!isNaN(sa)) {
+                return -1
+              } else if (!isNaN(sb)) {
+                return 1
+              } else {
+                return a.e_title.localeCompare(b.e_title)
+              }
+            })
+            // Sort regular cards by e_id (they'll be re-sorted by sort_order in their e_type groups)
+            regularCards.sort((a, b) => Number(a.e_id) - Number(b.e_id))
 
             const content = document.getElementById("content")
             content.innerHTML = '<ul id="results"></ul>'
@@ -603,9 +624,26 @@
               return
             }
 
-            // Group by e_type (use first 2 characters for consistent grouping)
+            // First, display top cards if any exist
+            if (topCards.length > 0) {
+              // Add header for featured top cards
+              const h2 = document.createElement("h2")
+              h2.innerHTML = `<i class="fa fa-bullseye" aria-hidden="true" title="Featured" style="color:#4169E1;"></i> Featured Top`
+              results.appendChild(h2)
+              
+              const topUl = document.createElement("ul")
+              topCards.forEach((item) => {
+                const li = document.createElement("li")
+                const currentHash = window.location.hash.replace(/^#/, "")
+                li.innerHTML = buildCard(item, currentHash)
+                topUl.appendChild(li)
+              })
+              results.appendChild(topUl)
+            }
+
+            // Group regular cards by e_type (use first 2 characters for consistent grouping)
             const grouped = {}
-            for (const it of filtered) {
+            for (const it of regularCards) {
               const t = String(it.e_type || "Uncategorized").substring(0, 2)
               ;(grouped[t] ||= []).push(it)
             }
@@ -771,6 +809,7 @@
                                    ${fullDate ? `<span>${fullDate}</span>` : ""}
                                    ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank" style="margin-left:8px;">verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                                  </div>
+                                 <h3 id="card-title-top">${item.e_title || ""}</h3>
                                </div>
                                <div style="display:flex;align-items:center;gap:8px;">
                                  <div style="display:flex;flex-direction:column;align-items:center;">
@@ -809,6 +848,7 @@
                                ${fullDate ? `<span>${fullDate}</span>` : ""}
                                ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank" style="margin-left:8px;">verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                              </div>
+                             <h3 id="card-title-top">${item.e_title || ""}</h3>
                            </div>
                            <div style="display:flex;align-items:center;gap:8px;">
                              <div style="display:flex;flex-direction:column;align-items:center;">
@@ -873,8 +913,14 @@
              
              // Helper function to process content with includes
              function processContentWithIncludes(content, detailContent, item) {
+               // Remove h3 title tags from content since title is now in header
+               let processedContent = content.replace(/<h3[^>]*>.*?<\/h3>/gi, '');
+               
+               // Replace [e_title] placeholder with actual title
+               processedContent = processedContent.replace(/\[e_title\]/g, item.e_title || "");
+               
                // Replace [image] placeholder with actual image code
-               let processedContent = content.replace(
+               processedContent = processedContent.replace(
                  /\[image\]/g, 
                  `<img
 style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
