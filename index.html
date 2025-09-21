@@ -379,10 +379,10 @@
 
     <script type="module">
       // import { buildCard, getEventTypeInfo } from './cards.js';
-      import { buildCard } from "./cards.js?v=20240115h"
+      import { buildCard } from "./cards.js?v=20240115n"
       
       // Import the getTier1Icon function for lightbox icons
-      import { getTier1Icon } from "./cards.js?v=20240115h"
+      import { getTier1Icon } from "./cards.js?v=20240115n"
 
       // Add error handling for module loading
       window.addEventListener('error', function(e) {
@@ -628,7 +628,7 @@
             if (topCards.length > 0) {
               // Add header for featured top cards
               const h2 = document.createElement("h2")
-              h2.innerHTML = `<i class="fa fa-bullseye" aria-hidden="true" title="Featured" style="color:#4169E1;"></i> Featured Top`
+              h2.innerHTML = `<i class="fa fa-bullseye" aria-hidden="true" title="Featured" style="color:#4169E1;"></i> Featured`
               results.appendChild(h2)
               
               const topUl = document.createElement("ul")
@@ -913,13 +913,28 @@
              
              // Helper function to process content with includes
              function processContentWithIncludes(content, detailContent, item) {
+               console.log('Processing content for item', item.e_id, ':', content);
+               
                // Remove h3 title tags from content since title is now in header
                let processedContent = content.replace(/<h3[^>]*>.*?<\/h3>/gi, '');
                
                // Replace [e_title] placeholder with actual title
                processedContent = processedContent.replace(/\[e_title\]/g, item.e_title || "");
                
-               // Replace [image] placeholder with actual image code
+               // Replace [image-filename.png] placeholder with specific image
+               processedContent = processedContent.replace(
+                 /\[image-([^\]]+)\]/g, 
+                 (match, filename) => `<img
+style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
+alt="${item.e_title || 'Image'}"
+src="img/cards/${filename}"
+onclick="window.expandImage(this)"
+onmouseover="this.style.transform='scale(1.02)'"
+onmouseout="this.style.transform='scale(1)'"
+/>`
+               )
+               
+               // Replace [image] placeholder with actual image code (uses e_id)
                processedContent = processedContent.replace(
                  /\[image\]/g, 
                  `<img
@@ -931,6 +946,8 @@ onmouseover="this.style.transform='scale(1.02)'"
 onmouseout="this.style.transform='scale(1)'"
 />`
                )
+               
+               console.log('After image processing for item', item.e_id, ':', processedContent);
                
                // Replace multiple file inclusions like [31.html] [32.html]
                processedContent = processedContent.replace(
@@ -953,8 +970,37 @@ onmouseout="this.style.transform='scale(1)'"
                    const includePromise = fetch(`drs/inc/html/${filename}`)
                      .then(response => response.ok ? response.text() : `[Content not found: ${filename}]`)
                      .then(content => {
-                       // Replace the placeholder with actual content
-                       detailContent.innerHTML = detailContent.innerHTML.replace(match, content)
+                       // Process image placeholders in the included content
+                       let processedContent = content
+                       
+                       // Replace [image-filename.png] placeholder with specific image
+                       processedContent = processedContent.replace(
+                         /\[image-([^\]]+)\]/g, 
+                         (match, filename) => `<img
+style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
+alt="${item.e_title || 'Image'}"
+src="img/cards/${filename}"
+onclick="window.expandImage(this)"
+onmouseover="this.style.transform='scale(1.02)'"
+onmouseout="this.style.transform='scale(1)'"
+/>`
+                       )
+                       
+                       // Replace [image] placeholder with actual image code (uses e_id)
+                       processedContent = processedContent.replace(
+                         /\[image\]/g, 
+                         `<img
+style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
+alt="${item.e_title || 'Image'}"
+src="img/cards/${item.e_id}.png"
+onclick="window.expandImage(this)"
+onmouseover="this.style.transform='scale(1.02)'"
+onmouseout="this.style.transform='scale(1)'"
+/>`
+                       )
+                       
+                       // Replace the placeholder with processed content
+                       detailContent.innerHTML = detailContent.innerHTML.replace(match, processedContent)
                      })
                      .catch(error => {
                        console.error(`Error loading include file ${filename}:`, error)
@@ -1047,6 +1093,12 @@ onmouseout="this.style.transform='scale(1)'"
             return {
               icon: '<i class="fa fa-trophy" aria-hidden="true" title="Award"></i>',
               title: "Award",
+            }
+          case "09":
+            return {
+              icon: '<i class="fa-regular fa-rectangle-list" aria-hidden="true" title="Summary"></i>',
+              title: "Summary",
+              anchor: "summary"
             }
           default:
             return { icon: "", title: type || "Uncategorized" }

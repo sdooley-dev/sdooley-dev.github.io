@@ -16,6 +16,11 @@ export function getEventTypeInfo(type){
     case "06": return { icon: '<i class="fa fa-chalkboard-teacher" aria-hidden="true" title="Presentation or Workshop"></i>', title: "Presentation or Workshop", anchor: "presentations", title_blurb: "Please see some of the presentations that I have completed." };
     case "07": return { icon: '<i class="fa fa-file-text" aria-hidden="true" title="Case Study"></i>', title: "Case Study", anchor: "case-studies", title_blurb: "Please see some of the case studies that I have completed." };
     case "08": return { icon: '<i class="fa fa-trophy" aria-hidden="true" title="Award"></i>', title: "Award" };
+    case "09": return {
+      icon: '<i class="fa-regular fa-rectangle-list" aria-hidden="true" title="Summary"></i>',
+      title: "Summary",
+      anchor: "summary"
+    };
     default:   return { icon: "", title: type || "Uncategorized" };
   }
 }
@@ -72,7 +77,16 @@ export function buildCard(item, backHash=""){
   const link = `#item/${item.e_id}${encodedBack?`/${encodedBack}`:""}`;
 
   // Description (truncate to 60 chars)
-  const fullDesc = String((item.e_desc && item.e_desc !== "N/A") ? item.e_desc : "");
+  let fullDesc = String((item.e_desc && item.e_desc !== "N/A") ? item.e_desc : "");
+  
+  // Remove h3 title tags and their content for main card display
+  fullDesc = fullDesc.replace(/<h3[^>]*>.*?<\/h3>/gi, '');
+  
+  // Remove any remaining [e_title] placeholders from main card display
+  fullDesc = fullDesc.replace(/\[e_title\]/g, '');
+  
+  // Cache bust: 2024-01-15 - Fixed [e_title] removal for main cards
+  
   const maxChars = 60;                         // increased from 40
   const isLong  = fullDesc.length > maxChars;
   const shortDesc = isLong ? fullDesc.slice(0, maxChars).trim().replace(/[\\.,;:!?-]+$/, "") + "…" : fullDesc;
