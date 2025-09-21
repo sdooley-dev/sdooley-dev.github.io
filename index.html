@@ -379,10 +379,10 @@
 
     <script type="module">
       // import { buildCard, getEventTypeInfo } from './cards.js';
-      import { buildCard } from "./cards.js?v=20240115p"
+      import { buildCard } from "./cards.js?v=20240115q"
       
       // Import the getTier1Icon function for lightbox icons
-      import { getTier1Icon } from "./cards.js?v=20240115p"
+      import { getTier1Icon } from "./cards.js?v=20240115q"
 
       // Add error handling for module loading
       window.addEventListener('error', function(e) {
@@ -921,27 +921,27 @@
                // Replace [image-filename.png] placeholder with specific image
                processedContent = processedContent.replace(
                  /\[image-([^\]]+)\]/g, 
-                 (match, filename) => `<img
+                 (match, filename) => `<p><img
 style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
 alt="${item.e_title || 'Image'}"
 src="img/cards/${filename}"
 onclick="window.expandImage(this)"
 onmouseover="this.style.transform='scale(1.02)'"
 onmouseout="this.style.transform='scale(1)'"
-/>`
+/></p>`
                )
                
                // Replace [image] placeholder with actual image code (uses e_id)
                processedContent = processedContent.replace(
                  /\[image\]/g, 
-                 `<img
+                 `<p><img
 style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
 alt="${item.e_title || 'Image'}"
 src="img/cards/${item.e_id}.png"
 onclick="window.expandImage(this)"
 onmouseover="this.style.transform='scale(1.02)'"
 onmouseout="this.style.transform='scale(1)'"
-/>`
+/></p>`
                )
                
                console.log('After image processing for item', item.e_id, ':', processedContent);
@@ -973,27 +973,27 @@ onmouseout="this.style.transform='scale(1)'"
                        // Replace [image-filename.png] placeholder with specific image
                        processedContent = processedContent.replace(
                          /\[image-([^\]]+)\]/g, 
-                         (match, filename) => `<img
+                         (match, filename) => `<p><img
 style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
 alt="${item.e_title || 'Image'}"
 src="img/cards/${filename}"
 onclick="window.expandImage(this)"
 onmouseover="this.style.transform='scale(1.02)'"
 onmouseout="this.style.transform='scale(1)'"
-/>`
+/></p>`
                        )
                        
                        // Replace [image] placeholder with actual image code (uses e_id)
                        processedContent = processedContent.replace(
                          /\[image\]/g, 
-                         `<img
+                         `<p><img
 style="max-width: 80%; cursor: pointer; transition: transform 0.2s ease;"
 alt="${item.e_title || 'Image'}"
 src="img/cards/${item.e_id}.png"
 onclick="window.expandImage(this)"
 onmouseover="this.style.transform='scale(1.02)'"
 onmouseout="this.style.transform='scale(1)'"
-/>`
+/></p>`
                        )
                        
                        // Replace the placeholder with processed content
