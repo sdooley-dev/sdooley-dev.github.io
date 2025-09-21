@@ -379,10 +379,10 @@
 
     <script type="module">
       // import { buildCard, getEventTypeInfo } from './cards.js';
-      import { buildCard } from "./cards.js?v=20240115n"
+      import { buildCard } from "./cards.js?v=20240115p"
       
       // Import the getTier1Icon function for lightbox icons
-      import { getTier1Icon } from "./cards.js?v=20240115n"
+      import { getTier1Icon } from "./cards.js?v=20240115p"
 
       // Add error handling for module loading
       window.addEventListener('error', function(e) {
@@ -915,11 +915,8 @@
              function processContentWithIncludes(content, detailContent, item) {
                console.log('Processing content for item', item.e_id, ':', content);
                
-               // Remove h3 title tags from content since title is now in header
-               let processedContent = content.replace(/<h3[^>]*>.*?<\/h3>/gi, '');
-               
                // Replace [e_title] placeholder with actual title
-               processedContent = processedContent.replace(/\[e_title\]/g, item.e_title || "");
+               let processedContent = content.replace(/\[e_title\]/g, item.e_title || "");
                
                // Replace [image-filename.png] placeholder with specific image
                processedContent = processedContent.replace(
