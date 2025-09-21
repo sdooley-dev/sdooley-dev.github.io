@@ -1,0 +1,50 @@
+
+<p><b>RAG app via third-party platform:</b> I delivered a production-ready Retrieval-Augmented Generation (RAG) application by orchestrating a third-party AI platform (connectors, embeddings, vector search, simple UI) with OpenAI's ChatGPT API for generation. Users ask natural-language questions about my GitHub project; the app retrieves relevant repo content and produces grounded answers with citations back to specific files or lines.</p>
+
+[image-67.png]
+
+<p><b>What "RAG" means (quick primer):</b> RAG is an LLM pattern where the app first <b>retrieves</b> relevant text from a knowledge base and then <b>generates</b> the answer using those passages as context. This reduces hallucinations and keeps answers current without retraining the model.</p>
+
+<p><b>My implementation (concise):</b></p>
+<ul>
+<li><b>Third-party platform setup:</b> Configured a GitHub connector to sync the repo; enabled automatic parsing, chunking, and metadata capture (file path, language, line ranges, commit hash).</li>
+<li><b>Embeddings and index:</b> Used the platform's embedding service and vector index; tuned chunk size/overlap and added path or file-type filters.</li>
+<li><b>Query pipeline:</b> User question → embed query → semantic search (top-k) → optional rerank → platform composes prompt with retrieved passages → calls OpenAI ChatGPT API → UI renders answer with citations.</li>
+<li><b>Guardrails and ops:</b> Citation-required prompting, max-context limits, API usage/rate-limit handling, scheduled re-index on repo changes, and retrieval hit/miss logging.</li>
+</ul>
+
+<p><b>Impact (examples):</b> Reduced unsupported claims via source-grounding with citations; delivered interactive answers in seconds versus manual repo search; indexed all targeted code and docs with filterable scope.</p>
+
+<p><b>Resume-ready bullets (choose a few):</b></p>
+<ul>
+<li>Integrated a third-party AI platform with OpenAI's ChatGPT API to deliver a RAG app over my GitHub repository, enabling natural-language queries with line-level citations.</li>
+<li>Owned the end-to-end retrieval stack (repo sync, parsing and chunking, embeddings, semantic search, reranking) and implemented citation-required prompts for grounded answers.</li>
+<li>Operationalized re-indexing, evaluation questions, and observability for retrieval hit rate, latency, and answer faithfulness.</li>
+</ul>
+
+<p><b>Architecture (at a glance):</b></p>
+<ul>
+<li><b>Ingest (third-party):</b> GitHub connector → parse → chunk → attach metadata.</li>
+<li><b>Index (third-party):</b> Embed chunks → upsert to vector index with filters.</li>
+<li><b>Retrieve (third-party):</b> Embed query → vector search (top-k) → optional rerank.</li>
+<li><b>Generate (OpenAI API):</b> Third-party app assembles prompt with retrieved context → calls ChatGPT → returns answer with citations.</li>
+<li><b>Observe (third-party):</b> Logs and dashboards.</li>
+</ul>
+
+<p><b>Key terms:</b></p>
+<ul>
+<li><b>Embedding:</b> Numeric vector representing meaning; similar text → nearby vectors.</li>
+<li><b>Semantic search:</b> Retrieval by meaning (via embeddings), not just keywords.</li>
+<li><b>Chunking:</b> Splitting files into smaller passages so retrieval and context windows work well.</li>
+<li><b>Top-k / Rerank:</b> Select the best k passages; reranking re-orders with a more precise model.</li>
+<li><b>Context window:</b> The maximum text the model reads at once (instructions plus retrieved chunks).</li>
+<li><b>Grounding and citations:</b> Answers reference retrieved sources to remain verifiable and reduce hallucinations.</li>
+</ul>
+
+<p><b>Tech choices (illustrative):</b> Third-party platform for data connectors, embeddings, vector index, and UI; OpenAI API (ChatGPT and embeddings) for language understanding and generation; scheduled re-index on repo updates and a lightweight evaluation set with expected file hits.</p>
+
+<p><b>Evaluation and quality:</b> Curated "golden" questions mapped to expected files and tracked retrieval, answer faithfulness and whether cited sources matched what the model read.</p>
+
+<p><b>Security and privacy:</b> Scoped API keys, repository/path whitelists, sanitized prompts, response restriction to retrieved context, and minimal analytics logging.</p>
+
+<div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>

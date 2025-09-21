@@ -1,0 +1,34 @@
+<p><b>Summary:</b> I previously built an end-to-end RAG workflow that ingests PDFs in Foundry, transforms and chunks them in Pipeline Builder, generates embeddings for semantic search, and then exposes a retrieval function in AIP Logic. The function performs semantic search over the embeddings and uses an LLM to answer questions grounded in the source documents.</p> 
+
+[image-65.png]
+
+
+<p><b>Click-path to reproduce:</b></p> 
+
+<ul> 
+    <li>Foundry Home -> Create a new project -> Open Pipeline Builder -> + Add input -> Upload PDFs.</li> 
+    <li>Select the PDF node -> use AIP Generate to add transforms: parse text -> clean -> chunk with doc and page metadata.</li> 
+    <li>Add an embedding transform on the chunk text -> build a semantic search index -> Preview and Build the pipeline.</li> 
+    <li>Go to Apps &amp; Logic -> AIP Logic -> New function -> add Use LLM block -> attach Semantic Search tool pointing to the embeddings/index.</li> 
+    <li>Set the system prompt to answer with citations from doc/page metadata -> Save and Publish -> Test in the Playground or a starter app.</li> 
+</ul> 
+
+<p><b>Key definitions:</b></p> 
+<ul> 
+    <li><b>RAG (Retrieval-Augmented Generation):</b> An approach where an LLM retrieves relevant documents first and then generates an answer grounded in those sources.</li> 
+    <li><b>Embedding:</b> A numeric vector representation of text that captures meaning; similar texts have similar vectors.</li> 
+    <li><b>Semantic Search:</b> Retrieval based on meaning (via embeddings) rather than exact keyword matches.</li> 
+    <li><b>Chunking:</b> Splitting long documents into smaller passages so each piece can be embedded, searched, and cited.</li> 
+    <li><b>Vector Index / Vector DB:</b> A store for embeddings that enables fast nearest-neighbor lookups.</li> 
+    <li><b>Similarity Metric (e.g., Cosine Similarity):</b> A score indicating how close two embeddings are; higher means more semantically similar.</li> 
+    <li><b>Context Window:</b> The maximum amount of text (instructions + retrieved chunks) the model can consider at once.</li> 
+    <li><b>Grounding / Citations:</b> Including retrieved passages and their sources so answers are tied to verifiable text.</li> 
+    <li><b>AIP Logic (Palantir):</b> A low-code layer to wire tools (LLMs, semantic search) into callable functions or apps.</li> 
+    <li><b>Pipeline Builder (Palantir):</b> A data-prep canvas to parse, clean, chunk, embed, and index documents.</li> 
+    <li><b>Prompt / System Prompt:</b> Instructions to the model; the system prompt sets top-level rules and citation style.</li> 
+<li><b>Hallucination (and Mitigation):</b> When a model invents facts; mitigated by good retrieval, strict prompting, and requiring citations.</li> 
+</ul>
+
+<div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
+
+
