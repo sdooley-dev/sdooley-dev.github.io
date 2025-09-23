@@ -63,6 +63,47 @@
         display: block;
         white-space: nowrap;
     }
+    /* Dropdown menu styles */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1001;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        top: 100%;
+        right: 0;
+    }
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+    .dropdown-content a:hover {
+        background-color: #f5f5f5;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .dropdown-arrow {
+        margin-left: 5px;
+        font-size: 0.8em;
+        transition: transform 0.2s;
+    }
+    .dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+    }
     /* Customize chatbot background to black */
     div[part="bot"] {
         background-color: black !important;
@@ -126,7 +167,13 @@
             <a href="http://sdooley-dev.github.io/#item/69/" aria-label="RAG">RAG</a>
             <a href="chatbot.html">Chatbot</a>
             <a href="http://sdooley-dev.github.io/#item/66" aria-label="About this Site">About this Site</a>
-            <a target="_blank" href="https://sdooley.org/resume" aria-label="Resume">Resume</a>
+            <div class="dropdown">
+                <a target="_blank" href="https://sdooley.org/resume" aria-label="Resume">Resume <span class="dropdown-arrow">▼</span></a>
+                <div class="dropdown-content">
+                    <a href="http://sdooley-dev.github.io/#item/71" aria-label="Certifications">Certifications</a>
+                    <a href="http://sdooley-dev.github.io/#item/70" aria-label="Tech Skills">Tech Skills</a>
+                </div>
+            </div>
             
             <a target="_blank" href="https://www.linkedin.com/in/stevedooley/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a>
         </div>
@@ -165,6 +212,8 @@
                     <li><a href="chatbot.html">Chatbot</a></li>
                     <li><a href="http://sdooley-dev.github.io/#item/66">About this Site</a></li>
                     <li><a href="https://sdooley.org/resume" target="_blank">Resume</a></li>
+                    <li><a href="http://sdooley-dev.github.io/#item/71">Certifications</a></li>
+                    <li><a href="http://sdooley-dev.github.io/#item/70">Tech Skills</a></li>
                     <!-- <li><a href="https://sdooley-dev.github.io">GitHub</a></li> -->
                     <li><a href="https://www.linkedin.com/in/stevedooley/" target="_blank"><i class="fa-brands fa-linkedin" title="LinkedIn"></i></a></li>
                 </ul>
