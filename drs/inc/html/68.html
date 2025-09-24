@@ -18,7 +18,7 @@
 
 <h4>2. Retrieval Mechanism</h4>
 <ul>
-<li><b>Dynamic Content Loading:</b> JavaScript fetches and processes HTML includes based on [inc] placeholders</li>
+<li><b>Dynamic Content Loading:</b> JavaScript fetches and processes HTML includes based on /*inc/ placeholders</li>
 <li><b>Contextual Filtering:</b> Content filtered by categories, skills, and user navigation patterns</li>
 <li><b>Semantic Organization:</b> Content grouped by professional themes (Certifications, Case Studies, Presentations)</li>
 <li><b>Search Capabilities:</b> URL-based routing (#item/66) for direct content retrieval</li>
@@ -67,7 +67,7 @@
 <pre><code>// Retrieval mechanism example
 function processContentWithIncludes(content, detailContent, item) {
   // Replace placeholders with actual content
-  processedContent = content.replace(/\[inc\]/g, item.e_id + '.html');
+  processedContent = content.replace(/\[*inc\]/g, item.e_id + '.html');
   
   // Fetch and integrate external content
   fetch(`drs/inc/html/${filename}`)
@@ -79,7 +79,7 @@ function processContentWithIncludes(content, detailContent, item) {
 
 <h4>Content Integration</h4>
 <ul>
-<li><b>Placeholder System:</b> [inc], [image], [e_title] for dynamic content insertion</li>
+<li><b>Placeholder System:</b> /*inc/, /*image/, /*e_title/ for dynamic content insertion</li>
 <li><b>Multi-Source Assembly:</b> Combines spreadsheet data with HTML content files</li>
 <li><b>Contextual Processing:</b> Strips HTML tags for machine readability while preserving structure</li>
 </ul>
