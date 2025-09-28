@@ -540,15 +540,22 @@
               <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
                 <img src="img/logo/booz-allen-hamilton.png" alt="Booz Allen Hamilton" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/lockheed-martin-blue.png" alt="Lockheed Martin" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
-                <img src="img/logo/palantir.png" alt="Palantir" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/logo-salesforce2.png" alt="Salesforce" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
-                <img src="img/logo/aws.png" alt="AWS" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
                 <img src="img/logo/logo-dod.png" alt="Department of Defense" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
-                <img src="img/logo/databricks-short.png" alt="Databricks" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
-                <img src="img/logo/ibm.png" alt="IBM" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
-                <img src="img/logo/accenture.png" alt="Accenture" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
+                
               </div>
-              <p style="text-align: center; color: #6b7280; font-size: 12px; font-weight: 300; margin: 10px 0 5px 0;">Experience and training in cooperation with the organizations above</p>
+              <p style="text-align: center; color: #6b7280; font-size: 12px; font-weight: 300; margin: 10px 0 5px 0;">Experience in cooperation with the organizations above</p>
+              <div style="text-align: center; margin: 10px 0;">
+                <img src="img/logo/palantir.png" alt="Palantir" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
+                
+                <img src="img/logo/ibm.png" alt="IBM" style="height: 40px; width: auto; max-width: 120px; object-fit: contain; margin: 0 10px;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
+                <img src="img/logo/aws.png" alt="AWS" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
+                <img src="img/logo/databricks-short.png" alt="Databricks" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
+                <img src="img/logo/accenture.png" alt="Accenture" style="height: 40px; width: auto; max-width: 120px; object-fit: contain;" onerror="console.error('Failed to load:', this.src); this.style.display='none';" onload="console.log('Loaded:', this.src);">
+              
+              </div>
+              <p style="text-align: center; color: #6b7280; font-size: 12px; font-weight: 300; margin: 10px 0 5px 0;">Training in cooperation with the organizations above</p>
+              
             `
           }
         }
@@ -576,8 +583,8 @@
             const urlParams = new URLSearchParams(window.location.search)
             const idsParam = urlParams.get("ids")
             let filtered = data
-            // First filter out hidden items
-            filtered = filtered.filter((it) => !it.hide || it.hide !== "yes")
+            // First filter out hidden items and items with e_id 999
+            filtered = filtered.filter((it) => (!it.hide || it.hide !== "yes") && it.e_id !== 999 && it.e_id !== "999")
             
             if (idsParam) {
               const idsArr = idsParam.split(",").map((id) => id.trim())
@@ -691,10 +698,12 @@
       function renderDetail(itemId, backHash) {
         loadXLSX(DATA_URL)
           .then((data) => {
-            const itemIndex = data.findIndex(
+            // Filter out hidden items and items with e_id 999
+            const filtered = data.filter((it) => (!it.hide || it.hide !== "yes") && it.e_id !== 999 && it.e_id !== "999")
+            const itemIndex = filtered.findIndex(
               (x) => String(x.e_id).trim() === String(itemId).trim()
             )
-            const item = data[itemIndex]
+            const item = filtered[itemIndex]
             const content = document.getElementById("content")
             if (!item || (item.hide && item.hide === "yes")) {
               updatePageTitle("Not found")
@@ -779,11 +788,11 @@
             const overlayStyle = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.85);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:auto;`
                          const cardStyle = `max-width:1200px;width:95vw;height:85vh;box-shadow:0 8px 32px rgba(0,0,0,0.18);border-radius:18px;overflow:hidden;position:relative;background:#fff;display:flex;flex-direction:column;`
 
-            // Arrow navigation with looping
-            const prevIndex = itemIndex > 0 ? itemIndex - 1 : data.length - 1
-            const nextIndex = itemIndex < data.length - 1 ? itemIndex + 1 : 0
-            const prevId = data[prevIndex].e_id
-            const nextId = data[nextIndex].e_id
+            // Arrow navigation with looping (using filtered data)
+            const prevIndex = itemIndex > 0 ? itemIndex - 1 : filtered.length - 1
+            const nextIndex = itemIndex < filtered.length - 1 ? itemIndex + 1 : 0
+            const prevId = filtered[prevIndex].e_id
+            const nextId = filtered[nextIndex].e_id
 
                          content.innerHTML = `
                <div id="lightbox-overlay" style="${overlayStyle}">
