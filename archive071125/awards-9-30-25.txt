@@ -1,0 +1,48 @@
+AWARDS
+
+Gold
+
+01/21/2025
+
+Project Manager
+
+On the evening of January 15th, we needed very quick testing assistance for the Tele-EC application. Most of the Tele-EC testers were unavailable for after-hours testing and the CRM team was asked to assist. Thank you, Steve, for volunteering to help test the hotfix for an application you are not overly familiar with! Because of your assistance, we were able to complete testing in 2 environments to prep for the final round of testing next day. This fix would not have been possible on the timeline asked without your extensive after-hours assistance.
+
+###
+
+
+Silver
+
+Project Manager
+
+12/19/2024
+
+Just before the DTC blackout period for production deployments, an issue was found in production which required a fast follow release to correct the problem for our client. The QA team needed to work over the weekend to get testing completed on time and the Regression Heroes team was asked to own the testing of the feature. The Regression Heroes team stayed late Friday to complete testing and made themselves available for additional weekend testing if it was needed. The Regression Heroes team is best in class and exemplifies teamwork. Thank you for your dedication to our Veterans!
+
+###
+
+Bronze Award
+
+Project Manager
+
+08/30/2024
+
+Thank you for your dedication to our Veterans and VA Client. Your efforts the evening of August 20th ensured a quality release for Tele-EC and you are much appreciated!
+
+###
+
+06/24/2024
+
+Program Manager
+
+Thanks for supporting the hot fix over Memorial Day weekend.  Your dedication to the success of the project is noticed and appreciated.
+
+###
+
+
+Platinum
+
+Program Manager
+
+02/16/2023
+Steve - Congratulations on obtaining your Salesforce Service Cloud Certification.
