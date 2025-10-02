@@ -347,6 +347,23 @@
           max-width: 1200px;
         }
       }
+
+
+      /* Quote styles for cards */
+      .vspace-paragraph {
+        margin-bottom: 20px;
+      }
+      
+      .quote-begin {
+        color: #4169E1;
+        font-size: 1.2em;
+        margin-right: 8px;
+      }
+      
+      .blur {
+        filter: blur(3px);
+        user-select: none;
+      }
     </style>
 
     <!-- Vertical spacing for paragraphs and list items -->
@@ -818,7 +835,7 @@
                                    ${fullDate ? `<span>${fullDate}</span>` : ""}
                                    ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank" style="margin-left:8px;">verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                                  </div>
-                                 <h3 id="card-title-top">${item.e_title || ""}</h3>
+                                 <!-- <h3 id="card-title-top">${item.e_title || ""}</h3> -->
                                </div>
                                <div style="display:flex;align-items:center;gap:8px;">
                                  <div style="display:flex;flex-direction:column;align-items:center;">
@@ -857,7 +874,7 @@
                                ${fullDate ? `<span>${fullDate}</span>` : ""}
                                ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank" style="margin-left:8px;">verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                              </div>
-                             <h3 id="card-title-top">${item.e_title || ""}</h3>
+                             <!-- <h3 id="card-title-top">${item.e_title || ""}</h3> -->
                            </div>
                            <div style="display:flex;align-items:center;gap:8px;">
                              <div style="display:flex;flex-direction:column;align-items:center;">
@@ -1097,8 +1114,8 @@ onmouseout="this.style.transform='scale(1)'"
             }
           case "08":
             return {
-              icon: '<i class="fa fa-trophy" aria-hidden="true" title="Award"></i>',
-              title: "Award",
+              icon: '<i class="fa fa-trophy" aria-hidden="true" title="Awards"></i>',
+              title: "Awards",
             }
           case "09":
             return {
