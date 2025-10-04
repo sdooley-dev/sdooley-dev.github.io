@@ -1,0 +1,31 @@
+
+SQUARES awrd anson
+
+WRITE UP INNOVATION AWARD: SQUARES is a modernized eligibility tool that radically expands access to critical services for Veterans by empowering community organizations to determine a Veteran’s benefit eligibility—across federal, state, and grant programs—in one unified view. For the first time, community partners can confidently and quickly assess eligibility for programs such as homelessness prevention, mental health services, and other life-stabilizing support. This product meets Veterans where they are—not just within VA walls, but in the community systems that often serve as their first point of contact. Historically, navigating eligibility meant deciphering complex criteria tied to military service, compensation ratings, and healthcare status. SQUARES brings clarity to complexity and transforms eligibility determination from a bureaucratic hurdle into a seamless support mechanism. SQUARES exemplifies visionary leadership and human-centered modernization. The team led inclusive design sessions with frontline providers and Veteran-serving organizations to ensure the product met real-world needs. By integrating state benefit programs for the first time, the team broke through policy silos to deliver an enterprise solution with transformative potential. Technologically, SQUARES leverages a modern UI and API-driven backend to present eligibility insights in real-time—driving smarter referrals and accelerating access to care. Change management was core to this evolution: the team brought together policymakers, engineers, and advocates to co-create a product that reflects both regulatory precision and community urgency. SQUARES isn’t just a tool—it’s a bridge between systems, making sure no Veteran falls through the cracks simply because support lived in separate silos. 
+
+
+#################
+
+73% YoY Reduction in PROD Defects by our Team Jan 15, 2025
+
+Informed by project lead that our overall QA testing team was responsible for a 73% YoY reduction in PROD defects which helped change the client perception in a positive way
+
+###
+
+#####
+
+Thank you Steve. This was made possible by your hard work.
+~ Feedback made regarding my contribution toward the POC for the Navy Recruitment project
+~ Project Lead | Navy Basic Enlistment Eligibility Reqs. (BEERS)
+
+###
+
+ServiceNow BAH Platform Onboarding May 8, 2024
+
+Recognized as an official ServiceNow (SNOW) BAH member within the ServiceNow Partner Portal. Required ServiceNow-specific training and tasks
+
+###
+
+ Certs: Network Systems
+Inter-networking with TCP/IP Global Knowledge Network, 4+ years ago
+TCP/IP fundamentals
