@@ -20,6 +20,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <!-- Preload ES module for faster and more reliable loading -->
+    <link rel="modulepreload" href="./cards.js?v=20240115q" />
 
     <style>
       /* Layout */
@@ -394,12 +396,35 @@
     <!-- Footer mount -->
     <div id="footer-container"></div>
 
+    <script>
+      // Register a service worker to cache core assets and provide network fallback
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./sw.js').catch(console.warn)
+        })
+      }
+    </script>
+
     <script type="module">
-      // import { buildCard, getEventTypeInfo } from './cards.js';
-      import { buildCard } from "./cards.js?v=20240115q"
-      
-      // Import the getTier1Icon function for lightbox icons
-      import { getTier1Icon } from "./cards.js?v=20240115q"
+      // Robust dynamic import with retries and cache-busting
+      async function importWithRetry(url, attempts = 3) {
+        let lastError
+        for (let i = 0; i < attempts; i++) {
+          const cacheBust = i === 0 ? '' : (url.includes('?') ? `&cb=${Date.now()}` : `?cb=${Date.now()}`)
+          try {
+            const mod = await import(url + cacheBust)
+            return mod
+          } catch (e) {
+            lastError = e
+            await new Promise(r => setTimeout(r, 300 * (i + 1)))
+          }
+        }
+        throw lastError
+      }
+      const { buildCard, getTier1Icon } = await importWithRetry('./cards.js?v=20240115q').catch((err) => {
+        console.error('Module import failed after retries:', err)
+        throw err
+      })
 
       // Add error handling for module loading
       window.addEventListener('error', function(e) {
