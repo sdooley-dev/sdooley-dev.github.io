@@ -110,7 +110,9 @@ export function buildCard(item, backHash=""){
   // Sponsor pill (left) + date (right)
   const sponsor = (item.e_sponsoring && item.e_sponsoring !== "N/A") ? escapeHtml(item.e_sponsoring) : "";
   const dateLabel = displayDateShort(item.e_date);
-  const typeIcon = getEventTypeInfo(item.e_type || "").icon;
+  const typeInfo = getEventTypeInfo(item.e_type || "");
+  const typeIcon = typeInfo.icon;
+  const typeLabel = typeInfo.title;
 
   const sponsorDisplay = sponsor === "Booz Allen" 
     ? `<img src="img/logo/booz-allen-hamilton.png" alt="Booz Allen Hamilton" title="${sponsor}" style="height: 20px; width: auto; vertical-align: middle; margin: 0; padding: 0;">`
@@ -136,12 +138,18 @@ export function buildCard(item, backHash=""){
       ? `<span class="sponsor-badge"><span class="sponsor-text">${sponsor}</span></span>`
       : "";
 
-  const metaTop = (sponsorBadge || dateLabel)
-    ? `<div class="meta-top">
-         <span class="meta-left">${sponsorBadge}</span>
+  const sponsorLine = sponsorBadge ? `<span style="display:block;">${sponsorBadge}</span>` : '';
+  const typeLine = `<span style="display:block;">${typeIcon} <span style="margin-left:6px;">${typeLabel || ''}</span></span>`;
+  const nextBtn = `<a href="${link}" aria-label="Open details" title="More info on ${safeTitle}" style="background:#ffffff;border:1px solid #6b7280;border-radius:50%;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s ease;vertical-align:middle;text-decoration:none;"
+                 onmouseover="this.style.background='#10b981';this.style.border='#10b981';this.querySelector('i').style.color='#ffffff'"
+                 onmouseout="this.style.background='#ffffff';this.style.border='1px solid #6b7280';this.querySelector('i').style.color='#374151'">
+                <i class="fa fa-chevron-right" style="font-size:1.2em;color:#374151;transition:color 0.2s ease;"></i>
+              </a>`;
+  const metaTop = `<div class="meta-top">
+         <span class="meta-left">${sponsorLine}${typeLine}</span>
+         <span class="meta-right">${nextBtn}</span>
        </div>
-               ${dateLabel ? `<div class="meta-date">${typeIcon} ${dateLabel} <span style="margin-left: 8px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${(item.e_id !== undefined && item.e_id !== null) ? item.e_id : ""}</span></div>` : ""}`
-    : "";
+       ${dateLabel ? `<div class="meta-date">${dateLabel} <span style="margin-left: 8px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${(item.e_id !== undefined && item.e_id !== null) ? item.e_id : ""}</span></div>` : ""}`;
 
   const cardHtml = `
     <div class="content-container" style="margin-top: 2px;">
@@ -152,9 +160,7 @@ export function buildCard(item, backHash=""){
         <div class="card-body">
           <div class="event-content">
             ${metaTop}
-            <div class="event-description" id="card-desc-${item.e_id}">
-              ${cardDesc}${ cardIsLong ? ` <a href="${link}" class="more-inline">more →</a>` : "" }
-            </div>
+          <div class="event-description" id="card-desc-${item.e_id}"></div>
           </div>
           <div class="card-foot">
           </div>
@@ -163,38 +169,7 @@ export function buildCard(item, backHash=""){
     </div>
   `;
 
-  // If this is an [inc] item, load the content after the card is rendered
-  if (fullDesc === "[inc]") {
-    setTimeout(() => {
-      const cardDescElement = document.getElementById(`card-desc-${item.e_id}`);
-      if (cardDescElement) {
-        const incFile = `drs/inc/html/${item.e_id}.html`;
-        fetch(incFile)
-          .then(response => {
-            if (response.ok) {
-              return response.text();
-            } else {
-              throw new Error(`HTTP ${response.status}`);
-            }
-          })
-          .then(htmlContent => {
-            // Truncate the HTML content to ~60 characters for the card
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = htmlContent;
-            const textContent = tempDiv.textContent || tempDiv.innerText || '';
-            const truncatedText = textContent.length > maxChars 
-              ? textContent.slice(0, maxChars).trim().replace(/[\\.,;:!?-]+$/, "") + "…"
-              : textContent;
-            
-            cardDescElement.innerHTML = `${truncatedText} <a href="${link}" class="more-inline">more →</a>`;
-          })
-          .catch(error => {
-            console.error(`Error loading include file ${incFile}:`, error);
-            cardDescElement.innerHTML = `[Content unavailable] <a href="${link}" class="more-inline">more →</a>`;
-          });
-      }
-    }, 0);
-  }
+  // Card description intentionally shows only a compact "more" link.
 
   return cardHtml;
 }
