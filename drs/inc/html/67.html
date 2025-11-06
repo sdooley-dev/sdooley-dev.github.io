@@ -3,7 +3,7 @@
 
 [image-67.png]
 
-<p><b>What "RAG" means (quick primer):</b> RAG is an LLM pattern where the app first <b>retrieves</b> relevant text from a knowledge base and then <b>generates</b> the answer using those passages as context. This reduces hallucinations and keeps answers current without retraining the model.</p>
+<p><b>What "RAG" means:</b> RAG is an LLM pattern where the app first <b>retrieves</b> relevant text from a knowledge base and then <b>generates</b> the answer using those passages as context. This reduces hallucinations and keeps answers current without retraining the model.</p>
 
 <p><b>My implementation:</b></p>
 <ul>
@@ -13,16 +13,16 @@
 <li><b>Guardrails and ops:</b> Citation-required prompting, max-context limits, API usage/rate-limit handling, scheduled re-index on repo changes, and retrieval hit/miss logging.</li>
 </ul>
 
-<p><b>Impact (examples):</b> Reduced unsupported claims via source-grounding with citations; delivered interactive answers in seconds versus manual repo search; indexed all targeted code and docs with filterable scope.</p>
+<p><b>Impact:</b> Reduced unsupported claims via source-grounding with citations; delivered interactive answers in seconds versus manual repo search; indexed all targeted code and docs with filterable scope.</p>
 
-<p><b>Resume-ready bullets (choose a few):</b></p>
+<p><b>Outcomes</b></p>
 <ul>
 <li>Integrated a third-party AI platform with OpenAI's ChatGPT API to deliver a RAG app over my GitHub repository, enabling natural-language queries with line-level citations.</li>
 <li>Owned the end-to-end retrieval stack (repo sync, parsing and chunking, embeddings, semantic search, reranking) and implemented citation-required prompts for grounded answers.</li>
 <li>Operationalized re-indexing, evaluation questions, and observability for retrieval hit rate, latency, and answer faithfulness.</li>
 </ul>
 
-<p><b>Architecture (at a glance):</b></p>
+<p><b>Architecture:</b></p>
 <ul>
 <li><b>Ingest (third-party):</b> GitHub connector → parse → chunk → attach metadata.</li>
 <li><b>Index (third-party):</b> Embed chunks → upsert to vector index with filters.</li>
@@ -41,11 +41,12 @@
 <li><b>Grounding and citations:</b> Answers reference retrieved sources to remain verifiable and reduce hallucinations.</li>
 </ul>
 
-<p><b>Tech choices (illustrative):</b> Third-party platform for data connectors, embeddings, vector index, and UI; OpenAI API (ChatGPT and embeddings) for language understanding and generation; scheduled re-index on repo updates and a lightweight evaluation set with expected file hits.</p>
+<p><b>Tech choices:</b> Third-party platform for data connectors, embeddings, vector index, and UI; OpenAI API (ChatGPT and embeddings) for language understanding and generation; scheduled re-index on repo updates and a lightweight evaluation set with expected file hits.</p>
 
 <p><b>Evaluation and quality:</b> Curated "golden" questions mapped to expected files and tracked retrieval, answer faithfulness and whether cited sources matched what the model read.</p>
 
 <p><b>Security and privacy:</b> Scoped API keys, repository/path whitelists, sanitized prompts, response restriction to retrieved context, and minimal analytics logging.</p>
 
 <div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
+
 
