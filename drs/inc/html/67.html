@@ -5,7 +5,7 @@
 
 <p><b>What "RAG" means (quick primer):</b> RAG is an LLM pattern where the app first <b>retrieves</b> relevant text from a knowledge base and then <b>generates</b> the answer using those passages as context. This reduces hallucinations and keeps answers current without retraining the model.</p>
 
-<p><b>My implementation (concise):</b></p>
+<p><b>My implementation:</b></p>
 <ul>
 <li><b>Third-party platform setup:</b> Configured a GitHub connector to sync the repo; enabled automatic parsing, chunking, and metadata capture (file path, language, line ranges, commit hash).</li>
 <li><b>Embeddings and index:</b> Used the platform's embedding service and vector index; tuned chunk size/overlap and added path or file-type filters.</li>
@@ -48,3 +48,4 @@
 <p><b>Security and privacy:</b> Scoped API keys, repository/path whitelists, sanitized prompts, response restriction to retrieved context, and minimal analytics logging.</p>
 
 <div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
+
