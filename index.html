@@ -595,6 +595,75 @@
         return { mode: "list", term: formatForDisplay(hash) }
       }
 
+      // Typing hero initializer (inlined so it survives hash/modal changes)
+      function startTypingHero() {
+        if (window.__typingHeroRunning) {
+          window.__typingHeroUpdateEl?.(document.getElementById("typing-changing-word"))
+          return
+        }
+        window.__typingHeroRunning = true
+
+        const words = [
+          "artificial intelligence",
+          "chatbot automation",
+          "data engineering",
+          "data modeling",
+          "enterprise systems",
+          "knowledge engineering",
+          "palantir foundry",
+          "prompt engineering",
+        ]
+
+        let el = document.getElementById("typing-changing-word")
+        let wordIndex = 0
+        let charIndex = 0
+        let isDeleting = false
+
+        const typingSpeed = 100
+        const deletingSpeed = 60
+        const pauseAfterWord = 1200
+
+        function type() {
+          if (!el || !document.body.contains(el)) {
+            el = document.getElementById("typing-changing-word")
+            if (!el) {
+              setTimeout(type, typingSpeed)
+              return
+            }
+          }
+
+          const currentWord = words[wordIndex]
+
+          if (!isDeleting) {
+            el.textContent = currentWord.substring(0, charIndex + 1)
+            charIndex++
+            if (charIndex === currentWord.length) {
+              setTimeout(() => {
+                isDeleting = true
+                type()
+              }, pauseAfterWord)
+              return
+            }
+          } else {
+            el.textContent = currentWord.substring(0, charIndex - 1)
+            charIndex--
+            if (charIndex === 0) {
+              isDeleting = false
+              wordIndex = (wordIndex + 1) % words.length
+            }
+          }
+
+          const delay = isDeleting ? deletingSpeed : typingSpeed
+          setTimeout(type, delay)
+        }
+
+        window.__typingHeroUpdateEl = function (newEl) {
+          if (newEl) el = newEl
+        }
+
+        type()
+      }
+
       function updatePageTitle(text, fallback) {
           const el = document.getElementById("page-title")
           const normalized = (text || "").trim()
@@ -639,14 +708,9 @@
               
             `
             // Initialize typing animation after HTML is inserted
-            // Load and execute typing script dynamically so element exists when script runs
             setTimeout(() => {
               const typingEl = document.getElementById("typing-changing-word");
-              if (typingEl) {
-                const script = document.createElement('script');
-                script.src = 'drs/scripts/typing-120725.js';
-                document.head.appendChild(script);
-              }
+              if (typingEl) startTypingHero();
             }, 0);
           }
         }
