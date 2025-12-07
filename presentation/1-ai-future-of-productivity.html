@@ -11,8 +11,8 @@
     />
 
     <!-- your site CSS (optional) -->
-    <link rel="stylesheet" href="drs/css/style.css" />
-    <link rel="stylesheet" href="drs/css/style2.css" />
+    <link rel="stylesheet" href="../drs/css/style.css" />
+    <link rel="stylesheet" href="../drs/css/style2.css" />
 
     <!-- Font Awesome + SheetJS -->
     <link
@@ -493,10 +493,10 @@ lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
     </script>
 
     <script>
-      /* ---- Header/Footer loader from ./drs/inc/ ---- */
+      /* ---- Header/Footer loader from ../drs/inc/ ---- */
       Promise.all([
-        fetch("./drs/inc/header.html").then((r) => (r.ok ? r.text() : "")),
-        fetch("./drs/inc/footer.html").then((r) => (r.ok ? r.text() : "")),
+        fetch("../drs/inc/header.html").then((r) => (r.ok ? r.text() : "")),
+        fetch("../drs/inc/footer.html").then((r) => (r.ok ? r.text() : "")),
       ])
         .then(([headerHtml, footerHtml]) => {
           const headerEl = document.getElementById("header-container")
@@ -538,5 +538,3 @@ lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
   </body>
 </html>
-
-
