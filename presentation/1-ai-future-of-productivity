@@ -1,1 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Steve Dooley</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://sdooley.org/images/favicon/favicon.ico"
+    />
+
+    <!-- your site CSS (optional) -->
+    <link rel="stylesheet" href="drs/css/style.css" />
+    <link rel="stylesheet" href="drs/css/style2.css" />
+
+    <!-- Font Awesome + SheetJS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <!-- Preload ES module for faster and more reliable loading -->
+    <link rel="modulepreload" href="./cards.js?v=20240115q" />
+
+    <style>
+
+    /* Typing Hero Styles BEGIN */
+            .typing-hero {
+                font-size: 1.9rem;
+                font-weight: 700;
+                color: #333333;
+              }
+      
+              .typing-changing-word {
+                color: #ff8a65; /* orange-ish highlight */
+              }
+      
+              /* Blinking cursor */
+              .typing-cursor {
+                display: inline-block;
+                margin-left: 1px;
+                animation: blink 0.9s steps(1) infinite;
+                color: #ff8a65;
+              }
+      
+              @keyframes blink {
+                0%, 50% { opacity: 1; }
+                50.01%, 100% { opacity: 0; }
+              }
+              /* Typing Hero Styles END */
+
+      /* Layout */
+      #header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+      }
+      body {
+        padding-top: 120px;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      #page-title {
+        margin-top: 20px;
+        font-size: 0.8em;
+        color: #0f172a;
+        font-weight: bold;
+        padding-left: 10px;
+        margin-bottom: 0px;
+        text-align: center;
+      }
+
+      /* Grid */
+      #content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 16px 40px;
+      }
+      #results {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #results ul {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 32px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      #results li {
+        margin: 0 !important;
+        /* border: 1px solid #3b82f6 !important; */
+        border: 0 !important;
+        padding: 0 !important;
+      }
+      #results h2 {
+        margin: 18px 6px 8px;
+        color: #0f172a;
+      }
+      #results h2 i {
+        color: #6b7280 !important;
+      }
+
+
+
+      /* Card shell */
+      .content032825 {
+        border: 2px solid transparent;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+          0 8px 16px rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.3s ease;
+        height: 380px; /* equal height; trimmed bottom whitespace */
+        display: flex;
+        flex-direction: column;
+        min-height: 380px;
+      }
+      .content032825:hover {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06),
+          0 10px 22px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+        border-color: #3b82f6;
+      }
+
+      /* Taller dark header so icon/title never clip */
+      .card-media {
+        position: relative;
+        height: 110px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 10px;
+        background: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .card-media:hover {
+        text-decoration: none;
+      }
+
+      .media-title-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 5px; /* reduced top padding, increased bottom padding */
+        text-align: center;
+        color: #e5e7eb;
+        font-weight: 800;
+        font-size: 1.05rem;
+      }
+
+      /* category icon + title stack inside the fallback header */
+      .tier1-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        height: 100%;
+        justify-content: center;
+      }
+      .tier1-stack .tier1-icon {
+        display: block;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .tier1-stack .tier1-title {
+        display: block;
+        line-height: 1.2;
+        max-height: 2.4em; /* 2 lines max */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-wrap: break-word;
+        text-align: center;
+      }
+      .tier1-stack .tier1-icon i {
+        font-size: 28px;
+        color: #e5e7eb;
+        opacity: 0.95;
+      }
+
+      /* Body */
+      .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 0 18px 10px;
+        min-height: 0;
+      }
+      .event-content {
+        margin-top: 8px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+       #card-title-top h3 {
+         padding: 20px 0 15px 0;
+         margin: 0;
+         color: #000000;
+       }
+
+             /* Sponsor/date row (above desc) */
+       .meta-top {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         gap: 8px;
+         min-height: 28px;
+         width: 100%;
+         overflow: hidden;
+       }
+       .meta-left {
+         flex: 1;
+         min-width: 0;
+         overflow: hidden;
+       }
+                            .sponsor-badge {
+           display: inline-flex;
+           align-items: center;
+           gap: 6px;
+           background: #111827;
+           color: #e5e7eb;
+           padding: 4px 10px;
+           border-radius: 999px;
+           font-size: 0.85rem;
+           font-weight: 600;
+           max-width: 100%;
+           white-space: nowrap;
+           overflow: hidden;
+           text-overflow: ellipsis;
+         }
+      .sponsor-badge i {
+        color: #e5e7eb !important;
+      }
+      .sponsor-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+             .meta-right {
+         color: #555;
+         font-size: 0.9rem;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+       }
+       .meta-date {
+         color: #555;
+         font-size: 0.9rem;
+         margin-top: 4px;
+         margin-bottom: 8px;
+       }
+
+      /* Description (60 chars + inline more) */
+      .event-description {
+        color: #374151;
+        line-height: 1.45;
+        overflow: hidden;
+      }
+      .more-inline {
+        color: #4169e1;
+        text-decoration: none;
+      }
+      .more-inline:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer: ID bottom-left */
+      .card-foot {
+        margin-top: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 0.75rem;
+        color: #9ca3af;
+      }
+      .card-foot .eid {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      /* Detail page */
+      .detail-wrapper {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 16px 40px;
+      }
+      .detail-card {
+        border: 2px solid #3b82f6;
+        border-radius: 16px;
+        padding: 0 0 20px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+          0 8px 16px rgba(0, 0, 0, 0.06);
+        background: #fff;
+        overflow: hidden;
+      }
+      .detail-media {
+        position: relative;
+        height: 100px;
+        background: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .detail-media.has-image {
+        height: 80px;
+      } /* detail: 80px if image present */
+      .detail-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .detail-media .media-title-fallback {
+        color: #e5e7eb;
+        font-weight: 800;
+        font-size: 1.5rem;
+      } /* responsive fallback title */
+      
+      /* Mobile responsive title sizing */
+      @media (max-width: 768px) {
+        .detail-media .media-title-fallback {
+          font-size: 1.2rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .detail-media .media-title-fallback {
+          font-size: 1rem;
+        }
+      }
+      .detail-header {
+        padding: 8px 24px 8px;
+      } /* compact; no H2 title below */
+      .detail-meta div {
+        color: #666;
+        margin-top: 4px;
+      }
+      .back-row {
+        margin: 12px 0 12px;
+        padding: 0 24px;
+      }
+      .back-row a {
+        color: #4169e1;
+        text-decoration: none;
+      }
+      .verify-link {
+        color: #666;
+        font-size: 0.95em;
+        margin-left: 6px;
+      }
+      .section-divider {
+        height: 1px;
+        background: #eee;
+        margin: 0px 24px 5px 24px;
+      }
+
+      @media (min-width: 1280px) {
+        #content {
+          max-width: 1200px;
+        }
+      }
+
+
+      /* Quote styles for cards */
+      .vspace-paragraph {
+        margin-bottom: 20px;
+      }
+      
+      .quote-begin {
+        color: #4169E1;
+        font-size: 1.2em;
+        margin-right: 8px;
+      }
+      
+      .blur {
+        filter: blur(3px);
+        user-select: none;
+      }
+    </style>
+
+    <!-- Vertical spacing for paragraphs and list items -->
+    <style>
+      p, li {
+        margin-bottom: 16px;
+      }
+      
+      /* Ensure last elements don't have extra bottom margin */
+      p:last-child, li:last-child {
+        margin-bottom: 0;
+      }
+      
+      /* Nested lists should have consistent spacing */
+      ul, ol {
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header mount -->
+    <div id="header-container"></div>
+
+    <!-- Your custom content goes here -->
+    <div id="content" style="max-width: 1100px; margin: 0 auto; padding: 0 16px 40px;">
+
+
+      <!-- Add your custom content here ############################### -->
+      <h1>Your Content Here</h1>
+      <p>Replace this with your own content.</p>
+
+test 120825
+
+<hr/>
+
+<!-- Google Slides Embed -->
+<style>
+  .iframe-container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-bottom: 59.27%; /* Aspect ratio: 569/960 = 0.5927 (56.25% for 16:9, but this is custom) */
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<div class="iframe-container">
+  <iframe 
+    src="https://docs.google.com/presentation/d/1hjaZryBhfGdtLOCyyCKc-R9A2NN1yUBN1eDdDa5sOTM/embed?start=false&loop=false&delayms=3000"
+    frameborder="0"
+    allowfullscreen="true"
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true">
+  </iframe>
+</div>
+
+<div class="iframe-container" style="max-width: 560px; margin: 0 auto;">
+<iframe src="https://www.youtube.com/embed/LLe2ghr6Oug?si=zQ5mEijuKKIQHiPV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+
+lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<p><div class="section-divider"></div></p>
+
+<!--
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LLe2ghr6Oug?si=zQ5mEijuKKIQHiPV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+#########################
+-->
+
+
+
+    </div>
+
+    <!-- Footer mount -->
+    <div id="footer-container"></div>
+
+    <script>
+      // Register a service worker to cache core assets and provide network fallback
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./sw.js').catch(console.warn)
+        })
+      }
+    </script>
+
+    <script>
+      /* ---- Header/Footer loader from ./drs/inc/ ---- */
+      Promise.all([
+        fetch("./drs/inc/header.html").then((r) => (r.ok ? r.text() : "")),
+        fetch("./drs/inc/footer.html").then((r) => (r.ok ? r.text() : "")),
+      ])
+        .then(([headerHtml, footerHtml]) => {
+          const headerEl = document.getElementById("header-container")
+          const footerEl = document.getElementById("footer-container")
+          if (headerEl) headerEl.innerHTML = headerHtml
+          if (footerEl) footerEl.innerHTML = footerHtml
+
+          // Optional mobile menu wiring if header provides those elements:
+          try {
+            const overlay = document.querySelector(".mobile-menu-overlay")
+            const body = document.body
+            document
+              .querySelector(".mobile-menu-toggle")
+              ?.addEventListener("click", () => {
+                overlay?.classList.add("active")
+                body.classList.add("menu-open")
+              })
+            const close = () => {
+              overlay?.classList.remove("active")
+              body.classList.remove("menu-open")
+            }
+            document
+              .querySelector(".mobile-menu-close")
+              ?.addEventListener("click", close)
+            document
+              .querySelector(".mobile-menu-back-btn")
+              ?.addEventListener("click", close)
+            document
+              .querySelectorAll(".mobile-nav a")
+              ?.forEach((a) => a.addEventListener("click", close))
+          } catch (e) {}
+        })
+        .catch(console.error)
+    </script>
+
+    <!-- 100% privacy-first analytics simpleanalytics.com 100525 -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
+
+  </body>
+</html>
 
