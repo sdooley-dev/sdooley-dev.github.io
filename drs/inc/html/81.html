@@ -1,14 +1,35 @@
-test 120725
+test 120825
 
 <hr/>
 
 <!-- Google Slides Embed -->
-<iframe 
+<style>
+  .iframe-container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-bottom: 59.27%; /* Aspect ratio: 569/960 = 0.5927 (56.25% for 16:9, but this is custom) */
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<div class="iframe-container">
+  <iframe 
     src="https://docs.google.com/presentation/d/1hjaZryBhfGdtLOCyyCKc-R9A2NN1yUBN1eDdDa5sOTM/embed?start=false&loop=false&delayms=3000"
     frameborder="0"
-    width="960"
-    height="569"
     allowfullscreen="true"
     mozallowfullscreen="true"
     webkitallowfullscreen="true">
-</iframe>
+  </iframe>
+</div>
