@@ -595,16 +595,18 @@
         return { mode: "list", term: formatForDisplay(hash) }
       }
 
-                          function updatePageTitle(text, fallback) {
+      function updatePageTitle(text, fallback) {
           const el = document.getElementById("page-title")
-          const t = text && text.trim() ? text : fallback || ""
+          const normalized = (text || "").trim()
+          const hasRealTitle = normalized && normalized !== "/"
+          const t = hasRealTitle ? normalized : (fallback || "")
           console.log('updatePageTitle called with:', { text, fallback, t })
-          if (text && text.trim()) {
+          if (hasRealTitle) {
             // There's a specific search term, show just the title
             document.title = `${t} - Steve Dooley, MBA`
             el.innerHTML = `<h3>${t}</h3>`
           } else {
-            // No search term, show main title with logos
+            // No search term (or only a hash/#/), show main title with logos + typing hero
             document.title = "Steve Dooley, MBA"
             el.innerHTML = `
               <!-- <h3>Data Engineering/AI <span style="color: #9ca3af; font-weight: 300;">||</span> Cloud/Enterprise Platforms</h3> -->
@@ -904,7 +906,7 @@
                                  <div style="margin-bottom: 8px; color: #0f172a;">${getEventTypeInfo(item.e_type).icon} ${getEventTypeInfo(item.e_type).title}</div>
                                  ${sponsor ? `<div>${sponsorDisplay}</div>` : ""}
                                  <div style="margin-top:4px;">
-                                   ${fullDate ? `<span>${fullDate}</span>` : ""}
+                                   <!-- ${fullDate ? `<span>${fullDate}</span>` : ""} -->
                                    ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank" style="margin-left:8px;">verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                                  </div>
                                  <!-- <h3 id="card-title-top">${item.e_title || ""}</h3> -->
@@ -930,8 +932,8 @@
                          <div class="detail-body" style="padding: 0 24px; flex: 1; overflow-y: auto;" id="detail-content">
                            ${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}
                            ${(item.e_id !== undefined && item.e_id !== null) ? `<div style="margin-top: 12px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${item.e_id}</div>` : ""}
+                           ${tagLinks ? `<div class="detail-tags" style="padding: 8px 0 0 0;">${tagLinks}</div>` : ""}
                          </div>
-                         ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
                        </div>
                      </div>
                    ` : `
@@ -943,7 +945,7 @@
                              <div style="margin-bottom: 8px; color: #0f172a;">${getEventTypeInfo(item.e_type).icon} ${getEventTypeInfo(item.e_type).title}</div>
                              ${sponsor ? `<div>${sponsorDisplay}</div>` : ""}
                              <div style="margin-top:4px;">
-                               ${fullDate ? `<span>${fullDate}</span>` : ""}
+                               <!-- ${fullDate ? `<span>${fullDate}</span>` : ""} -->
                                ${item.e_url !== "N/A" ? `<a class="verify-link" href="${item.e_url}" target="_blank" style="margin-left:8px;">verify <i class="fa fa-external-link" aria-hidden="true" style="font-size: 0.9em; opacity: 0.7;"></i></a>` : ""}
                              </div>
                              <!-- <h3 id="card-title-top">${item.e_title || ""}</h3> -->
@@ -969,8 +971,8 @@
                      <div class="detail-body" style="padding: 0 24px; flex: 1; overflow-y: auto;" id="detail-content">
                        ${item.e_desc && item.e_desc !== "N/A" ? item.e_desc : ""}
                        ${(item.e_id !== undefined && item.e_id !== null) ? `<div style="margin-top: 12px; color: white; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem;">${item.e_id}</div>` : ""}
+                       ${tagLinks ? `<div class="detail-tags" style="padding: 8px 0 0 0;">${tagLinks}</div>` : ""}
                      </div>
-                     ${tagLinks ? `<div class="detail-tags" style="padding: 0 24px;">${tagLinks}</div>` : ""}
                    `}
                  </div>
                </div>
