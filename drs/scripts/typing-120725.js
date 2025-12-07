@@ -1,4 +1,5 @@
-﻿(function() {
+/*
+(function() {
   // Prevent duplicate init when script is injected multiple times
   if (window.__typingHeroRunning) {
     window.__typingHeroUpdateEl?.(document.getElementById('typing-changing-word'));
@@ -70,3 +71,6 @@
 
   type();
 })();
+
+*/
+
