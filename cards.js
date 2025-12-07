@@ -162,8 +162,6 @@ export function buildCard(item, backHash=""){
             ${metaTop}
           <div class="event-description" id="card-desc-${item.e_id}"></div>
           </div>
-          <div class="card-foot">
-          </div>
         </div>
       </div>
     </div>
