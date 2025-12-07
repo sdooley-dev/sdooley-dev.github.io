@@ -24,6 +24,32 @@
     <link rel="modulepreload" href="./cards.js?v=20240115q" />
 
     <style>
+
+    /* Typing Hero Styles BEGIN */
+            .typing-hero {
+                font-size: 3rem;
+                font-weight: 700;
+                color: #333333;
+              }
+      
+              .typing-changing-word {
+                color: #ff8a65; /* orange-ish highlight */
+              }
+      
+              /* Blinking cursor */
+              .typing-cursor {
+                display: inline-block;
+                margin-left: 2px;
+                animation: blink 0.9s steps(1) infinite;
+                color: #ff8a65;
+              }
+      
+              @keyframes blink {
+                0%, 50% { opacity: 1; }
+                50.01%, 100% { opacity: 0; }
+              }
+              /* Typing Hero Styles END */
+
       /* Layout */
       #header-container {
         position: fixed;
