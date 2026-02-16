@@ -1,8 +1,35 @@
-<p>Completed end-to-end enhancements to a logic-driven knowledge-analysis plugin, including Data Mapper sorting to automatically select the most recent article version by published date.</p>
+<h2>Building a Smarter Knowledge-Analysis Plugin: From Data Ingestion to AI-Driven Quality Controls</h2>
 
+<p>Delivering meaningful improvements to a production system often means working across every layer of the stack, from how data enters the pipeline to how insights are presented to the end user. This post walks through a series of end-to-end enhancements I made to a logic-driven knowledge-analysis plugin built within Moveworks Agent Studio, integrated with ServiceNow. Working primarily in YAML to define agent logic, data mappings, and workflow configurations within Agent Studio, I drove improvements across data handling, content processing, AI evaluation, and UI design.</p>
+
+<h2>Smarter Data Selection with Automated Version Resolution</h2>
+
+<p>One of the first challenges I tackled was ensuring the plugin always operated on the most current content. Within Agent Studio's YAML-based configuration, I enhanced the Data Mapper with sorting logic that automatically identifies and selects the most recently published version of a ServiceNow knowledge article based on its published date. This eliminated the risk of stale or duplicate content being analyzed and removed the need for manual version selection, a small but critical improvement that strengthened the reliability of every downstream operation.</p>
+
+<h2>Hardening Content Ingestion and Analytics</h2>
+
+<p>Accurate AI evaluation depends entirely on the quality of the input it receives. I identified and resolved a core issue in the content ingestion pipeline: the Title and Body fields were being processed in isolation, which fragmented the context available to the AI engine. By concatenating these fields into a single unified input and stripping out residual HTML markup, I ensured the AI received clean, semantically complete text for evaluation.</p>
+
+<p>Beyond the content itself, I hardened the plugin's JSON and data mapping layer within the Agent Studio YAML workflow definitions. This included resolving edge cases around complex nested keys, such as author.email, that were silently failing or producing incomplete metadata in the UI. Debugging these issues required careful attention to how Agent Studio interprets dot-notation paths in YAML mappings when pulling data from ServiceNow. These fixes established a more reliable data contract between the backend processing layer and the front-end presentation, ensuring that metadata like authorship and publication details flows consistently and accurately to the user interface.</p>
+
+<h2>Elevating AI Output with Strict Quality Controls</h2>
+
+<p>With clean data flowing into the system, I turned my attention to the quality and consistency of what the AI produced. I implemented strict scoring and formatting rules to standardize how the AI evaluates and grades content. As part of this effort, I built a generated 10-point visual score bar that gives users an immediate, intuitive read on content quality at a glance.</p>
+
+<p>On the presentation side, I standardized the UI by introducing Markdown-based headers and content tiles, creating a consistent visual language across the plugin's output surfaces. I also architected a compound-action design pattern within Agent Studio's YAML framework to support a future "Rewrite Article" workflow trigger, laying the groundwork for users to move seamlessly from content evaluation to AI-assisted revision in a single interaction.</p>
+
+<h2>Looking Ahead</h2>
+
+<p>These enhancements collectively transformed the plugin from a functional prototype into a more resilient, user-friendly tool. By tightening every link in the chain, from data selection and ingestion, through AI processing, to UI presentation, the system now delivers faster, more accurate, and more actionable insights. The compound-action framework opens the door to even richer automation workflows in future iterations.</p>
+
+<div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
+
+
+<!-- 
+<p>Completed end-to-end enhancements to a logic-driven knowledge-analysis plugin, including Data Mapper sorting to automatically select the most recent article version by published date.</p>
 
 <p>Fixed core content ingestion and analytics by concatenating Title + Body, stripping HTML for accurate AI evaluation, and hardening JSON/data mappings (including complex keys like author.email) to ensure metadata flows reliably to the UI.</p>
 
 <p>Refined AI output quality controls by implementing strict scoring/formatting rules and a generated 10-point visual score bar, plus standardized Markdown-based UI headers/tiles and a compound-action design for a future "Rewrite Article" workflow trigger.</p>
+-->
 
-<div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
