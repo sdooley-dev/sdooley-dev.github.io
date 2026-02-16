@@ -1,0 +1,93 @@
+<h2>Building an AI-Powered GitHub Deployment Workflow with Claude Code</h2>
+
+<p>Manually managing file updates across a GitHub Pages portfolio site can be repetitive and error-prone, especially when the same sequence of steps needs to happen daily. This post walks through how I built a fully automated deployment workflow using Claude Code (Opus 4.6) as an AI-driven CLI assistant, turning a multi-step manual process into a streamlined, repeatable pipeline that handles file downloads, content editing, image optimization, and GitHub commits - all from a single conversational interface.</p>
+
+[image-83.png]
+
+<h2>Designing the Workflow with a CLAUDE.md Instruction File</h2>
+
+<p>The foundation of this workflow is a CLAUDE.md file - a project-level instruction set that Claude Code reads at the start of every session. Instead of re-explaining the process each time, I documented every step, command, and convention directly in this file. Claude Code treats it as persistent context, so it knows the repo location, file paths, commit message format, and even which applications to launch locally. This approach means the workflow is fully reproducible across sessions without any ramp-up time.</p>
+
+<p>The CLAUDE.md file includes the full daily workflow broken into discrete steps, along with conventions for HTML file formatting, image handling, and commit messages. Here is an abbreviated look at how the workflow steps are defined:</p>
+
+<code>
+<pre>
+## Daily Workflow
+
+### Step 1: Download a Data File from GitHub
+gh api repos/&lt;USERNAME&gt;/&lt;REPO&gt;/contents/&lt;FILENAME&gt; --jq '.download_url'
+curl -L -o /path/to/local/project/&lt;FILENAME&gt; "&lt;DOWNLOAD_URL&gt;"
+
+### Step 2: Download an HTML File from GitHub
+gh api repos/&lt;USERNAME&gt;/&lt;REPO&gt;/contents/path/to/html/&lt;FILENAME&gt; --jq '.download_url'
+curl -L -o /path/to/local/project/html/&lt;FILENAME&gt; "&lt;DOWNLOAD_URL&gt;"
+
+### Step 3: Open the Data File in a Desktop Application
+"/path/to/APPLICATION.EXE" "/path/to/local/project/&lt;FILENAME&gt;" &amp;
+
+### Step 4: Open the HTML File in VS Code
+code "/path/to/local/project/html/&lt;FILENAME&gt;"
+
+### Step 5: Commit the HTML File Back to GitHub
+CONTENT=$(base64 -w 0 /path/to/local/project/html/&lt;FILENAME&gt;)
+gh api --method PUT repos/&lt;USERNAME&gt;/&lt;REPO&gt;/contents/path/to/html/&lt;FILENAME&gt; \
+  --field message="Update &lt;FILENAME&gt; - uploaded via Claude workflow" \
+  --field content="$CONTENT" \
+  --field sha="&lt;SHA&gt;"
+
+### Step 6: Resize Image Before Upload
+python -c "
+from PIL import Image
+img = Image.open('original_image.png')
+w, h = img.size
+new_w = 800
+new_h = int(h * (800 / w))
+resized = img.resize((new_w, new_h), Image.LANCZOS)
+resized.save('resized_image.png', optimize=True)
+"
+
+### Step 7: Commit an Image File to GitHub
+base64 -w 0 /path/to/local/project/img/&lt;FILENAME&gt; &gt; /tmp/encoded.txt
+CONTENT=$(cat /tmp/encoded.txt)
+printf '{"message":"Add image - uploaded via Claude workflow","content":"%s"}' \
+  "$CONTENT" &gt; /tmp/payload.json
+gh api --method PUT repos/&lt;USERNAME&gt;/&lt;REPO&gt;/contents/img/&lt;FILENAME&gt; \
+  --input /tmp/payload.json
+</pre>
+</code>
+
+<h2>Fetching Files and Launching Applications from the CLI</h2>
+
+<p>The first challenge was getting Claude Code to interact with both GitHub and the local file system seamlessly. Using the GitHub CLI (gh), the workflow fetches files directly from the repository via the GitHub API, then downloads them with curl. This avoids the need to clone the entire repo or manage local git state - the project directory is not a git repository, and all commits happen through the API.</p>
+
+<p>One unexpected hurdle was launching desktop applications. The standard Windows "start" command did not work from within the Claude Code sandbox. The solution was to call the application executable directly by its full path. This workaround was documented in the CLAUDE.md file so it would be remembered across sessions.</p>
+
+<h2>Image Optimization with Python Pillow</h2>
+
+<p>Portfolio images often come in at high resolution, which slows page load times. I added an image resizing step to the workflow using Python's Pillow library. Every image is resized to a maximum width of 800 pixels while maintaining its original aspect ratio. The original file is preserved with an "_orig" suffix, and the optimized version takes the original filename. In testing, this reduced a 1.3 MB image down to 392 KB - a 70% reduction - without any noticeable loss in visual quality.</p>
+
+<h2>Committing Files Back to GitHub via the API</h2>
+
+<p>Rather than managing a local git repository, the workflow commits files directly to GitHub using the Contents API. For text files like HTML, the content is base64-encoded and sent as a field parameter. For larger binary files like images, the encoded content is written to a temporary JSON payload file to avoid shell argument length limits. Every commit message includes the workflow identifier and a human-readable timestamp, creating a clear audit trail in the repository's commit history.</p>
+
+<h2>Enforcing Conventions Through Documentation</h2>
+
+<p>The CLAUDE.md file also serves as a living style guide. It defines HTML formatting conventions, such as a required footer structure for every content file that includes an attribution line and a link back to the commit. It specifies rules like always using standard hyphens instead of em dashes, and always opening external links in new tabs. By encoding these conventions in the instruction file rather than relying on memory, the workflow produces consistent output every time.</p>
+
+<h2>Looking Ahead</h2>
+
+<p>This workflow demonstrates how an AI coding assistant can go beyond writing code to orchestrate an entire deployment pipeline. The CLAUDE.md file acts as both documentation and executable instruction set - a pattern that scales naturally as the workflow grows. Future iterations could add automated content generation, multi-file batch processing, or integration with additional APIs. The key insight is that by investing time upfront in documenting the process, every subsequent session starts at full speed with zero ramp-up.</p>
+
+<div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
+
+<p><em>Auto-committed through Claude AI workflow - Opus 4.6 model</em> - <a href="<COMMIT_URL>" target="_blank">view commit</a></p>
+
+<div class="section-divider" style="margin-top:10px; margin-bottom:10px;"></div>
+
+<!--
+<p>Built a repeatable AI-powered GitHub deployment workflow using Claude Code (Opus 4.6), documented in a CLAUDE.md instruction file that persists across sessions.</p>
+
+<p>Workflow automates file downloads via GitHub API, local application launching, HTML content editing in VS Code, image optimization with Python Pillow (800px max width, 70% size reduction), and direct GitHub commits via the Contents API.</p>
+
+<p>Established conventions for commit messages, HTML footer structures, and file handling, all encoded in the CLAUDE.md file to ensure consistent, zero-ramp-up execution across daily sessions.</p>
+-->
