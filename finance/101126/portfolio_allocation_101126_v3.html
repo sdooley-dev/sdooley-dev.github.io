@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Portfolio Allocation — October 11, 2026</title><style>
+  :root {
+    --bg: #071018;
+    --panel: #101b26;
+    --panel-soft: #142536;
+    --border: #294057;
+    --accent: #31d6ff;
+    --accent-2: #00d4aa;
+    --gold: #ffd166;
+    --red: #ff5c7a;
+    --text: #f7fbff;
+    --muted: #9fb3c8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(49, 214, 255, 0.14), transparent 34%),
+      radial-gradient(circle at bottom right, rgba(0, 212, 170, 0.10), transparent 32%),
+      var(--bg);
+  }
+
+  .corner-text {
+    position: fixed;
+    bottom: 18px;
+    left: 22px;
+    z-index: 20;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.78;
+    pointer-events: none;
+  }
+
+  .slides {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slides > section {
+    display: none;
+    position: absolute;
+    inset: 0;
+    padding: 54px 72px 64px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateX(28px);
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  .slides > section.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
+  h1 { color: var(--accent); font-size: 58px; line-height: 1.05; margin: 0 0 12px; }
+  h2 { color: var(--accent); font-size: 40px; line-height: 1.15; margin: 0 0 22px; }
+  h3 { color: var(--gold); font-size: 23px; margin: 0 0 10px; }
+  p, li { color: var(--text); font-size: 22px; line-height: 1.5; }
+  p { margin: 0 0 14px; }
+  ul { padding-left: 26px; }
+  li { margin: 12px 0; }
+
+  .muted { color: var(--muted); }
+  .accent { color: var(--accent); }
+  .green { color: var(--accent-2); }
+  .gold { color: var(--gold); }
+  .red { color: var(--red); }
+
+  .title-slide {
+    text-align: center !important;
+    display: none !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .title-slide.active { display: flex !important; }
+  .title-slide h1 { font-size: 64px; margin-bottom: 12px; }
+  .title-slide .sub { color: var(--muted); font-size: 26px; margin-top: 8px; }
+  .title-slide .badge { margin-top: 30px; }
+
+  .section-kicker {
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 18px 0; }
+
+  .card {
+    background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    min-height: 128px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+  }
+  .card h3 { margin-top: 0; }
+  .card p { color: var(--muted); margin: 0; font-size: 20px; }
+
+  .placeholder {
+    border: 1px dashed rgba(49, 214, 255, 0.55);
+    border-radius: 16px;
+    background: rgba(49, 214, 255, 0.06);
+    padding: 28px;
+    color: var(--muted);
+    min-height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(49, 214, 255, 0.14);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    margin: 4px 6px 4px 0;
+    text-transform: uppercase;
+  }
+
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .flow .step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 14px;
+    text-align: center;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 20px; margin-top: 18px; }
+  th { background: #0d1a26; color: var(--accent); padding: 13px; text-align: left; border-bottom: 2px solid var(--border); }
+  td { padding: 13px; border-bottom: 1px solid var(--border); color: var(--text); }
+
+  .footer-note { color: var(--muted); font-size: 16px; margin-top: 24px; }
+
+  .fragment {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+  .fragment.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-btn {
+    position: fixed;
+    bottom: 26px;
+    width: 54px;
+    height: 54px;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    color: var(--accent);
+    font-size: 62px;
+    line-height: 46px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 30;
+    opacity: 0.92;
+  }
+  .nav-btn:hover { background: rgba(49, 214, 255, 0.10); opacity: 1; }
+  .nav-btn:disabled { opacity: 0.22; cursor: default; }
+  #prevBtn { right: 90px; }
+  #nextBtn { right: 30px; }
+
+  .progress-shell {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--border);
+    z-index: 25;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 180ms ease;
+  }
+
+  .slide-count {
+    position: fixed;
+    right: 22px;
+    bottom: 15px;
+    z-index: 26;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .demo-disclaimer { position: fixed; bottom: 47px; left: 22px; right: 175px; z-index: 28; color: var(--muted); font-size: 12px; line-height: 1.35; opacity: 0.92; pointer-events: none; }
+  @media print {
+    html, body { overflow: visible; height: auto; }
+    .corner-text, .nav-btn, .progress-shell, .slide-count { display: none !important; }
+    .demo-disclaimer { position: fixed; bottom: 35px; font-size: 11px; }
+    .slides > section, .slides > section.active {
+      display: block !important;
+      position: relative;
+      opacity: 1 !important;
+      transform: none !important;
+      page-break-after: always;
+      height: 100vh;
+    }
+    .fragment { opacity: 1 !important; transform: none !important; }
+  }
+
+.slides > section {padding:42px 66px 82px}
+h2{font-size:36px;margin-bottom:12px} .section-kicker{margin-bottom:6px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0 22px}
+.kpi{background:linear-gradient(180deg,var(--panel),var(--panel-soft));border:1px solid var(--border);border-radius:14px;padding:17px 21px}
+.kpi .label{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:800}
+.kpi .value{font-size:32px;color:var(--text);font-weight:800;margin-top:5px}
+.content-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:start}
+.chart-card{background:linear-gradient(180deg,var(--panel),var(--panel-soft));border:1px solid var(--border);border-radius:16px;padding:20px;min-width:0}
+.donut-wrap{display:flex;gap:26px;align-items:center;justify-content:center;min-height:280px}
+.donut{width:min(28vw,270px);height:min(28vw,270px);border-radius:50%;position:relative;flex:none}
+.donut:after{content:'';position:absolute;inset:25%;border-radius:50%;background:var(--panel)}
+.legend{display:grid;gap:11px;min-width:170px}.legend-row{display:flex;align-items:center;gap:9px;font-size:16px}.swatch{width:12px;height:12px;border-radius:3px;flex:none}
+.data-table{font-size:17px;margin-top:5px}.data-table th,.data-table td{padding:10px 12px}.data-table td:nth-child(n+2),.data-table th:nth-child(n+2){text-align:right}
+.note{color:var(--muted);font-size:14px;margin-top:14px;line-height:1.45}
+.account-row{display:flex;justify-content:space-between;gap:16px;margin:13px 0 7px;font-size:17px}
+.bar{height:13px;border-radius:10px;background:#203448;overflow:hidden;display:flex}.bar span{height:100%}
+.two-accounts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.small-title{font-size:18px;color:var(--gold);font-weight:800}
+@media(max-width:900px){.slides > section{padding:25px 24px 90px}.content-grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}.kpi .value{font-size:23px}.donut{width:200px;height:200px}.two-accounts{grid-template-columns:1fr}h2{font-size:29px}}
+@media(max-width:550px){.kpis{grid-template-columns:1fr}.donut-wrap{flex-direction:column}.data-table{font-size:13px}.data-table th,.data-table td{padding:7px 5px}}
+</style></head><body><div class="corner-text">Portfolio Allocation · October 11, 2026</div><div class="slides">
+<section><div class="section-kicker">01 / Portfolio Snapshot</div><h2>Portfolio Overview</h2><div class="kpis"><div class="kpi"><div class="label">Approximate Portfolio Value</div><div class="value" id="total"></div></div><div class="kpi"><div class="label">Accounts</div><div class="value" id="count"></div></div><div class="kpi"><div class="label">Weighted Historical Return*</div><div class="value" id="weighted"></div></div></div><div class="content-grid"><div class="chart-card"><h3>Allocation by Account</h3><div class="donut-wrap"><div class="donut" id="overviewDonut"></div><div class="legend" id="overviewLegend"></div></div></div><div class="chart-card"><h3>Account Balances</h3><table class="data-table" id="accountTable"></table><p class="note">Account values are approximate, as provided in the CSV.</p></div></div></section>
+<section><div class="section-kicker">02 / Taxable Brokerage</div><h2>Taxable Brokerage Allocation</h2><div class="kpis"><div class="kpi"><div class="label">Approximate Account Value</div><div class="value" id="taxValue"></div></div><div class="kpi"><div class="label">Holdings</div><div class="value" id="taxHoldings"></div></div><div class="kpi"><div class="label">Weighted Historical Return*</div><div class="value" id="taxReturn"></div></div></div><div class="content-grid"><div class="chart-card"><h3>Equal-Weight Allocation</h3><div class="donut-wrap"><div class="donut" id="taxDonut"></div><div class="legend" id="taxLegend"></div></div></div><div class="chart-card"><h3>Holdings Breakdown</h3><table class="data-table" id="taxTable"></table></div></div></section>
+<section><div class="section-kicker">03 / Retirement Accounts</div><h2>Traditional, Roth &amp; Inherited IRAs</h2><div class="kpis"><div class="kpi"><div class="label">Combined Approximate Value</div><div class="value" id="retValue"></div></div><div class="kpi"><div class="label">Accounts</div><div class="value" id="retCount"></div></div><div class="kpi"><div class="label">Weighted Historical Return*</div><div class="value" id="retReturn"></div></div></div><div class="content-grid"><div class="chart-card"><h3>Allocation Within Each IRA</h3><div class="donut-wrap"><div class="donut" id="retDonut"></div><div class="legend" id="retLegend"></div></div></div><div class="chart-card"><h3>Account Breakdown</h3><table class="data-table" id="retTable"></table><p class="note">Each IRA has the same 50% DBMF / 50% TQQQ target mix.</p></div></div></section>
+<section><div class="section-kicker">04 / Combined Exposure</div><h2>Consolidated Portfolio Allocation</h2><div class="content-grid"><div class="chart-card"><h3>Allocation Across All Accounts</h3><div class="donut-wrap"><div class="donut" id="allDonut"></div><div class="legend" id="allLegend"></div></div></div><div class="chart-card"><h3>Portfolio-Wide Holdings</h3><table class="data-table" id="allTable"></table></div></div><p class="note">*Historical returns are input figures from the CSV, not forecasts. Weighted averages assume these figures are comparable annualized returns; they do not account for volatility, rebalancing, taxes, or correlations. Dollar amounts are approximate.</p></section>
+</div><div class="demo-disclaimer">Demo purposes only. All account balances, allocations, and return figures are illustrative and do not represent actual investments or expected performance.</div><button class="nav-btn" id="prevBtn" aria-label="Previous slide">‹</button><button class="nav-btn" id="nextBtn" aria-label="Next slide">›</button><div class="slide-count" id="slideCount"></div><div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div><script>
+const accounts=[{"name": "Taxable Brokerage", "amount": 250000.0, "holdings": [{"ticker": "VOO", "weight": 0.25, "return": 15.6}, {"ticker": "VGT", "weight": 0.25, "return": 25.0}, {"ticker": "SSO", "weight": 0.25, "return": 24.1}, {"ticker": "OVL", "weight": 0.25, "return": 14.0}]}, {"name": "IRA Traditional", "amount": 9000.0, "holdings": [{"ticker": "DBMF", "weight": 0.5, "return": 10.5}, {"ticker": "TQQQ", "weight": 0.5, "return": 41.5}]}, {"name": "IRA Roth", "amount": 9000.0, "holdings": [{"ticker": "DBMF", "weight": 0.5, "return": 10.5}, {"ticker": "TQQQ", "weight": 0.5, "return": 41.5}]}, {"name": "IRA Inherited", "amount": 32000.0, "holdings": [{"ticker": "DBMF", "weight": 0.5, "return": 10.5}, {"ticker": "TQQQ", "weight": 0.5, "return": 41.5}]}];
+const colors=['#31d6ff','#00d4aa','#ffd166','#ff5c7a','#ad9cff','#ff9e64'];
+const money=v=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(v);
+const pct=v=>(v*100).toFixed(1)+'%';
+const all=accounts.flatMap(a=>a.holdings.map(h=>({...h,amount:a.amount*h.weight,account:a.name})));
+const total=accounts.reduce((s,a)=>s+a.amount,0);
+const weightedReturn=all.reduce((s,h)=>s+h.amount*h.return/100,0)/total;
+const combined=Object.values(all.reduce((o,h)=>{if(!o[h.ticker])o[h.ticker]={ticker:h.ticker,amount:0,weighted:0};o[h.ticker].amount+=h.amount;o[h.ticker].weighted+=h.amount*h.return;return o},{})).sort((a,b)=>b.amount-a.amount);
+function donut(el,items){let angle=0;const stops=items.map((item,i)=>{const start=angle;angle+=item.value*100;return `${colors[i%colors.length]} ${start}% ${angle}%`});document.getElementById(el).style.background=`conic-gradient(${stops.join(',')})`;}
+function legend(el,items){document.getElementById(el).innerHTML=items.map((item,i)=>`<div class="legend-row"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${item.label}</span><strong style="margin-left:auto">${pct(item.value)}</strong></div>`).join('')}
+function table(el,headers,rows){document.getElementById(el).innerHTML='<thead><tr>'+headers.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('')+'</tbody>'}
+function kpi(id,value){document.getElementById(id).textContent=value}
+kpi('total',money(total));kpi('count',accounts.length);kpi('weighted',weightedReturn.toFixed(2)+'%');
+const overview=accounts.map(a=>({label:a.name,value:a.amount/total}));donut('overviewDonut',overview);legend('overviewLegend',overview);
+table('accountTable',['Account','Approx. Value','Share'],accounts.map(a=>[a.name,money(a.amount),pct(a.amount/total)]));
+const taxable=accounts[0];kpi('taxValue',money(taxable.amount));kpi('taxHoldings',taxable.holdings.length);kpi('taxReturn',(taxable.holdings.reduce((s,h)=>s+h.weight*h.return,0)).toFixed(2)+'%');
+const taxItems=taxable.holdings.map(h=>({label:h.ticker,value:h.weight}));donut('taxDonut',taxItems);legend('taxLegend',taxItems);
+table('taxTable',['Ticker','Allocation','Approx. Value','Hist. Return'],taxable.holdings.map(h=>[h.ticker,pct(h.weight),money(taxable.amount*h.weight),h.return.toFixed(1)+'%']));
+const retirement=accounts.slice(1);const retirementTotal=retirement.reduce((s,a)=>s+a.amount,0);
+kpi('retValue',money(retirementTotal));kpi('retCount',retirement.length);kpi('retReturn',(retirement.reduce((s,a)=>s+a.amount*a.holdings.reduce((t,h)=>t+h.weight*h.return,0),0)/retirementTotal).toFixed(2)+'%');
+const retItems=retirement[0].holdings.map(h=>({label:h.ticker,value:h.weight}));donut('retDonut',retItems);legend('retLegend',retItems);
+table('retTable',['Account','Approx. Value','DBMF (50%)','TQQQ (50%)'],retirement.map(a=>[a.name,money(a.amount),money(a.amount*.5),money(a.amount*.5)]));
+const consolidated=combined.map(h=>({label:h.ticker,value:h.amount/total}));donut('allDonut',consolidated);legend('allLegend',consolidated);
+table('allTable',['Ticker','Approx. Value','Portfolio Weight','Hist. Return'],combined.map(h=>[h.ticker,money(h.amount),pct(h.amount/total),(h.weighted/h.amount).toFixed(1)+'%']));
+(function(){const slides=[...document.querySelectorAll('.slides > section')];const prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn'),count=document.getElementById('slideCount'),progress=document.getElementById('progressBar');let current=0;
+function show(i){current=Math.max(0,Math.min(i,slides.length-1));slides.forEach((s,j)=>s.classList.toggle('active',j===current));prev.disabled=current===0;next.disabled=current===slides.length-1;count.textContent=`${current+1} / ${slides.length}`;progress.style.width=((current+1)/slides.length*100)+'%';history.replaceState(null,'','#/'+current)}
+prev.onclick=()=>show(current-1);next.onclick=()=>show(current+1);document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(current+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(current-1)}});window.addEventListener('hashchange',()=>{const m=location.hash.match(/^#\/(\d+)$/);if(m)show(+m[1])});const m=location.hash.match(/^#\/(\d+)$/);show(m?+m[1]:0)})();
+</script></body></html>
